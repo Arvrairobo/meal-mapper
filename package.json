@@ -1,0 +1,19 @@
+{
+  "name": "mealplanner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattsells/MealPlanner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattsells/MealPlanner/issues"
+  },
+  "homepage": "https://github.com/mattsells/MealPlanner#readme"
+}
