@@ -15,8 +15,8 @@ server.use(bodyParser.json({type: 'application/vnd.api+json'}));
 server.use(bodyParser.urlencoded({extended: true}));
 
 // Connect routes
-// require('./routes/html-routes.js')(server);
-// require('./routes/api-routes.js')(server);
+require('./routes/html-routes.js')(server);
+require('./routes/api-routes.js')(server);
 
 // Start server
 server.listen(PORT, function(){

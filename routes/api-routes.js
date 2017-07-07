@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost/mealplanner');
-var database = mongoose.connection();
+var database = mongoose.connection;
 
 database.on('error', function(error){
 	console.log(`Error with database: ${error}.`);

@@ -19,10 +19,10 @@ var Recipe = new mongoose.Schema({
 	},
 	fat: {
 		type: Number
-	}
+	},
 
 	ingredients: {
-		type: Array
+		type: [String]
 	},
 	servings: {
 		type: Number
