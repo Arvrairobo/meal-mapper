@@ -7,7 +7,7 @@ var Recipe = new mongoose.Schema({
 	url: {
 		type: String
 	},
-	picutre: {
+	image: {
 		type: String
 	},
 
@@ -18,6 +18,13 @@ var Recipe = new mongoose.Schema({
 		type: Number
 	},
 	fat: {
+		type: Number
+	}
+
+	ingredients: {
+		type: Array
+	},
+	servings: {
 		type: Number
 	}
 })

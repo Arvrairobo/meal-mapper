@@ -24,7 +24,7 @@ module.exports = function(server){
 			if(error) throw error;
 
 			response.json(user);
-		})
+		});
 	});
 
 	// Get user details
@@ -33,6 +33,6 @@ module.exports = function(server){
 			if(error) throw error;
 
 			response.json(user);
-		})
-	})
+		});
+	});
 }
