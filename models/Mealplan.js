@@ -1,36 +1,19 @@
 const mongoose = require('mongoose');
 
 var Mealplan = new mongoose.Schema({
-	// User login information
-	email: {
-		type: String
-	},
-	password: {
-		type: String
+	startDate: {
+		type: Date
 	},
 
-	// User daily macros
-	protein: {
-		type: Number
-	},
-	carbs: {
-		type: Number
-	},
-	fat: {
-		type: Number
-	},
-
-	// Associations
-	mealplans: [{
+	// Array of each meal plan
+	meals: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "MealPlan"
-	}],
-
-	// Add in ability to save individual meals
-	// leftovers: [{
-	// 	type: mongoose.Schema.Types.ObjectId,
-	// 	ref: 
-	// }]
+		ref: "Meal",
+		mealtime: {
+			day: Number, // (0-6, Sunday-Saturday)
+			meal: Number, // (0-2, breakfast-dinner)
+		}
+	}]
 });
 
 module.exports = mongoose.model('Mealplan', Mealplan);

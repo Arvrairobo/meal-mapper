@@ -20,17 +20,11 @@ var User = new mongoose.Schema({
 		type: Number
 	},
 
-	// Associations
+	// Array of each meal plan
 	mealplans: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "MealPlan"
-	}],
-
-	// Add in ability to save individual meals
-	// leftovers: [{
-	// 	type: mongoose.Schema.Types.ObjectId,
-	// 	ref: 
-	// }]
+		ref: "Mealplan"
+	}]
 });
 
 module.exports = mongoose.model('User', User);
