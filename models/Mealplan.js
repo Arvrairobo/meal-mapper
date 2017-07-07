@@ -8,7 +8,9 @@ var Mealplan = new mongoose.Schema({
 	// Array of each meal plan
 	meals: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "Meal",
+		ref: "Recipe",
+
+		// Track the time and day that the specific meal is used
 		mealtime: {
 			day: Number, // (0-6, Sunday-Saturday)
 			meal: Number, // (0-2, breakfast-dinner)
