@@ -1,3 +1,8 @@
+// Keys for Edamam API
+const appId = '1d8fc3d8';
+const appKey = '82b0696857a06bb20b6bc51dedc0360f';
+const search = 'https://api.edamam.com/search';
+
 // Set up and connect to database
 const mongoose = require('mongoose');
 
