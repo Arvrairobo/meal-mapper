@@ -1,0 +1,20 @@
+{ Recipe }
+
+-Name
+-URL
+-Image URL
+-Created by
+-Servings
+
+-Nutrition
+	-Carbs
+	-Protein
+	-Fat
+
+-[Ingredients]
+	-Amount
+	-Measurement
+	-Ingredient
+
+-[Tags]
+-Meal

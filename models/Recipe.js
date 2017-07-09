@@ -10,6 +10,13 @@ var Recipe = new mongoose.Schema({
 	image: {
 		type: String
 	},
+	creator: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
+	servings: {
+		type: Number
+	},
 
 	protein: {
 		type: Number
@@ -21,12 +28,11 @@ var Recipe = new mongoose.Schema({
 		type: Number
 	},
 
-	ingredients: {
-		type: [String]
-	},
-	servings: {
-		type: Number
-	}
+	ingredients: [{
+		amount: Number,
+		measurement: String,
+		ingredient: String
+	}]
 })
 
 module.exports = mongoose.model('Recipe', Recipe);
