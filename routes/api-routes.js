@@ -33,6 +33,8 @@ module.exports = function(server){
 	});
 
 	server.post('/api/recipe', function(request, response){
+		console.log(request.body);
+
 		Recipe.create(request.body, function(error, recipe){
 			if(error) throw error;
 			response.json(recipe);
