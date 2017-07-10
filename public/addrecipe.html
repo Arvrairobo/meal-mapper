@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add a Recipe</title>
+
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width initial-scale=1.0'>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+
+Name: <input type='text' id='recipe-name' name='recipe-name'><br>
+
+<button id='add-recipe'>Add</button>
+
+<script type='text/javascript'>
+
+	$('#add-recipe').on('click', function(){
+		var newRecipe = {};
+		newRecipe.name = $('#recipe-name').val().trim();
+
+		$.post({
+			
+		})
+	});
+
+</script>
+
+</body>
+</html>

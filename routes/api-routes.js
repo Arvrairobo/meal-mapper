@@ -32,4 +32,9 @@ module.exports = function(server){
 			response.json(user);
 		});
 	});
+
+	server.post('/api/recipe', function(request, response){
+		console.log(request.body);
+		response.end();
+	});
 }

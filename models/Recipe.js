@@ -32,7 +32,14 @@ var Recipe = new mongoose.Schema({
 		amount: Number,
 		measurement: String,
 		ingredient: String
-	}]
+	}],
+
+	tags: {
+		type: [String]
+	},
+	meal: {
+		type: String
+	}
 })
 
 module.exports = mongoose.model('Recipe', Recipe);
