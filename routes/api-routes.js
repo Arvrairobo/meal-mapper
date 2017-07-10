@@ -19,8 +19,8 @@ database.once('open', function(){
 });
 
 var User = require('../models/User.js');
-// var Mealplan = require('../models/Mealplan.js');
-// var Recipe = require('../models/Recipe.js');
+var Mealplan = require('../models/Mealplan.js');
+var Recipe = require('../models/Recipe.js');
 
 module.exports = function(server){
 
@@ -28,13 +28,14 @@ module.exports = function(server){
 	server.post('/api/user', function(request, response){
 		User.create(request.body, function(error, user){
 			if(error) throw error;
-
 			response.json(user);
 		});
 	});
 
 	server.post('/api/recipe', function(request, response){
-		console.log(request.body);
-		response.end();
+		Recipe.create(request.body, function(error, recipe){
+			if(error) throw error;
+			response.json(recipe);
+		});
 	});
 }

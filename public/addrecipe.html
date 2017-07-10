@@ -10,19 +10,61 @@
 </head>
 <body>
 
-Name: <input type='text' id='recipe-name' name='recipe-name'><br>
+<strong>Recipe Info</strong><br>
+Name: <input type='text' id='recipe-name'><br>
+URL: <input type='text' id='recipe-url'><br>
+Image URL: <input type='text' id='recipe-image'><br>
+Servings: <input type='text' id='recipe-servings'><br><br>
 
-<button id='add-recipe'>Add</button>
+<strong>Macros</strong><br>
+Carbs: <input type='text' id='recipe-carbs'><br>
+Protein: <input type='text' id='recipe-protein'><br>
+Fat: <input type='text' id='recipe-fat'><br><br>
+
+<button id='add-ingredient'>+</button>
+<div id='ingredient-area'></div>
+
+<br>
+<button id='add-recipe'>ADD RECIPE</button>
 
 <script type='text/javascript'>
 
+	var ingredients = 0;
+
+	// Dynamic input for ingredients
+	$('#add-ingredient').on('click', function(){
+		var newSet = $('<div>');
+		newSet.append('Amount: ').append($('<input>').attr('type', 'text').attr('id', 'amount' + ingredients));
+		newSet.append('Measurement: ').append($('<input>').attr('type', 'text').attr('id', 'measurement' + ingredients));
+		newSet.append('Ingredient: ').append($('<input>').attr('type', 'text').attr('id', 'ingredient' + ingredients));
+
+		$('#ingredient-area').append(newSet);
+	});
+
+	// Script for button click
 	$('#add-recipe').on('click', function(){
-		var newRecipe = {};
-		newRecipe.name = $('#recipe-name').val().trim();
+		var newRecipe = {
+			name: $('#recipe-name').val().trim(),
+			url: $('#recipe-url').val().trim(),
+			image: $('#recipe-image').val().trim(),
+			servings: parseInt($('#recipe-servings').val().trim()),
+
+			carbs: parseFloat($('#recipe-carbs').val().trim()),
+			protein: parseFloat($('#recipe-protein').val().trim()),
+			fat: parseFloat($('#recipe-fat').val().trim())
+		};
+
+		// Add ingredients
+		
 
 		$.post({
-			
+			url: '/api/recipe',
+			method: 'POST',
+			data: newRecipe
 		})
+		.done(function(data){
+			console.log('Recipe added: ' + data);
+		});
 	});
 
 </script>
