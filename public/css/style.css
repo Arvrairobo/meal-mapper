@@ -4,11 +4,9 @@ html, body {
 }
 
 #meal-plan {
-	background-color: red;
-	height: 100%;
+	padding: 10px;
 }
 
 #recipe-search {
-	background-color: red;
-	height: 500px;
+	padding: 10px;
 }

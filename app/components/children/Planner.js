@@ -1,13 +1,13 @@
 var React = require('react');
 
-var Search = React.createClass({
+var Planner = React.createClass({
 	render: function(){
 		return (
 			<div>
-				Search
+				Planner
 			</div>
 		)
 	}
 });
 
-module.exports = Search;
+module.exports = Planner;
