@@ -6,7 +6,18 @@ module.exports = function(server){
 		response.sendFile(path.resolve(__dirname + "/../public/home.html"));
 	});
 
-	server.get('/addrecipe', function(request, response){
-		response.sendFile(path.resolve(__dirname + "/../public/addrecipe.html"));
+	server.get('/recipe', function(request, response){
+		response.sendFile(path.resolve(__dirname + "/../public/recipe.html"));
+	});
+
+	server.get('/:app?', function(request, response){
+		var route = request.params.app;
+
+		// Only send app if request is for dashboard or mealplan
+		if(route === 'dashboard' || route === 'mealplan'){
+			response.sendFile(path.resolve(__dirname + "/../public/app.html"));
+		} else {
+			response.sendStatus(404);
+		}
 	});
 }

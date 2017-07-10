@@ -9,8 +9,8 @@ var IndexRoute = router.IndexRoute;
 
 // Reference the high-level components
 var Main = require("../components/Main");
-var Planner = require("../components/children/Planner");
-var Search = require("../components/children/Search");
+var Dashboard = require("../components/children/Dashboard");
+var Mealplan = require("../components/children/Mealplan");
 
 // Export the Routes
 module.exports = (
@@ -19,12 +19,10 @@ module.exports = (
 	<Router history={hashHistory}>
 		<Route path="/" component={Main}>
 
-			{/* If user selects Info or Chat show the appropriate component */}
-			<Route path="info" component={Info} />
-			<Route path="chat" component={Chat} />
+			<Route path="dashboard" component={Dashboard} />
+			<Route path="mealplan" component={Mealplan} />
 
-			{/* If user selects any other path... we get the Info Route */}
-			<IndexRoute component={Info} />
+			<IndexRoute component={Dashboard} />
 
 		</Route>
 	</Router>
@@ -34,7 +32,6 @@ module.exports = (
 /*
 RESTRUCTURE TO:
 MAIN
-	-HOME
 	-DASHBOARD
 	-PLANNER
 		(contains PLAN and SEARCH)
