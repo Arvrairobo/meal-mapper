@@ -6,18 +6,16 @@ module.exports = function(server){
 		response.sendFile(path.resolve(__dirname + "/../public/home.html"));
 	});
 
-	server.get('/recipe', function(request, response){
-		response.sendFile(path.resolve(__dirname + "/../public/recipe.html"));
+	server.get('/dashboard', function(request, response){
+		response.sendFile(path.resolve(__dirname + "/../public/dashboard.html"));
 	});
 
-	server.get('/:app?', function(request, response){
-		var route = request.params.app;
+	server.get('/myplan', function(request, response){
+		response.sendFile(path.resolve(__dirname + "/../public/app.html"));
+	});
 
-		// Only send app if request is for dashboard or mealplan
-		if(route === 'dashboard' || route === 'mealplan'){
-			response.sendFile(path.resolve(__dirname + "/../public/app.html"));
-		} else {
-			response.sendStatus(404);
-		}
+	// Admin use only for now
+	server.get('/recipe', function(request, response){
+		response.sendFile(path.resolve(__dirname + "/../public/recipe.html"));
 	});
 }
