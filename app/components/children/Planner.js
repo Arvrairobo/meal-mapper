@@ -4,7 +4,33 @@ var Planner = React.createClass({
 	render: function(){
 		return (
 			<div>
-				Planner
+				<div className='day-col'>
+					<p>Sunday</p>
+				</div>
+
+				<div className='day-col'>
+					<p>Monday</p>
+				</div>
+
+				<div className='day-col'>
+					<p>Tuesday</p>
+				</div>
+
+				<div className='day-col'>
+					<p>Wednesday</p>
+				</div>
+
+				<div className='day-col'>
+					<p>Thursday</p>
+				</div>
+
+				<div className='day-col'>
+					<p>Friday</p>
+				</div>
+
+				<div className='day-col'>
+					<p>Saturday</p>
+				</div>
 			</div>
 		)
 	}

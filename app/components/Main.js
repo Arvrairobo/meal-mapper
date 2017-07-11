@@ -45,11 +45,11 @@ var Main = React.createClass({
 				</nav>
 				
 				<div className='row'>
-					<div className='col s9' id='meal-plan'>
+					<div className='col s9'>
 						<Planner />
 					</div>
 
-					<div className='col s3' id='recipe-search'>
+					<div className='col s3'>
 						<Search setSearch={this.setSearch} searchResults={this.state.searchResults} />
 					</div>
 				</div>

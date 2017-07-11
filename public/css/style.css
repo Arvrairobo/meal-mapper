@@ -3,10 +3,27 @@ html, body {
 	height: 100%;
 }
 
-#meal-plan {
-	padding: 10px;
+/* Search component styles */
+
+.small-text {
+	font-size: .8em;
+	margin-bottom: 2px;
 }
 
-#recipe-search {
-	padding: 10px;
+.search-find {
+	border: 1px solid black;
+	margin-bottom: 2px;
+}
+
+/* Planner component styles */
+
+.day-col {
+	width: 12%;
+	margin: 3px;
+	border: 1px solid black;
+	float: left;
+}
+
+.day-col p {
+	text-align: center;
 }
