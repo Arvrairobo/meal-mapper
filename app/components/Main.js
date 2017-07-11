@@ -5,6 +5,9 @@ var React = require("react");
 var Planner = require("./children/Planner");
 var Search = require("./children/Search");
 
+// Include helper functions
+var helpers = require('../helpers/helpers.js');
+
 var Main = React.createClass({
 
 	getInitialState: function(){
@@ -13,9 +16,16 @@ var Main = React.createClass({
 		}
 	},
 
+	componentDidUpdate: function(prevProps, prevState){
+
+		// Check if search term changes - if so, run search
+		if(prevState.searchTerm != this.state.searchTerm){
+			// TODO run search
+		}
+	},
+
 	setSearch: function(newSearch){
 		this.setState({ searchTerm: newSearch });
-		console.log('new search: ' + this.state.searchTerm);
 	},
 
 	render: function() {
@@ -23,11 +33,11 @@ var Main = React.createClass({
 			<div>
 				<nav>
 					<div className='nav-wrapper'>
-						<a href="#" className="brand-logo">Meal Planner</a>
-						<ul id='nav-mobile' className='right hide-on-med-and-down'>
-							<li><a href='#'>My Dashboard</a></li>
+						<a href="/" className="brand-logo">Meal Planner</a>
+						<ul id='nav-mobile' className='right'>
+							<li><a href='/dashboard'>My Dashboard</a></li>
 							<li><a href='#'>Meal Plan</a></li>
-							<li><a href='#'>Log Out</a></li>
+							<li><a href='/'>Log Out</a></li>
 						</ul>
 					</div>
 				</nav>
