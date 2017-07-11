@@ -26,6 +26,11 @@ var Search = React.createClass({
 
 				<p>Search Results</p>
 				
+				{this.props.searchResults.map(function(recipe, i){
+					return (
+						<h4 key={i}>{recipe.name}</h4>
+					)
+				}, this)}
 
 			</div>
 		)

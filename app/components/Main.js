@@ -13,7 +13,7 @@ var Main = React.createClass({
 	getInitialState: function(){
 		return {
 			searchTerm: '',
-			searchResults: {}
+			searchResults: []
 		}
 	},
 
@@ -21,7 +21,7 @@ var Main = React.createClass({
 		// Check if search term changes - if so, run search
 		if(prevState.searchTerm != this.state.searchTerm){
 			helpers.searchRecipes(this.state.searchTerm).then(function(recipes){
-				this.setState({ searchResults: recipes	});
+				this.setState({ searchResults: recipes.data });
 			}.bind(this));
 		}
 	},
