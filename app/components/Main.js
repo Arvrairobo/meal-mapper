@@ -50,7 +50,7 @@ var Main = React.createClass({
 					</div>
 
 					<div className='col s3' id='recipe-search'>
-						<Search setSearch={this.setSearch} searchResults={this.searchResults} />
+						<Search setSearch={this.setSearch} searchResults={this.state.searchResults} />
 					</div>
 				</div>
 			</div>

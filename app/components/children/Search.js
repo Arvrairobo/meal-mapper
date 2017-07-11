@@ -8,10 +8,6 @@ var Search = React.createClass({
 		}
 	},
 
-	componentDidUpdate: function(){
-		console.log(this.props);
-	},
-
 	changeSearch: function(event){
 		this.setState({ searchTerm: event.target.value });
 	},
@@ -21,10 +17,16 @@ var Search = React.createClass({
 	},
 
 	render: function(){
+		console.log(this.props.searchResults);
 		return (
 			<div>
+				<p>Find a recipe</p>
 				<input value={this.state.searchTerm} onChange={this.changeSearch} />
 				<a className="waves-effect waves-light btn" onClick={this.sendSearch}>Search</a>
+
+				<p>Search Results</p>
+				
+
 			</div>
 		)
 	}
