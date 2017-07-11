@@ -32,10 +32,26 @@ module.exports = function(server){
 		});
 	});
 
+	// Create a new recipe
 	server.post('/api/recipe', function(request, response){
 		Recipe.create(request.body, function(error, recipe){
 			if(error) throw error;
 			response.json(recipe);
 		});
+	});
+
+	// Search for all recipes based on search term
+	server.get('/api/recipes/:search', function(request, response){
+		var search = request.params.search;
+		// For now just search all recipes
+		Recipe.find({}, function(error, recipes){
+			if(error) throw error;
+			response.json(recipes);
+		});
+
+		// THE PLAN
+		// Search for word in title
+		// Then search in tags / meals
+		// Return all results less duplicates
 	});
 }

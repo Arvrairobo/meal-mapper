@@ -6,21 +6,23 @@ var Planner = require("./children/Planner");
 var Search = require("./children/Search");
 
 // Include helper functions
-var helpers = require('../helpers/helpers.js');
+var helpers = require('../utils/helpers.js');
 
 var Main = React.createClass({
 
 	getInitialState: function(){
 		return {
-			searchTerm: ''
+			searchTerm: '',
+			searchResults: {}
 		}
 	},
 
 	componentDidUpdate: function(prevProps, prevState){
-
 		// Check if search term changes - if so, run search
 		if(prevState.searchTerm != this.state.searchTerm){
-			// TODO run search
+			helpers.searchRecipes(this.state.searchTerm).then(function(recipes){
+				this.setState({ searchResults: recipes	});
+			}.bind(this));
 		}
 	},
 
@@ -48,7 +50,7 @@ var Main = React.createClass({
 					</div>
 
 					<div className='col s3' id='recipe-search'>
-						<Search setSearch={this.setSearch} />
+						<Search setSearch={this.setSearch} searchResults={this.searchResults} />
 					</div>
 				</div>
 			</div>

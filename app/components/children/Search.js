@@ -8,6 +8,10 @@ var Search = React.createClass({
 		}
 	},
 
+	componentDidUpdate: function(){
+		console.log(this.props);
+	},
+
 	changeSearch: function(event){
 		this.setState({ searchTerm: event.target.value });
 	},
