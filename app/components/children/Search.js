@@ -4,22 +4,24 @@ var Search = React.createClass({
 
 	getInitialState: function(){
 		return {
-			searchTerm: ''
+			searchTerm: '',
+			addRecipe: {}
 		}
 	},
 
+	// As user types in search box this will update
 	changeSearch: function(event){
 		this.setState({ searchTerm: event.target.value });
 	},
 
+	// When search button is pressed, send to parent component
 	sendSearch: function(event){
 		this.props.setSearch(this.state.searchTerm);
 	},
 
-	addRecipe: function(recipeNum){
-		// Get recipe details from props
-		var recipe = this.props.searchResults[recipeNum];
-		console.log(recipe);
+	// When click button to add recipe, add to parent component
+	sendRecipe: function(recipeNum){
+		this.props.setRecipe(this.props.searchResults[recipeNum]);
 	},
 
 	render: function(){
@@ -40,7 +42,7 @@ var Search = React.createClass({
 								<p className='small-text'>Protein: {recipe.protein}g</p>
 								<p className='small-text'>Fat: {recipe.fat}g</p>
 
-								<button onClick={this.addRecipe.bind(null, i)}>Add to Plan</button>
+								<button onClick={this.sendRecipe.bind(null, i)}>Add to Plan</button>
 							</div>
 						)
 					})}
