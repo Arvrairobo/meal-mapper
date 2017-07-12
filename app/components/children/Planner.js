@@ -14,6 +14,9 @@ var Planner = React.createClass({
 
 				<div className='day-col'>
 					<p>Tuesday</p>
+					<div>
+						<p>A test</p>
+					</div>
 				</div>
 
 				<div className='day-col'>

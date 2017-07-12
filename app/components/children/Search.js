@@ -18,23 +18,25 @@ var Search = React.createClass({
 
 	render: function(){
 		return (
-			<div>
+			<div class='search-panel'>
 				<p>Find a recipe</p>
 				<input value={this.state.searchTerm} onChange={this.changeSearch} />
 				<a className="waves-effect waves-light btn" onClick={this.sendSearch}>Search</a>
 
 				<h5>Search Results</h5>
 
-				{this.props.searchResults.map((recipe, i) => {
-					return (
-						<div key={i} className='search-find'>
-							<p>{recipe.name}</p>
-							<p className='small-text'>Carbs: {recipe.carbs}g</p>
-							<p className='small-text'>Protein: {recipe.protein}g</p>
-							<p className='small-text'>Fat: {recipe.fat}g</p>
-						</div>
-					)
-				})}
+				<div id='search-scroll'>
+					{this.props.searchResults.map((recipe, i) => {
+						return (
+							<div key={i} className='search-find'>
+								<p>{recipe.name}</p>
+								<p className='small-text'>Carbs: {recipe.carbs}g</p>
+								<p className='small-text'>Protein: {recipe.protein}g</p>
+								<p className='small-text'>Fat: {recipe.fat}g</p>
+							</div>
+						)
+					})}
+				</div>
 
 			</div>
 		)

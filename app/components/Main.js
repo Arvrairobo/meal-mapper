@@ -1,4 +1,4 @@
-// Include React
+// Include React and DOM for dragging
 var React = require("react");
 
 // Include sub-components
