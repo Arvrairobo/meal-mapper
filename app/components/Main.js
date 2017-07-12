@@ -13,8 +13,13 @@ var Main = React.createClass({
 	getInitialState: function(){
 		return {
 			searchTerm: '',
-			searchResults: []
+			searchResults: [],
+			mealPlan: {}
 		}
+	},
+
+	componentDidMount: function(){
+		// Check for user meal plan and load into state
 	},
 
 	componentDidUpdate: function(prevProps, prevState){

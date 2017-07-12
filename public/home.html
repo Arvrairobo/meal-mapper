@@ -17,5 +17,33 @@
 
 <h3>Home page (Patrick is building)</h3>
 
+<strong>User Info</strong><br>
+Name: <input type='text' id='user-name'><br>
+Email: <input type='text' id='user-email'><br>
+Password: <input type='text' id='user-password'><br>
+
+<br>
+<button id='add-user'>ADD USER</button>
+
+<script>
+	$('#add-user').on('click', function(){
+		var newUser = {
+			name: $('#user-name').val().trim(),
+			email: $('#user-email').val().trim(),
+			password: $('#user-password').val().trim(),
+		}
+
+		$.post({
+			url: '/api/user',
+			method: 'POST',
+			data: newUser
+		})
+		.done(function(data){
+			console.log('User added: ' + data);
+		});
+	});
+
+</script>
+
 </body>
 </html>

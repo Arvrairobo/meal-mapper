@@ -12,7 +12,8 @@ var Mealplan = new mongoose.Schema({
 	meals: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Recipe",
-		day: Number
+		day: Number,
+		meal: Number
 	}]
 });
 
