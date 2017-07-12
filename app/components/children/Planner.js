@@ -3,6 +3,8 @@ var React = require('react');
 var Planner = React.createClass({
 
 	clickDay: function(day){
+		// Runs when you click a "day" column
+		// Check first if clickAdd is true - signals that a recipe from search was clicked first
 		if(this.props.clickAdd){
 			// Add the current recipe to the meal plan day, then reset
 			this.props.addToMealPlan(day);
@@ -16,7 +18,13 @@ var Planner = React.createClass({
 			<div>
 				<div className='day-col'  onClick={this.clickDay.bind(null, 0)}>
 					<p>Sunday</p>
-					<div className='meal-store'></div>
+					<div className='meal-store'>
+						{this.props.mealPlan[0].map((recipe, i) => {
+							return (
+								<p key={i}>{recipe.name}</p>
+							)
+						})}
+					</div>
 				</div>
 
 				<div className='day-col'>
