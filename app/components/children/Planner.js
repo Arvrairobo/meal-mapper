@@ -11,18 +11,20 @@ var Planner = React.createClass({
 		}
 	},
 
-	renderDay: function(day){
-		var meals = this.props.mealPlan.meals[day];
-	},
-
 	render: function(){
+		console.log(this.props.mealPlan.meals);
 		return (
+			
 			<div>
 				<div className='day-col'  onClick={this.clickDay.bind(null, 0)}>
 					<p>Sunday</p><hr/>
-					<div className='meal-store'>
-						{ this.renderDay(0) }
-					</div>
+
+					{this.props.mealPlan.meals[0].map((recipe, i) => {
+						return (
+							<p key={i}>{recipe.name}</p>
+						)
+					})}
+
 				</div>
 
 				<div className='day-col'>

@@ -48,10 +48,10 @@ var Main = React.createClass({
 
 	addToMealPlan: function(day){
 		var newPlan = this.state.mealPlan;
-		
+
 		// Push the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].push(this.state.addRecipe);
-		this.setState({ mealPlan: newPlan });
+		this.setState({ mealPlan: newPlan, clickAdd: false });
 	},
 
 	render: function() {
