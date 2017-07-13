@@ -19,16 +19,7 @@ var Planner = React.createClass({
 		return (
 			
 			<div>
-				<div className='day-col'  onClick={this.clickDay.bind(null, 0)}>
-					<p>Sunday</p><hr/>
-
-					{this.props.mealPlan.meals[0].map((recipe, i) => {
-						return (
-							<p key={i}>{recipe.name}</p>
-						)
-					})}
-
-				</div>
+				<Day day='Sunday' meals={this.props.mealPlan.meals[0]} onClick={this.clickDay(0)} />
 
 			</div>
 		)
