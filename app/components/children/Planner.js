@@ -1,5 +1,8 @@
 var React = require('react');
 
+// Include Day sub component
+var Day = require('./children/Day');
+
 var Planner = React.createClass({
 
 	clickDay: function(day){
@@ -27,29 +30,6 @@ var Planner = React.createClass({
 
 				</div>
 
-				<div className='day-col'>
-					<p>Monday</p>
-				</div>
-
-				<div className='day-col'>
-					<p>Tuesday</p>
-				</div>
-
-				<div className='day-col'>
-					<p>Wednesday</p>
-				</div>
-
-				<div className='day-col'>
-					<p>Thursday</p>
-				</div>
-
-				<div className='day-col'>
-					<p>Friday</p>
-				</div>
-
-				<div className='day-col'>
-					<p>Saturday</p>
-				</div>
 			</div>
 		)
 	}
