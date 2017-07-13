@@ -11,19 +11,17 @@ var Planner = React.createClass({
 		}
 	},
 
-	// TODO loop through meal plan every render and add meals
+	renderDay: function(day){
+		var meals = this.props.mealPlan.meals[day];
+	},
 
 	render: function(){
 		return (
 			<div>
 				<div className='day-col'  onClick={this.clickDay.bind(null, 0)}>
-					<p>Sunday</p>
+					<p>Sunday</p><hr/>
 					<div className='meal-store'>
-						{this.props.mealPlan[0].map((recipe, i) => {
-							return (
-								<p key={i}>{recipe.name}</p>
-							)
-						})}
+						{ this.renderDay(0) }
 					</div>
 				</div>
 

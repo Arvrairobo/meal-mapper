@@ -17,8 +17,8 @@ var Main = React.createClass({
 			addRecipe: {},
 			clickAdd: false,
 
-			// this.state plan will hold all meal data / database only holds IDs then populates
-			mealPlan: {}
+			// this.state plan will hold all meal data (initialize empty) / database only holds IDs then populates
+			mealPlan: { meals: [[],[],[],[],[],[],[]] }
 		}
 	},
 
@@ -48,15 +48,10 @@ var Main = React.createClass({
 
 	addToMealPlan: function(day){
 		var newPlan = this.state.mealPlan;
-
-		// If meal plan doesn't yet exist, create base array in plan
-		if(!newPlan.meals){
-			newPlan.meals = [[],[],[],[],[],[],[]]
-		}
-
+		
 		// Push the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].push(this.state.addRecipe);
-		console.log(newPlan);
+		this.setState({ mealPlan: newPlan });
 	},
 
 	render: function() {
