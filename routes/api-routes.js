@@ -43,7 +43,7 @@ module.exports = function(server){
 	// Search for all recipes based on search term
 	server.get('/api/recipes/:search', function(request, response){
 		var search = request.params.search;
-
+		// TODO add search algorithm that only returns results based on search term
 		// For now just search all recipes
 		Recipe.find({}, function(error, recipes){
 			if(error) throw error;

@@ -16,7 +16,6 @@ var Planner = React.createClass({
 
 	render: function(){
 		return (
-			
 			<div>
 				<Day day='Sunday' dayNum={0} meals={this.props.mealPlan.meals[0]} clickDay={this.clickDay} />
 				<Day day='Monday' dayNum={1} meals={this.props.mealPlan.meals[1]} clickDay={this.clickDay} />
@@ -26,7 +25,6 @@ var Planner = React.createClass({
 				<Day day='Friday' dayNum={5} meals={this.props.mealPlan.meals[5]} clickDay={this.clickDay} />
 				<Day day='Saturday' dayNum={6} meals={this.props.mealPlan.meals[6]} clickDay={this.clickDay} />
 			</div>
-
 		)
 	}
 });
