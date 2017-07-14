@@ -22,13 +22,20 @@ var Planner = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<Day day='Sunday' dayNum={0} meals={this.props.mealPlan.meals[0]} clickDay={this.clickDay} removeRecipe={this.removeRecipe}/>
-				<Day day='Monday' dayNum={1} meals={this.props.mealPlan.meals[1]} clickDay={this.clickDay} removeRecipe={this.removeRecipe} />
-				<Day day='Tuesday' dayNum={2} meals={this.props.mealPlan.meals[2]} clickDay={this.clickDay} removeRecipe={this.removeRecipe} />
-				<Day day='Wednesday' dayNum={3} meals={this.props.mealPlan.meals[3]} clickDay={this.clickDay} removeRecipe={this.removeRecipe} />
-				<Day day='Thursday' dayNum={4} meals={this.props.mealPlan.meals[4]} clickDay={this.clickDay} removeRecipe={this.removeRecipe} />
-				<Day day='Friday' dayNum={5} meals={this.props.mealPlan.meals[5]} clickDay={this.clickDay} removeRecipe={this.removeRecipe} />
-				<Day day='Saturday' dayNum={6} meals={this.props.mealPlan.meals[6]} clickDay={this.clickDay} removeRecipe={this.removeRecipe} />
+				<Day day='Sunday' dayNum={0} meals={this.props.mealPlan.meals[0]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe}/>
+				<Day day='Monday' dayNum={1} meals={this.props.mealPlan.meals[1]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
+				<Day day='Tuesday' dayNum={2} meals={this.props.mealPlan.meals[2]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
+				<Day day='Wednesday' dayNum={3} meals={this.props.mealPlan.meals[3]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
+				<Day day='Thursday' dayNum={4} meals={this.props.mealPlan.meals[4]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
+				<Day day='Friday' dayNum={5} meals={this.props.mealPlan.meals[5]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
+				<Day day='Saturday' dayNum={6} meals={this.props.mealPlan.meals[6]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
 			</div>
 		)
 	}
