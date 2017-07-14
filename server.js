@@ -32,26 +32,6 @@ initPassport(passport);
 require('./routes/html-routes.js')(server);
 require('./routes/api-routes.js')(server);
 
-//
-//// catch 404 and forward to error handler
-//server.use(function(req, res, next) {
-//  var err = new Error('Not Found');
-//  err.status = 404;
-//  next(err);
-//});
-//
-//// error handler
-//server.use(function(err, req, res, next) {
-//  // set locals, only providing error in development
-//  res.locals.message = err.message;
-//  res.locals.error = req.server.get('env') === 'development' ? err : {};
-//  res.locals.error = req.server.get('env') === 'development' ? err : {};
-//
-//  // render the error page
-//  res.status(err.status || 500);
-//  res.send('error');
-//});
-
 // Start server
 server.listen(PORT, function(){
 	console.log(`Server established successfully on port ${PORT}.`);

@@ -25,14 +25,6 @@ var Recipe = require('../models/Recipe.js');
 
 module.exports = function(server){
 
-//	// Create new user
-//	server.post('/api/user', function(request, response){
-//		User.create(request.body, function(error, user){
-//			if(error) throw error;
-//			response.json(user);
-//		});
-//	});
-
     /* Handle Login POST */
 	server.post('/login', passport.authenticate('login',
         {

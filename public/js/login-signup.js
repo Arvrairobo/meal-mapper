@@ -1,10 +1,8 @@
 $(document).ready(function() {
   // Getting references to our form and inputs
-//  var loginForm = $("form.login-form");
   var loginButton = $("#login-button");
   var loginEmail = $("input#login-email");
   var loginPassword = $("input#login-password");
-//  var signUpForm = $("form.signup-form");
   var signupButton = $("#signup-button");
   var signupEmail = $("input#signup-email");
   var signupPassword = $("input#signup-password");
@@ -72,7 +70,7 @@ $(document).ready(function() {
       $('#modal1').modal('close');
     });
 
-    // Does a post to the signup route. If succesful, we are redirected to the members page
+    // Does a post to the signup route. If successful, we are redirected to the members page
     // Otherwise we log any errors
     function signUpUser(email, password, firstName, lastName) {
       $.post("/signup", {
