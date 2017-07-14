@@ -54,6 +54,15 @@ var Main = React.createClass({
 		this.setState({ mealPlan: newPlan, clickAdd: false });
 	},
 
+	// Day (0-6) and recipe number
+	removeFromMealPlan: function(day, recipe){
+		var newPlan = this.state.mealPlan;
+
+		// Pop the selected the selected recipe in state to the day clicked
+		newPlan.meals[day].splice(recipe, 1);
+		this.setState({ mealPlan: newPlan });
+	},
+
 	render: function() {
 		return (
 			<div>
@@ -71,7 +80,8 @@ var Main = React.createClass({
 				<div className='row'>
 					<div className='col s9'>
 						<Planner addRecipe={this.state.addRecipe} clickAdd={this.state.clickAdd}
-							addToMealPlan={this.addToMealPlan} mealPlan={this.state.mealPlan}/>
+							addToMealPlan={this.addToMealPlan} mealPlan={this.state.mealPlan}
+							removeFromMealPlan={this.removeFromMealPlan} />
 					</div>
 
 					<div className='col s3'>

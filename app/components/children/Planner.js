@@ -1,5 +1,8 @@
 var React = require('react');
 
+// Include Day sub component
+var Day = require('./children/Day');
+
 var Planner = React.createClass({
 
 	clickDay: function(day){
@@ -11,45 +14,28 @@ var Planner = React.createClass({
 		}
 	},
 
+	// Called when delete button is clicked for a recipe
+	removeRecipe: function(day, recipe){
+		this.props.removeFromMealPlan(day, recipe);
+	},
+
 	render: function(){
-		console.log(this.props.mealPlan.meals);
 		return (
-			
 			<div>
-				<div className='day-col'  onClick={this.clickDay.bind(null, 0)}>
-					<p>Sunday</p><hr/>
-
-					{this.props.mealPlan.meals[0].map((recipe, i) => {
-						return (
-							<p key={i}>{recipe.name}</p>
-						)
-					})}
-
-				</div>
-
-				<div className='day-col'>
-					<p>Monday</p>
-				</div>
-
-				<div className='day-col'>
-					<p>Tuesday</p>
-				</div>
-
-				<div className='day-col'>
-					<p>Wednesday</p>
-				</div>
-
-				<div className='day-col'>
-					<p>Thursday</p>
-				</div>
-
-				<div className='day-col'>
-					<p>Friday</p>
-				</div>
-
-				<div className='day-col'>
-					<p>Saturday</p>
-				</div>
+				<Day day='Sunday' dayNum={0} meals={this.props.mealPlan.meals[0]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe}/>
+				<Day day='Monday' dayNum={1} meals={this.props.mealPlan.meals[1]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
+				<Day day='Tuesday' dayNum={2} meals={this.props.mealPlan.meals[2]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
+				<Day day='Wednesday' dayNum={3} meals={this.props.mealPlan.meals[3]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
+				<Day day='Thursday' dayNum={4} meals={this.props.mealPlan.meals[4]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
+				<Day day='Friday' dayNum={5} meals={this.props.mealPlan.meals[5]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
+				<Day day='Saturday' dayNum={6} meals={this.props.mealPlan.meals[6]} clickDay={this.clickDay}
+					removeRecipe={this.removeRecipe} />
 			</div>
 		)
 	}

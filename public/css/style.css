@@ -28,6 +28,7 @@ html, body {
 	margin: 3px;
 	border: 1px solid black;
 	float: left;
+	min-width: 200px;
 }
 
 .day-col p {
