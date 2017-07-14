@@ -1,3 +1,4 @@
+var passport = require('passport');
 // Keys for Edamam API
 const appId = '1d8fc3d8';
 const appKey = '82b0696857a06bb20b6bc51dedc0360f';
@@ -24,13 +25,45 @@ var Recipe = require('../models/Recipe.js');
 
 module.exports = function(server){
 
-	// Create new user
-	server.post('/api/user', function(request, response){
-		User.create(request.body, function(error, user){
-			if(error) throw error;
-			response.json(user);
-		});
-	});
+//	// Create new user
+//	server.post('/api/user', function(request, response){
+//		User.create(request.body, function(error, user){
+//			if(error) throw error;
+//			response.json(user);
+//		});
+//	});
+
+    /* Handle Login POST */
+	server.post('/login', passport.authenticate('login',
+        {
+            successRedirect: '/dashboard',
+            failureRedirect: '/',
+            failureFlash : true
+        })
+	);
+
+    /* Handle Registration POST */
+    server.post('/signup', passport.authenticate('signup', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/signup',
+        failureFlash : true
+    }));
+
+    // Route for getting some data about our user to be used client side
+     server.get("/api/user_data", function(req, res) {
+       if (!req.user) {
+         // The user is not logged in, send back an empty object
+         res.json({});
+       }
+       else {
+        // Otherwise send back the user's email, first name, and id
+         res.json({
+           id: req.user.id,
+           email: req.user.email,
+           firstName: req.user.firstName
+         });
+       }
+     });
 
 	// Create a new recipe
 	server.post('/api/recipe', function(request, response){
