@@ -20,8 +20,8 @@ var Search = React.createClass({
 	},
 
 	// When click button to add recipe, add to parent component
-	sendRecipe: function(recipeNum){
-		this.props.setRecipe(this.props.searchResults[recipeNum]);
+	addRecipe: function(day, recipeNum){
+		this.props.addToMealPlan(day, this.props.searchResults[recipeNum]);
 	},
 
 	render: function(){
@@ -42,7 +42,13 @@ var Search = React.createClass({
 								<p className='small-text'>Protein: {recipe.protein}g</p>
 								<p className='small-text'>Fat: {recipe.fat}g</p>
 
-								<button onClick={this.sendRecipe.bind(null, i)}>Add to Plan</button>
+								<a href='#' onClick={this.addRecipe.bind(null, 0, i)} >S</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 1, i)} >M</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 2, i)} >T</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 3, i)} >W</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 4, i)} >T</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 5, i)} >F</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 6, i)} >S</a>
 							</div>
 						)
 					})}
