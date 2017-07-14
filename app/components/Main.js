@@ -61,7 +61,7 @@ var Main = React.createClass({
 		// Pop the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].splice(recipe, 1);
 		this.setState({ mealPlan: newPlan });
-	}
+	},
 
 	render: function() {
 		return (
@@ -80,7 +80,8 @@ var Main = React.createClass({
 				<div className='row'>
 					<div className='col s9'>
 						<Planner addRecipe={this.state.addRecipe} clickAdd={this.state.clickAdd}
-							addToMealPlan={this.addToMealPlan} mealPlan={this.state.mealPlan}/>
+							addToMealPlan={this.addToMealPlan} mealPlan={this.state.mealPlan}
+							removeFromMealPlan={this.removeFromMealPlan} />
 					</div>
 
 					<div className='col s3'>

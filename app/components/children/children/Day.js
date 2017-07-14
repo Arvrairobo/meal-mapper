@@ -48,7 +48,7 @@ var Day = React.createClass({
 					return (
 						<div key={i}>
 							<p><a href={recipe.url} target='_blank'>{recipe.name}</a></p>
-							<button>X</button>
+							<button onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }>X</button>
 						</div>
 					)
 				})}
