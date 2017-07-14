@@ -14,9 +14,6 @@ var Main = React.createClass({
 		return {
 			searchTerm: '',
 			searchResults: [],
-			addRecipe: {},
-			clickAdd: false,
-
 			// this.state plan will hold all meal data (initialize empty) / database only holds IDs then populates
 			mealPlan: { meals: [[],[],[],[],[],[],[]] }
 		}
@@ -39,19 +36,12 @@ var Main = React.createClass({
 		this.setState({ searchTerm: newSearch });
 	},
 
-	setRecipe: function(newRecipe){
-		// If there is a new recipe to add (i.e. not empty)
-		if(newRecipe){
-			this.setState({ addRecipe: newRecipe, clickAdd: true });
-		}
-	},
-
-	addToMealPlan: function(day){
+	addToMealPlan: function(day, recipe){
 		var newPlan = this.state.mealPlan;
 
 		// Push the selected the selected recipe in state to the day clicked
-		newPlan.meals[day].push(this.state.addRecipe);
-		this.setState({ mealPlan: newPlan, clickAdd: false });
+		newPlan.meals[day].push(recipe);
+		this.setState({ mealPlan: newPlan });
 	},
 
 	// Day (0-6) and recipe number
@@ -79,14 +69,12 @@ var Main = React.createClass({
 				
 				<div className='row'>
 					<div className='col s9'>
-						<Planner addRecipe={this.state.addRecipe} clickAdd={this.state.clickAdd}
-							addToMealPlan={this.addToMealPlan} mealPlan={this.state.mealPlan}
-							removeFromMealPlan={this.removeFromMealPlan} />
+						<Planner mealPlan={this.state.mealPlan} removeFromMealPlan={this.removeFromMealPlan} />
 					</div>
 
 					<div className='col s3'>
-						<Search setSearch={this.setSearch} setRecipe={this.setRecipe} 
-							searchResults={this.state.searchResults} />
+						<Search setSearch={this.setSearch} searchResults={this.state.searchResults}
+							addToMealPlan={this.addToMealPlan}/>
 					</div>
 				</div>
 			</div>
