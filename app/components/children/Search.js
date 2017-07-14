@@ -42,13 +42,13 @@ var Search = React.createClass({
 								<p className='small-text'>Protein: {recipe.protein}g</p>
 								<p className='small-text'>Fat: {recipe.fat}g</p>
 
-								<button onClick={this.addRecipe.bind(null, 0, i)} >S</button>
-								<button onClick={this.addRecipe.bind(null, 1, i)} >M</button>
-								<button onClick={this.addRecipe.bind(null, 2, i)} >T</button>
-								<button onClick={this.addRecipe.bind(null, 3, i)} >W</button>
-								<button onClick={this.addRecipe.bind(null, 4, i)} >T</button>
-								<button onClick={this.addRecipe.bind(null, 5, i)} >F</button>
-								<button onClick={this.addRecipe.bind(null, 6, i)} >S</button>
+								<a href='#' onClick={this.addRecipe.bind(null, 0, i)} >S</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 1, i)} >M</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 2, i)} >T</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 3, i)} >W</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 4, i)} >T</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 5, i)} >F</a> |
+								<a href='#' onClick={this.addRecipe.bind(null, 6, i)} >S</a>
 							</div>
 						)
 					})}
