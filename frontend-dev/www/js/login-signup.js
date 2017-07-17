@@ -1,7 +1,4 @@
 $(document).ready(function() {
-
-  $(".modal-trigger").leanModal();
-
   // Getting references to our form and inputs
   var loginButton = $("#login-button");
   var loginEmail = $("input#login-email");
