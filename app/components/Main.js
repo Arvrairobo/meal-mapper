@@ -33,23 +33,25 @@ var Main = React.createClass({
 			// Check if there are meal plans stored
 			if(userPlans.length > 0){
 				// If there are plans, get the most recent one populated from database
-				var planId = userPlans[userPlans.length - 1];
-				console.log(planId);
+				var lastMealPlan = userPlans[userPlans.length - 1];
+				var lastDate = moment(lastMealPlan.startDate);
+				var currentDate = moment();
 
-				// Run API call to get recipes, then store in state
+				var duration = moment.duration(currentDate.diff(lastDate));
+				var days = duration.asDays();
+
+				// If more than a week has passed, create new plan starting on most recent Sunday
+				if(days > 7){
+					createEmptyPlan(userId);
+				} else {
+					// Otherwise, save plan to state and update calendar
+					setState({
+						mealPlan: {meals: lastMealPlan.meals }
+					});
+				}
 
 			} else {
-				// If user has no meal plans, create a new one
-				// Start by getting today's day of week (i.e. monday = 1)
-				var days = moment().format('e');
-
-				// Get most recent past Sunday by subtracting number of days
-				var startDate = moment().subtract(days, 'days').format('x');
-
-				// Save empty meal plan with startDate (also saves to user id)
-				helpers.createEmptyMealPlan(startDate, userId).then(function(mealplan){
-					console.log(mealplan);
-				});
+				createEmptyPlan(userId);
 			}
 		});
 	},
@@ -89,6 +91,20 @@ var Main = React.createClass({
 		// Pop the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].splice(recipe, 1);
 		this.setState({ mealPlan: newPlan, update: true });
+	},
+
+	// Create a new 7 day meal plan on a user id
+	createEmptyPlan: function(userId){
+		// Start by getting today's day of week (i.e. monday = 1)
+		var days = moment().format('e');
+		// Get most recent past Sunday by subtracting number of days
+		var startDate = moment().subtract(days, 'days').format('x');
+		startDate.second(0);
+		startDate.minute(0);
+		startDate.hour(0);
+
+		// Save empty meal plan with startDate (also saves to user id)
+		helpers.createEmptyMealPlan(startDate, userId);
 	},
 
 	// Every time meal plan is modified, update database

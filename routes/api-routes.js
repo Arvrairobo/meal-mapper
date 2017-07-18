@@ -23,8 +23,6 @@ var User = require('../models/User.js');
 var Mealplan = require('../models/Mealplan.js');
 var Recipe = require('../models/Recipe.js');
 
-var moment = require('moment');
-
 module.exports = function(server){
 
 		/* Handle Login POST */
@@ -71,8 +69,10 @@ module.exports = function(server){
 	server.post('/api/mealplan/:userId/:date', function(request, response){
 		var date = parseInt(request.params.date);
 		var userId = request.params.userId;
-		
-		Mealplan.create({startDate: date}, function(error, mealplan){
+
+		var arr = { meals: [[],[],[],[],[],[],[]] }
+
+		Mealplan.create({startDate: date, mealplan: arr}, function(error, mealplan){
 			if(error) throw error;
 			
 			User.findOneAndUpdate({_id: userId}, {$push: {'mealplans': mealplan._id} },
