@@ -20,7 +20,14 @@ var Main = React.createClass({
 	},
 
 	componentDidMount: function(){
-		console.log(localStorage.id);
+		// Retrieve user ID from local storage
+		var userId = localStorage.id;
+		console.log(userId);
+
+		// Get user data from database
+		helpers.getUserInfo(userId).then(function(user){
+			console.log(user);
+		});
 	},
 
 	componentDidUpdate: function(prevProps, prevState){
