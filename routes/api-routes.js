@@ -68,16 +68,18 @@ module.exports = function(server){
 	});
 
 	// Create a new meal plan
-	server.post('/api/mealplan/:userId/:startDate', function(request, response){
+	server.post('/api/mealplan/:userId/:date', function(request, response){
 		var date = parseInt(request.params.date);
 		var userId = request.params.userId;
-
-		// Mealplan.create({startDate: date}, function(error, mealplan){
-		// 	if(error) throw error;
-		// 	response.json(mealplan);
-		// });
-
-		response.end();
+		
+		Mealplan.create({startDate: date}, function(error, mealplan){
+			if(error) throw error;
+			
+			User.findOneAndUpdate({_id: userId}, {$push: {'mealplans': mealplan._id} },
+			{new: true}, function(error, article){
+				response.json(mealplan);
+			});
+		});
 	});
 
 	// Get user info (populate with meal plans)

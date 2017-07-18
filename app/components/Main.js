@@ -47,7 +47,9 @@ var Main = React.createClass({
 				var startDate = moment().subtract(days, 'days').format('x');
 
 				// Save empty meal plan with startDate (also saves to user id)
-				helpers.createEmptyMealPlan(startDate, userId);
+				helpers.createEmptyMealPlan(startDate, userId).then(function(mealplan){
+					console.log(mealplan);
+				});
 			}
 		});
 	},

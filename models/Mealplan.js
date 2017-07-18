@@ -6,15 +6,7 @@ var Mealplan = new mongoose.Schema({
 		type: Date,
 		required: true
 	},
-
-	// Array of each meal plan (FOR DAY/MEAL BREAKDOWN)
-	// meals: [{
-	// 	type: mongoose.Schema.Types.ObjectId,
-	// 	ref: "Recipe",
-	// 	day: Number,
-	// 	meal: Number
-	// }]
-
+	
 	// 2D array format
 	meals: [
 		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],
