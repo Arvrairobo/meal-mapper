@@ -12,5 +12,9 @@ module.exports = {
 
 	getMealPlan: function(planId){
 		return axios.get('/api/mealplan/' + planId);
+	},
+
+	createEmptyMealPlan: function(date, userId){
+		return axios.post('/api/mealplan/' + userId + '/' + date);
 	}
 }

@@ -7,6 +7,7 @@ var Search = require("./children/Search");
 
 // Include helper functions
 var helpers = require('../utils/helpers.js');
+var moment = require('moment');
 
 var Main = React.createClass({
 
@@ -38,7 +39,15 @@ var Main = React.createClass({
 				// Run API call to get recipes, then store in state
 
 			} else {
-				console.log('no plans, make a new empty one')
+				// If user has no meal plans, create a new one
+				// Start by getting today's day of week (i.e. monday = 1)
+				var days = moment().format('e');
+
+				// Get most recent past Sunday by subtracting number of days
+				var startDate = moment().subtract(days, 'days').format('x');
+
+				// Save empty meal plan with startDate (also saves to user id)
+				helpers.createEmptyMealPlan(startDate, userId);
 			}
 		});
 	},

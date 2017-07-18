@@ -23,22 +23,24 @@ var User = require('../models/User.js');
 var Mealplan = require('../models/Mealplan.js');
 var Recipe = require('../models/Recipe.js');
 
+var moment = require('moment');
+
 module.exports = function(server){
 
 		/* Handle Login POST */
 	server.post('/login', passport.authenticate('login',
-				{
-						successRedirect: '/dashboard',
-						failureRedirect: '/',
-						failureFlash : true
-				})
+		{
+				successRedirect: '/dashboard',
+				failureRedirect: '/',
+				failureFlash : true
+		})
 	);
 
 	/* Handle Registration POST */
 	server.post('/signup', passport.authenticate('signup', {
-			successRedirect: '/dashboard',
-			failureRedirect: '/signup',
-			failureFlash : true
+		successRedirect: '/dashboard',
+		failureRedirect: '/signup',
+		failureFlash : true
 	}));
 
 	// Route for getting some data about our user to be used client side
@@ -63,6 +65,19 @@ module.exports = function(server){
 			if(error) throw error;
 			response.json(recipe);
 		});
+	});
+
+	// Create a new meal plan
+	server.post('/api/mealplan/:userId/:startDate', function(request, response){
+		var date = parseInt(request.params.date);
+		var userId = request.params.userId;
+
+		// Mealplan.create({startDate: date}, function(error, mealplan){
+		// 	if(error) throw error;
+		// 	response.json(mealplan);
+		// });
+
+		response.end();
 	});
 
 	// Get user info (populate with meal plans)

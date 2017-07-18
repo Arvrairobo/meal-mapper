@@ -4,8 +4,7 @@ var Mealplan = new mongoose.Schema({
 	// Date of start of week
 	startDate: {
 		type: Date,
-		required: true,
-		default: Date.now()
+		required: true
 	},
 
 	// Array of each meal plan (FOR DAY/MEAL BREAKDOWN)
