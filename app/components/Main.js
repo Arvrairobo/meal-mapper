@@ -15,18 +15,31 @@ var Main = React.createClass({
 			searchTerm: '',
 			searchResults: [],
 			// this.state plan will hold all meal data (initialize empty) / database only holds IDs then populates
-			mealPlan: { meals: [[],[],[],[],[],[],[]] }
+			mealPlan: { meals: [[],[],[],[],[],[],[]] },
+			update: false
 		}
 	},
 
 	componentDidMount: function(){
 		// Retrieve user ID from local storage
 		var userId = localStorage.id;
-		console.log(userId);
 
 		// Get user data from database
 		helpers.getUserInfo(userId).then(function(user){
-			console.log(user);
+			// Get data for meal plans
+			var userPlans = user.data.mealplans;
+			
+			// Check if there are meal plans stored
+			if(userPlans.length > 0){
+				// If there are plans, get the most recent one populated from database
+				var planId = userPlans[userPlans.length - 1];
+				console.log(planId);
+
+				// Run API call to get recipes, then store in state
+
+			} else {
+				console.log('no plans, make a new empty one')
+			}
 		});
 	},
 
@@ -37,18 +50,25 @@ var Main = React.createClass({
 				this.setState({ searchResults: recipes.data });
 			}.bind(this));
 		}
+
+		// Only update database if recipe is added or removed from week
+		if(this.state.update){
+			this.setState({ update: false });
+			this.saveMealPlan();
+		}
 	},
 
 	setSearch: function(newSearch){
 		this.setState({ searchTerm: newSearch });
 	},
 
+	// Adds a specific recipe to a specific day
 	addToMealPlan: function(day, recipe){
 		var newPlan = this.state.mealPlan;
 
 		// Push the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].push(recipe);
-		this.setState({ mealPlan: newPlan });
+		this.setState({ mealPlan: newPlan, update: true });
 	},
 
 	// Day (0-6) and recipe number
@@ -57,7 +77,23 @@ var Main = React.createClass({
 
 		// Pop the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].splice(recipe, 1);
-		this.setState({ mealPlan: newPlan });
+		this.setState({ mealPlan: newPlan, update: true });
+	},
+
+	// Every time meal plan is modified, update database
+	saveMealPlan: function(){
+		// Create temporary 2D array with just meal IDs
+		var tempPlan = [[],[],[],[],[],[],[]];
+
+		for(var i = 0; i < 6; i++){
+			if(this.state.mealPlan.meals[i].length){
+				for(var j = 0; j < this.state.mealPlan.meals[i].length; j++){
+					tempPlan[i].push(this.state.mealPlan.meals[i][j]._id);
+				}
+			}
+		}
+		
+		// Update the meal plan
 	},
 
 	render: function() {

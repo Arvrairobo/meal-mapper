@@ -8,5 +8,9 @@ module.exports = {
 
 	getUserInfo: function(userId){
 		return axios.get('/api/user/' + userId);
+	},
+
+	getMealPlan: function(planId){
+		return axios.get('/api/mealplan/' + planId);
 	}
 }
