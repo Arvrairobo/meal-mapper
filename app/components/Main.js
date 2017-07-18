@@ -20,7 +20,7 @@ var Main = React.createClass({
 	},
 
 	componentDidMount: function(){
-		// Check for user meal plan and load into state
+		console.log(localStorage.id);
 	},
 
 	componentDidUpdate: function(prevProps, prevState){
