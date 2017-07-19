@@ -42,18 +42,25 @@ var Main = React.createClass({
 
 				// If more than a week has passed, create new plan starting on most recent Sunday
 				if(days > 7){
-					createEmptyPlan(userId);
+					this.createEmptyPlan(userId);
 				} else {
 					// Otherwise, save plan to state and update calendar
-					setState({
+					// Fill in blank indexes if need be so they render correctly
+					for(var i = 0; i < 7; i++){
+						if(!lastMealPlan.meals[i]){
+							lastMealPlan.meals[i] = [];
+						}
+					}
+
+					this.setState({
 						mealPlan: {meals: lastMealPlan.meals }
 					});
 				}
 
 			} else {
-				createEmptyPlan(userId);
+				this.createEmptyPlan(userId);
 			}
-		});
+		}.bind(this));
 	},
 
 	componentDidUpdate: function(prevProps, prevState){
@@ -84,7 +91,7 @@ var Main = React.createClass({
 		this.setState({ mealPlan: newPlan, update: true });
 	},
 
-	// Day (0-6) and recipe number
+	// Day (0-6) and recipe number (0-n)
 	removeFromMealPlan: function(day, recipe){
 		var newPlan = this.state.mealPlan;
 
@@ -98,10 +105,11 @@ var Main = React.createClass({
 		// Start by getting today's day of week (i.e. monday = 1)
 		var days = moment().format('e');
 		// Get most recent past Sunday by subtracting number of days
-		var startDate = moment().subtract(days, 'days').format('x');
+		var startDate = moment().subtract(days, 'days');
 		startDate.second(0);
 		startDate.minute(0);
 		startDate.hour(0);
+		startDate.format('x');
 
 		// Save empty meal plan with startDate (also saves to user id)
 		helpers.createEmptyMealPlan(startDate, userId);
