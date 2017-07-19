@@ -7,6 +7,7 @@ var Search = require("./children/Search");
 
 // Include helper functions
 var helpers = require('../utils/helpers.js');
+var moment = require('moment');
 
 var Main = React.createClass({
 
@@ -15,12 +16,44 @@ var Main = React.createClass({
 			searchTerm: '',
 			searchResults: [],
 			// this.state plan will hold all meal data (initialize empty) / database only holds IDs then populates
-			mealPlan: { meals: [[],[],[],[],[],[],[]] }
+			mealPlan: { meals: [[],[],[],[],[],[],[]] },
+			update: false
 		}
 	},
 
 	componentDidMount: function(){
-		// Check for user meal plan and load into state
+		// Retrieve user ID from local storage
+		var userId = localStorage.id;
+
+		// Get user data from database
+		helpers.getUserInfo(userId).then(function(user){
+			// Get data for meal plans
+			var userPlans = user.data.mealplans;
+			
+			// Check if there are meal plans stored
+			if(userPlans.length > 0){
+				// If there are plans, get the most recent one populated from database
+				var lastMealPlan = userPlans[userPlans.length - 1];
+				var lastDate = moment(lastMealPlan.startDate);
+				var currentDate = moment();
+
+				var duration = moment.duration(currentDate.diff(lastDate));
+				var days = duration.asDays();
+
+				// If more than a week has passed, create new plan starting on most recent Sunday
+				if(days > 7){
+					createEmptyPlan(userId);
+				} else {
+					// Otherwise, save plan to state and update calendar
+					setState({
+						mealPlan: {meals: lastMealPlan.meals }
+					});
+				}
+
+			} else {
+				createEmptyPlan(userId);
+			}
+		});
 	},
 
 	componentDidUpdate: function(prevProps, prevState){
@@ -30,18 +63,25 @@ var Main = React.createClass({
 				this.setState({ searchResults: recipes.data });
 			}.bind(this));
 		}
+
+		// Only update database if recipe is added or removed from week
+		if(this.state.update){
+			this.setState({ update: false });
+			this.saveMealPlan();
+		}
 	},
 
 	setSearch: function(newSearch){
 		this.setState({ searchTerm: newSearch });
 	},
 
+	// Adds a specific recipe to a specific day
 	addToMealPlan: function(day, recipe){
 		var newPlan = this.state.mealPlan;
 
 		// Push the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].push(recipe);
-		this.setState({ mealPlan: newPlan });
+		this.setState({ mealPlan: newPlan, update: true });
 	},
 
 	// Day (0-6) and recipe number
@@ -50,7 +90,37 @@ var Main = React.createClass({
 
 		// Pop the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].splice(recipe, 1);
-		this.setState({ mealPlan: newPlan });
+		this.setState({ mealPlan: newPlan, update: true });
+	},
+
+	// Create a new 7 day meal plan on a user id
+	createEmptyPlan: function(userId){
+		// Start by getting today's day of week (i.e. monday = 1)
+		var days = moment().format('e');
+		// Get most recent past Sunday by subtracting number of days
+		var startDate = moment().subtract(days, 'days').format('x');
+		startDate.second(0);
+		startDate.minute(0);
+		startDate.hour(0);
+
+		// Save empty meal plan with startDate (also saves to user id)
+		helpers.createEmptyMealPlan(startDate, userId);
+	},
+
+	// Every time meal plan is modified, update database
+	saveMealPlan: function(){
+		// Create temporary 2D array with just meal IDs
+		var tempPlan = [[],[],[],[],[],[],[]];
+
+		for(var i = 0; i < 6; i++){
+			if(this.state.mealPlan.meals[i].length){
+				for(var j = 0; j < this.state.mealPlan.meals[i].length; j++){
+					tempPlan[i].push(this.state.mealPlan.meals[i][j]._id);
+				}
+			}
+		}
+		
+		// Update the meal plan
 	},
 
 	render: function() {

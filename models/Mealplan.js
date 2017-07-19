@@ -4,18 +4,9 @@ var Mealplan = new mongoose.Schema({
 	// Date of start of week
 	startDate: {
 		type: Date,
-		required: true,
-		default: Date.now()
+		required: true
 	},
-
-	// Array of each meal plan (FOR DAY/MEAL BREAKDOWN)
-	// meals: [{
-	// 	type: mongoose.Schema.Types.ObjectId,
-	// 	ref: "Recipe",
-	// 	day: Number,
-	// 	meal: Number
-	// }]
-
+	
 	// 2D array format
 	meals: [
 		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],

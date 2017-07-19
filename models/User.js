@@ -46,7 +46,6 @@ var User = new mongoose.Schema({
 	activityLevel: {type: Number}, // 0 none, 1 some, 2 active, 3 very active
 	rateOfChange: {type: Number}, // weekly rate of change (in pounds) ex. 1.2
 
-
 	// Array of each meal plan
 	mealplans: [{
 		type: mongoose.Schema.Types.ObjectId,

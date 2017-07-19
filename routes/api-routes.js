@@ -27,13 +27,13 @@ var Recipe = require('../models/Recipe.js');
 
 module.exports = function(server){
 
-    /* Handle Login POST */
+		/* Handle Login POST */
 	server.post('/login', passport.authenticate('login',
-        {
-            successRedirect: '/dashboard',
-            failureRedirect: '/',
-            failureFlash : true
-        })
+		{
+				successRedirect: '/dashboard',
+				failureRedirect: '/',
+				failureFlash : true
+		})
 	);
 
     /* Handle Registration POST */
@@ -68,6 +68,39 @@ module.exports = function(server){
 			response.json(recipe);
 		});
 	});
+
+	// Create a new meal plan
+	server.post('/api/mealplan/:userId/:date', function(request, response){
+		var date = parseInt(request.params.date);
+		var userId = request.params.userId;
+
+		var arr = { meals: [[],[],[],[],[],[],[]] }
+
+		Mealplan.create({startDate: date, mealplan: arr}, function(error, mealplan){
+			if(error) throw error;
+			
+			User.findOneAndUpdate({_id: userId}, {$push: {'mealplans': mealplan._id} },
+			{new: true}, function(error, article){
+				response.json(mealplan);
+			});
+		});
+	});
+
+	// Get user info (populate with meal plans)
+	server.get('/api/user/:id', function(request, response){
+		User.findOne({ _id: request.params.id }).populate('mealplans').exec(function(error, user){
+			if(error) throw error;
+			response.json(user);
+		});
+	});
+
+	// Get meal plan info (populate with recipes)
+	server.get('/api/mealplan/:id', function(request, response){
+		Mealplan.findOne({ _id: request.params.id }).populate('meals').exec(function(error, mealplan){
+			if(error) throw error;
+			response.json(mealplan);
+		});
+	})
 
 	// Search for all recipes based on search term
 	server.get('/api/recipes/:search', function(request, response){
