@@ -45,8 +45,12 @@ var Main = React.createClass({
 				if(days > 7){
 					this.createEmptyPlan(userId);
 				} else {
-					// Otherwise, save plan to state and update calendar
+					// Otherwise, get recipes for plan and save
 					// Fill in blank indexes if need be so they render correctly
+					helpers.getMealPlan(lastMealPlan._id).then(function(mealplan){
+						console.log(mealplan);
+					});
+
 					for(var i = 0; i < 7; i++){
 						if(!lastMealPlan.meals[i]){
 							lastMealPlan.meals[i] = [];

@@ -94,6 +94,9 @@ module.exports = function(server){
 	server.get('/api/mealplan/:id', function(request, response){
 		Mealplan.findOne({ _id: request.params.id }).populate('meals').exec(function(error, mealplan){
 			if(error) throw error;
+
+			console.log(mealplan);
+
 			response.json(mealplan);
 		});
 	});
