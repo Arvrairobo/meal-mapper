@@ -17,6 +17,7 @@ var Main = React.createClass({
 			searchResults: [],
 			// this.state plan will hold all meal data (initialize empty) / database only holds IDs then populates
 			mealPlan: { meals: [[],[],[],[],[],[],[]] },
+			planId: '',
 			update: false
 		}
 	},
@@ -42,18 +43,21 @@ var Main = React.createClass({
 
 				// If more than a week has passed, create new plan starting on most recent Sunday
 				if(days > 7){
-					createEmptyPlan(userId);
+					this.createEmptyPlan(userId);
 				} else {
-					// Otherwise, save plan to state and update calendar
-					setState({
-						mealPlan: {meals: lastMealPlan.meals }
-					});
+					// Otherwise, get recipes for plan and save as state (then loads into children)
+					helpers.getMealPlan(lastMealPlan._id).then(function(mealplan){
+						this.setState({
+							mealPlan: { meals: mealplan.data.meals },
+							planId: lastMealPlan._id
+						});
+					}.bind(this));
 				}
 
 			} else {
-				createEmptyPlan(userId);
+				this.createEmptyPlan(userId);
 			}
-		});
+		}.bind(this));
 	},
 
 	componentDidUpdate: function(prevProps, prevState){
@@ -84,7 +88,7 @@ var Main = React.createClass({
 		this.setState({ mealPlan: newPlan, update: true });
 	},
 
-	// Day (0-6) and recipe number
+	// Day (0-6) and recipe number (0-n)
 	removeFromMealPlan: function(day, recipe){
 		var newPlan = this.state.mealPlan;
 
@@ -98,10 +102,11 @@ var Main = React.createClass({
 		// Start by getting today's day of week (i.e. monday = 1)
 		var days = moment().format('e');
 		// Get most recent past Sunday by subtracting number of days
-		var startDate = moment().subtract(days, 'days').format('x');
+		var startDate = moment().subtract(days, 'days');
 		startDate.second(0);
 		startDate.minute(0);
 		startDate.hour(0);
+		startDate.format('x');
 
 		// Save empty meal plan with startDate (also saves to user id)
 		helpers.createEmptyMealPlan(startDate, userId);
@@ -120,7 +125,7 @@ var Main = React.createClass({
 			}
 		}
 		
-		// Update the meal plan
+		helpers.saveMealPlan(tempPlan, this.state.planId);
 	},
 
 	render: function() {

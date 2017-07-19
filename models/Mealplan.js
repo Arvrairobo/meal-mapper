@@ -19,4 +19,6 @@ var Mealplan = new mongoose.Schema({
 	]
 });
 
+// teachers: [ { teacher: { type: Schema.ObjectId, ref: "Teacher" } } ]
+
 module.exports = mongoose.model('Mealplan', Mealplan);
