@@ -8,7 +8,9 @@ const search = 'https://api.edamam.com/search';
 const mongoose = require('mongoose');
 
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/mealplanner');
+mongoose.connect('mongodb://localhost/mealplanner', {
+     useMongoClient: true,
+});
 var database = mongoose.connection;
 
 database.on('error', function(error){
@@ -49,13 +51,15 @@ module.exports = function(server){
        }
        else {
         // Otherwise send back the user's email, first name, and id
-         res.json({
-           id: req.user.id,
-           email: req.user.email,
-           firstName: req.user.firstName
-         });
+           res.send(req.user)
+
        }
      });
+
+// TODO- Post route to update user info
+    server.post("/api/user_data", function(req, res) {
+        User.findOneAndUpdate({"_id": req.user.id})
+    })
 
 	// Create a new recipe
 	server.post('/api/recipe', function(request, response){
