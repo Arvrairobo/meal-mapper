@@ -15,6 +15,11 @@ var Day = React.createClass({
 
 	// On update, recalculate macros
 	componentWillReceiveProps: function(){
+		this.loadNutrientData();
+	},
+
+	loadNutrientData: function(){
+		console.log('nutrient!');
 		var carbs = 0;
 		var protein = 0;
 		var fat = 0;
@@ -33,10 +38,10 @@ var Day = React.createClass({
 			totalFat: fat.toFixed(1),
 			totalCalories: calories
 		});
-
 	},
 
 	render: function(){
+		console.log('render!');
 		return (
 			<div className='day-col' onClick={ () => this.props.clickDay(this.props.dayNum) } >
 				{/* When user clicks the column, run clickDay in parent component */}
