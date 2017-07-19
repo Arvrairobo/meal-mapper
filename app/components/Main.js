@@ -48,19 +48,11 @@ var Main = React.createClass({
 					// Otherwise, get recipes for plan and save
 					// Fill in blank indexes if need be so they render correctly
 					helpers.getMealPlan(lastMealPlan._id).then(function(mealplan){
-						console.log(mealplan);
-					});
-
-					for(var i = 0; i < 7; i++){
-						if(!lastMealPlan.meals[i]){
-							lastMealPlan.meals[i] = [];
-						}
-					}
-
-					this.setState({
-						mealPlan: {meals: lastMealPlan.meals },
-						planId: lastMealPlan._id
-					});
+						this.setState({
+							mealPlan: { meals: mealplan.data.meals },
+							planId: lastMealPlan._id
+						});
+					}.bind(this));
 				}
 
 			} else {

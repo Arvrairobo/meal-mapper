@@ -92,10 +92,12 @@ module.exports = function(server){
 
 	// Get meal plan info (populate with recipes)
 	server.get('/api/mealplan/:id', function(request, response){
-		Mealplan.findOne({ _id: request.params.id }).populate('meals').exec(function(error, mealplan){
+		Mealplan.findOne({ _id: request.params.id })
+			.populate({
+				path: 'meals',
+				model: 'Recipe'
+			}).exec(function(error, mealplan){
 			if(error) throw error;
-
-			console.log(mealplan);
 
 			response.json(mealplan);
 		});
