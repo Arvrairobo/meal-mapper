@@ -17,6 +17,7 @@ var Main = React.createClass({
 			searchResults: [],
 			// this.state plan will hold all meal data (initialize empty) / database only holds IDs then populates
 			mealPlan: { meals: [[],[],[],[],[],[],[]] },
+			planId: '',
 			update: false
 		}
 	},
@@ -53,7 +54,8 @@ var Main = React.createClass({
 					}
 
 					this.setState({
-						mealPlan: {meals: lastMealPlan.meals }
+						mealPlan: {meals: lastMealPlan.meals },
+						planId: lastMealPlan._id
 					});
 				}
 
@@ -128,7 +130,7 @@ var Main = React.createClass({
 			}
 		}
 		
-		// Update the meal plan
+		helpers.saveMealPlan(tempPlan, this.state.planId);
 	},
 
 	render: function() {
