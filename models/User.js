@@ -42,6 +42,7 @@ var User = new mongoose.Schema({
 	startWeight: {type: Number}, // In pounds
 	targetWeight: {type: Number}, // In pounds
 	currentWeight: {type: Number}, // In pounds
+	age: {type: Number},
 	gender: {type: String},
 	bodyFat: {type: Number},
 	activityLevel: {type: Number}, // 0 none, 1 some, 2 active, 3 very active

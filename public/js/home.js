@@ -32,7 +32,7 @@ $(document).ready(function() {
     loginUser(userData.email, userData.password);
     loginEmail.val("");
     loginPassword.val("");
-    $('#modal1').modal('close');
+    $('#login-signup-modal').modal('close');
   });
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page

@@ -32,7 +32,7 @@ module.exports = function(server){
 		{
 				successRedirect: '/dashboard',
 				failureRedirect: '/',
-				failureFlash : true
+//				failureFlash : true
 		})
 	);
 
@@ -40,7 +40,7 @@ module.exports = function(server){
     server.post('/signup', passport.authenticate('signup', {
         successRedirect: '/dashboard',
         failureRedirect: '/signup',
-        failureFlash : true
+//        failureFlash : true
     }));
 
     // Route for getting some data about our user to be used client side
@@ -58,7 +58,27 @@ module.exports = function(server){
 
 // TODO- Post route to update user info
     server.post("/api/user_data", function(req, res) {
-        User.findOneAndUpdate({"_id": req.user.id})
+        User.findOneAndUpdate({"_id": req.user.id},
+            {
+            height: req.body.height,
+            startWeight: req.body.startWeight,
+            targetWeight: req.body.targetWeight,
+            currentWeight: req.body.currentWeight,
+            age: req.body.age,
+            gender: req.body.gender,
+            activityLevel: req.body.activityLevel,
+            rateOfChange: req.body.rateOfChange,
+            }
+        ).exec(function(err, doc) {
+             // Log any errors
+             if (err) {
+               console.log(err);
+             }
+             else {
+               // Or send the document to the browser
+               res.send(doc);
+             }
+           });
     })
 
 	// Create a new recipe
