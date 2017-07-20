@@ -35,10 +35,24 @@ html, body {
 	text-align: center;
 }
 
+
+
 /* app.html styles */
+
+/* ELEMENTS */
 html, body {
 	height: 100%;
 }
+
+/* COMPONENTS */
+
+.no-select {
+	user-select: none;
+}
+
+/*.input-field input[type=text]:focus {
+	color: red;
+}*/
 
 .app-wrapper {
 	height: 100%;
@@ -142,7 +156,7 @@ h3.btn-delete {
 	width: 280px;
 	height: 100%;
 	z-index: 100;
-	background-color: red;
+	background-color: #ABD9FC;
 	position: absolute;
 	right: 0px;
 	top: 0px;
@@ -156,11 +170,23 @@ h3.btn-delete {
 #pull-search {
 	position: absolute;
 	left: -70px;
-	top: 65px;
+	top: 69px;
+	background-color: #2196F3;
+	width: 62px;
+	height: 62px;
+	border: 3px solid #1c77bc;
+	border-radius: 100%;
+	box-shadow: 1px 1px 4px #58585a;
+}
+
+#pull-search:hover {
+	background-color: #4ea3e5;
 }
 
 #pull-search i {
 	font-size: 48px;
+	color: white;
+	margin: auto;
 }
 
 .search-result {
