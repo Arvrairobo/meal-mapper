@@ -26,11 +26,11 @@
 
 		#calendar {
 			overflow-x: scroll;
+			white-space: nowrap;
 		}
 
 		.day-column {
 			border: 1px solid #91cdf7;
-			float: left;
 			display: inline-block;
 			width: 255px;
 			margin-left: 7px;
@@ -67,7 +67,7 @@
 		}
 
 		.macro-text {
-			font-size: 9px;
+			font-size: 9.5px;
 		}
 
 		table {
@@ -112,6 +112,10 @@
 			float: right;
 		}
 
+		.material-icons {
+			font-size: 20px;
+		}
+
 	</style>
 
 </head>
@@ -139,9 +143,9 @@
 				<div class='col s12'>
 					<div class='center-align'>
 						<a class="waves-effect waves-light btn blue lighten-1">Previous Plans</a>
-						<a class="waves-effect waves-light btn blue lighten-1">Clear Plan</a>
-						<a class="waves-effect waves-light btn blue lighten-1">Save Plan & Create New</a>
-						<a class="waves-effect waves-light btn blue lighten-1">Build for Me</a>
+						<a class="waves-effect waves-light btn blue lighten-1">Clear</a>
+						<a class="waves-effect waves-light btn blue lighten-1">Save & Start Over</a>
+						<a class="waves-effect waves-light btn blue lighten-1">Feed Me</a>
 						<a class="waves-effect waves-light btn blue lighten-1">Shopping List</a>
 					</div>
 				</div>
@@ -151,6 +155,7 @@
 			<div class='row'>
 				<div class='col s12'>
 					<div id='calendar'>
+
 						<div class='day-column day-column-left'>
 							<h3 class='day-name center-align'>Sunday</h3>
 							<div class="divider"></div>
@@ -189,7 +194,18 @@
 							<div class='day-recipe'>
 								<div class='row'>
 									<h3 class='recipe-name'>Milkshake</h3>
-									<h3 class='btn-delete'>X</h3>
+									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+								</div>
+
+								<p>Added by Matthew Sells</p>
+								<p class='macro-text'>Carbs: 0g | Protein: 0g | Fat: 12g | Calories: 152</p>
+
+							</div>
+
+							<div class='day-recipe'>
+								<div class='row'>
+									<h3 class='recipe-name'>Milkshake</h3>
+									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
 								</div>
 
 								<p>Added by Matthew Sells</p>
@@ -198,9 +214,64 @@
 							</div>
 						</div>
 
-						<div class='day-column'>
-							<p>Awesome</p>
+						<div class='day-column day-column-left'>
+							<h3 class='day-name center-align'>Monday</h3>
+							<div class="divider"></div>
+
+							<div class='center-align'>
+								<div>
+								<table>
+									<tr>
+										<td></td>
+										<th>Total</th>
+										<th>Targ.</th>
+										<th>Avail.</th>
+									</tr>
+									<tr>
+										<td>C</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+									</tr>
+									<tr>
+										<td>P</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+									</tr>
+									<tr>
+										<td>F</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+									</tr>
+								</table>
+								</div>
+							</div>
+
+							<div class='day-recipe'>
+								<div class='row'>
+									<h3 class='recipe-name'>Milkshake</h3>
+									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+								</div>
+
+								<p>Added by Matthew Sells</p>
+								<p class='macro-text'>Carbs: 0g | Protein: 0g | Fat: 12g | Calories: 152</p>
+
+							</div>
+
+							<div class='day-recipe'>
+								<div class='row'>
+									<h3 class='recipe-name'>Milkshake</h3>
+									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+								</div>
+
+								<p>Added by Matthew Sells</p>
+								<p class='macro-text'>Carbs: 0g | Protein: 0g | Fat: 12g | Calories: 152</p>
+
+							</div>
 						</div>
+
 						<div class='day-column'>
 							<p>Awesome</p>
 						</div>
