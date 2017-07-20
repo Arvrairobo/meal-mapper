@@ -10,7 +10,7 @@ $(document).ready(function() {
   var lastNameInput = $("input#last-name");
 
   // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-      $('#modal1').modal();
+      $('#login-signup-modal').modal();
 
       $('ul.tabs').tabs();
 

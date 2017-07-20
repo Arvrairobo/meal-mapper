@@ -2,6 +2,10 @@ $(document).ready(function() {
     //Navigation bar for smaller screens
     $(".button-collapse").sideNav();
 
+    $('#fitness-profile-modal').modal();
+
+    $('select').material_select();
+
     //Progress bar
     $(function() {
         $(".meter > span").each(function() {
