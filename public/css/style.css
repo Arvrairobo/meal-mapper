@@ -34,3 +34,113 @@ html, body {
 .day-col p {
 	text-align: center;
 }
+
+/* app.html styles */
+html, body {
+	height: 100%;
+}
+
+.app-wrapper {
+	height: 100%;
+	margin: 20px;
+}
+
+#calendar {
+	overflow-x: scroll;
+	white-space: nowrap;
+}
+
+.day-column {
+	border: 1px solid #91cdf7;
+	display: inline-block;
+	width: 255px;
+	margin-left: 7px;
+	margin-right: 7px;
+	border-radius: 7px;
+	background-color: #abd9fc;
+}
+
+.day-column-left {
+	margin-left: 0px !important;
+}
+
+.day-column-right {
+	margin-right: 0px !important;
+}
+
+.day-recipe {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #e3f1fc;
+}
+
+.day-recipe > p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.day-recipe .row {
+	margin-bottom: 5px;
+}
+
+.macro-text {
+	font-size: 9.5px;
+}
+
+table {
+	font-size: 10px;
+	padding: 2px;
+	width: 100px;
+	margin: auto;
+	margin-top: 8px;
+}
+
+tr {
+	padding: 1px;
+	margin: 0px;
+}
+
+td {
+	padding: 1px;
+	margin: 0px;
+}
+
+th {
+	padding: 1px;
+	margin: 0px;
+}
+
+h3.day-name {
+	font-size: 22px;
+	margin-top: 8px;
+	margin-left: 5px;
+	margin-bottom: 8px;
+}
+
+h3.recipe-name {
+	margin: 0px;
+	font-size: 18px;
+	float: left;
+}
+
+h3.btn-delete {
+	margin: 0px;
+	font-size: 18px;
+	float: right;
+}
+
+.material-icons {
+	font-size: 20px;
+}
+
+#search-bar {
+	width: 270px;
+	background-color: red;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
