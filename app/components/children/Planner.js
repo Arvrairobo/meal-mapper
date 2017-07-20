@@ -58,14 +58,12 @@ var Planner = React.createClass({
 									<Day className='day-column day-column-right' day='Saturday' dayNum={6} meals={this.props.mealPlan.meals[6]} clickDay={this.clickDay}
 										removeRecipe={this.removeRecipe} />
 
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</
-
+			</div>
 		)
 	}
 });

@@ -58,7 +58,7 @@ var Day = React.createClass({
 		var calories = Math.floor((carbs * 4) + (protein * 4) + (fat * 9));
 
 		return (
-			<div className='day-col' onClick={ () => this.props.clickDay(this.props.dayNum) } >
+			<div className='day-column' onClick={ () => this.props.clickDay(this.props.dayNum) } >
 				<h3 className='day-name center-align'>{ this.props.day }</h3>
 
 				<div className="divider"></div>
@@ -67,12 +67,16 @@ var Day = React.createClass({
 
 							{/* Table showing macros */}
 							<table>
+								<thead>
 								<tr>
 									<td></td>
 									<th>Total</th>
 									<th>Targ.</th>
 									<th>Avail.</th>
 								</tr>
+								</thead>
+
+								<tbody>
 								<tr>
 									<td><strong>C |</strong></td>
 									<td>{carbs}g</td>
@@ -91,6 +95,7 @@ var Day = React.createClass({
 									<td>10.0g</td>
 									<td>10.0g</td>
 								</tr>
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -98,23 +103,18 @@ var Day = React.createClass({
 					{/* Cylce through and create a listing for each recipe in a day */}
 					{this.props.meals.map((recipe, i) => {
 						return (
-						<div  key={i}>
-							<p><a href={recipe.url} target='_blank'>{recipe.name}</a></p>
-							<button onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }>X</button>
-						</div>
+							<div className='day-recipe' key={i}>
+								<div className='row'>
+									<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
+									<h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }><i className="material-icons delete-meal">delete</i></h3>
+								</div>
 
-						<div className='day-recipe' key={i}>
-							<div className='row'>
-								<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
-								<h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }><i className="material-icons delete-meal">delete</i></h3>
+								<p>Added by Matthew Sells</p>
+								<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: 152</p>
 							</div>
-
-							<p>Added by Matthew Sells</p>
-							<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: 152</p>
-						</div>
-					)
-				})}
-			</div>
+						)
+					})}
+				</div>
 							
 		)
 	}
