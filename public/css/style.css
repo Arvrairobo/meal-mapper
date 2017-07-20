@@ -58,6 +58,7 @@ html, body {
 	margin-right: 7px;
 	border-radius: 7px;
 	background-color: #abd9fc;
+	box-shadow: 1px 1px 4px #58585a;
 }
 
 .day-column-left {
@@ -133,7 +134,7 @@ h3.btn-delete {
 	float: right;
 }
 
-.material-icons {
+.delete-meal {
 	font-size: 20px;
 }
 
@@ -145,17 +146,25 @@ h3.btn-delete {
 	position: absolute;
 	right: 0px;
 	top: 0px;
+	box-shadow: -2px 0px 2px #58585a;
 }
 
 #search-bar h3 {
 	font-size: 22px;
 }
 
+#pull-search {
+	position: absolute;
+	left: -70px;
+	top: 65px;
+}
+
+#pull-search i {
+	font-size: 48px;
+}
+
 .search-result {
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin: 5px;
 	padding: 5px;
 	border-radius: 5px;
 	background-color: #e3f1fc;
