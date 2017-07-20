@@ -74,7 +74,7 @@ module.exports = function(server){
 		var date = parseInt(request.params.date);
 		var userId = request.params.userId;
 
-		var arr = { meals: [[],[],[],[],[],[],[]] }
+		var arr = { meals: [[],[],[],[],[],[],[]] };
 
 		Mealplan.create({startDate: date, mealplan: arr}, function(error, mealplan){
 			if(error) throw error;
@@ -96,11 +96,37 @@ module.exports = function(server){
 
 	// Get meal plan info (populate with recipes)
 	server.get('/api/mealplan/:id', function(request, response){
-		Mealplan.findOne({ _id: request.params.id }).populate('meals').exec(function(error, mealplan){
+		Mealplan.findOne({ _id: request.params.id })
+			.populate({
+				path: 'meals',
+				model: 'Recipe'
+			}).exec(function(error, mealplan){
 			if(error) throw error;
+
 			response.json(mealplan);
 		});
-	})
+	});
+
+	server.put('/api/mealplan/:id', function(request, response){
+		var arr = { meals: [[],[],[],[],[],[],[]] }
+		var data = request.body;
+		var planId = request.params.id;
+
+		for(var i = 0; i < 7; i ++){
+			key = i.toString();
+			if(key in data){
+				data[key].map(function(id){
+					arr.meals[i].push(id);
+				})
+			}
+		}
+
+		Mealplan.findOneAndUpdate({_id: planId}, {$set: {meals: arr.meals}}, function(error, mealplan){
+			if(error) throw error;
+
+			response.json(mealplan);
+		})
+	});
 
 	// Search for all recipes based on search term
 	server.get('/api/recipes/:search', function(request, response){

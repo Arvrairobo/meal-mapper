@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Meal Planner</title>
+
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width initial-scale=1.0'>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+</head>
+<body>
+
+<!-- Navigation section -->
+<nav>
+	<div class="nav-wrapper blue">
+		<a href="#" class="brand-logo">Logo</a>
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li><a href="#">Dashboard</a></li>
+			<li><a href="#">My Plan</a></li>
+			<li><a href="#">Logout</a></li>
+		</ul>
+	</div>
+</nav>
+
+<!-- App section -->
+<div class='row'>
+	<div class='col s12'>
+		<div class='app-wrapper'>
+			
+			<!-- Buttons -->
+			<div class='row'>
+				<div class='col s12'>
+					<div class='center-align'>
+						<a class="waves-effect waves-light btn blue lighten-1">Previous Plans</a>
+						<a class="waves-effect waves-light btn blue lighten-1">Clear</a>
+						<a class="waves-effect waves-light btn blue lighten-1">Save & Start Over</a>
+						<a class="waves-effect waves-light btn blue lighten-1">Feed Me</a>
+						<a class="waves-effect waves-light btn blue lighten-1">Shopping List</a>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Meal plan area -->
+			<div class='row'>
+				<div class='col s12'>
+					<div id='calendar'>
+
+						<div class='day-column day-column-left'>
+							<h3 class='day-name center-align'>Sunday</h3>
+							<div class="divider"></div>
+
+							<div class='center-align'>
+								<div>
+								<table>
+									<tr>
+										<td></td>
+										<th>Total</th>
+										<th>Targ.</th>
+										<th>Avail.</th>
+									</tr>
+									<tr>
+										<td><strong>C |</strong></td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+									</tr>
+									<tr>
+										<td><strong>P |</strong></td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+									</tr>
+									<tr>
+										<td><strong>F |</strong></td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+									</tr>
+								</table>
+								</div>
+							</div>
+
+							<div class='day-recipe'>
+								<div class='row'>
+									<h3 class='recipe-name'>Milkshake</h3>
+									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+								</div>
+
+								<p>Added by Matthew Sells</p>
+								<p class='macro-text'>Carbs: 0g | Protein: 0g | Fat: 12g | Calories: 152</p>
+
+							</div>
+
+							<div class='day-recipe'>
+								<div class='row'>
+									<h3 class='recipe-name'>Milkshake</h3>
+									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+								</div>
+
+								<p>Added by Matthew Sells</p>
+								<p class='macro-text'>Carbs: 0g | Protein: 0g | Fat: 12g | Calories: 152</p>
+
+							</div>
+						</div>
+
+						<div class='day-column day-column-left'>
+							<h3 class='day-name center-align'>Monday</h3>
+							<div class="divider"></div>
+
+							<div class='center-align'>
+								<div>
+								<table>
+									<tr>
+										<td></td>
+										<th>Total</th>
+										<th>Targ.</th>
+										<th>Avail.</th>
+									</tr>
+									<tr>
+										<td><strong>C |</strong></td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+									</tr>
+									<tr>
+										<td><strong>P |</strong></td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+									</tr>
+									<tr>
+										<td><strong>F |</strong></td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+										<td>10.0g</td>
+									</tr>
+								</table>
+								</div>
+							</div>
+
+							<div class='day-recipe'>
+								<div class='row'>
+									<h3 class='recipe-name'>Milkshake</h3>
+									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+								</div>
+
+								<p>Added by Matthew Sells</p>
+								<p class='macro-text'>Carbs: 0g | Protein: 0g | Fat: 12g | Calories: 152</p>
+
+							</div>
+
+							<div class='day-recipe'>
+								<div class='row'>
+									<h3 class='recipe-name'>Milkshake</h3>
+									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+								</div>
+
+								<p>Added by Matthew Sells</p>
+								<p class='macro-text'>Carbs: 0g | Protein: 0g | Fat: 12g | Calories: 152</p>
+
+							</div>
+						</div>
+
+						<div class='day-column'>
+							<p>Awesome</p>
+						</div>
+						<div class='day-column'>
+							<p>Awesome</p>
+						</div>
+						<div class='day-column'>
+							<p>Awesome</p>
+						</div>
+						<div class='day-column'>
+							<p>Awesome</p>
+						</div>
+						<div class='day-column'>
+							<p>Awesome</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id='search-bar'>
+	<div class='row'>
+		<div class='col sm12 center-align'>
+			<h3>Find Food For Me</h3>
+			
+			<input class='center-align' value='hello'/>
+			<a class="waves-effect waves-light btn blue lighten-1">Search</a>
+
+			<div class='search-result'>
+				<p>Awsome</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
