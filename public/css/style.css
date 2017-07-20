@@ -42,6 +42,9 @@ html, body {
 /* ELEMENTS */
 html, body {
 	height: 100%;
+	overflow: hidden;
+	background-image: url('../images/cream_pixels.png');
+	background-repeat: repeat;
 }
 
 /* COMPONENTS */
@@ -190,8 +193,18 @@ h3.btn-delete {
 }
 
 .search-result {
-	margin: 5px;
 	padding: 5px;
 	border-radius: 5px;
 	background-color: #e3f1fc;
+	margin: auto;
+	margin-top: 5px;
+	width: 255px;
+}
+
+.search-result h3 {
+	margin-top: 3px;
+}
+
+.search-result p {
+	margin: 5px;
 }

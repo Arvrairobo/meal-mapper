@@ -3,7 +3,10 @@
 	var showSearch = true;
 	$('#pull-search').on('click', function(){
 		showSearch = !showSearch;
+		toggleBar();
+	})
 
+	function toggleBar(){
 		var width = $(window).width();
 		if(showSearch){
 			$('#search-bar').css('right', 0);
@@ -14,5 +17,6 @@
 			$('nav').css('width', width);
 			$('.app-wrapper').css('width', width);
 		}
-	})
+	}
+	toggleBar();
 })()
