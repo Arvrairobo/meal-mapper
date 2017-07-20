@@ -59,27 +59,63 @@ var Day = React.createClass({
 
 		return (
 			<div className='day-col' onClick={ () => this.props.clickDay(this.props.dayNum) } >
-				{/* When user clicks the column, run clickDay in parent component */}
-				<p>{ this.props.day }</p>
-				<hr/>
+				<h3 className='day-name center-align'>{ this.props.day }</h3>
 
-			{/* Load all recipes for the day and add to column */}
-				{this.props.meals.map((recipe, i) => {
-					return (
-						<div key={i}>
+				<div className="divider"></div>
+					<div className='center-align'>
+						<div>
+
+							{/* Table showing macros */}
+							<table>
+								<tr>
+									<td></td>
+									<th>Total</th>
+									<th>Targ.</th>
+									<th>Avail.</th>
+								</tr>
+								<tr>
+									<td><strong>C |</strong></td>
+									<td>{carbs}g</td>
+									<td>10.0g</td>
+									<td>10.0g</td>
+								</tr>
+								<tr>
+									<td><strong>P |</strong></td>
+									<td>{protein}g</td>
+									<td>10.0g</td>
+									<td>10.0g</td>
+								</tr>
+								<tr>
+									<td><strong>F |</strong></td>
+									<td>{fat}g</td>
+									<td>10.0g</td>
+									<td>10.0g</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+					{/* Cylce through and create a listing for each recipe in a day */}
+					{this.props.meals.map((recipe, i) => {
+						return (
+						<div  key={i}>
 							<p><a href={recipe.url} target='_blank'>{recipe.name}</a></p>
 							<button onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }>X</button>
 						</div>
+
+						<div className='day-recipe' key={i}>
+							<div className='row'>
+								<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
+								<h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }><i className="material-icons delete-meal">delete</i></h3>
+							</div>
+
+							<p>Added by Matthew Sells</p>
+							<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: 152</p>
+						</div>
 					)
 				})}
-
-				<hr/>
-				<p className='small-text'>Carbs: {carbs}g</p>
-				<p className='small-text'>Protein: {protein}g</p>
-				<p className='small-text'>Fat: {fat}g</p>
-				<p className='small-text'><strong>Calories: {calories}</strong></p>
-
 			</div>
+							
 		)
 	}
 
