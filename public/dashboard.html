@@ -19,25 +19,25 @@
 
 <body>
     <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper blue">
             <a href="/" class="brand-logo">Meal Planner</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="#">Meal Plan</a></li>
+                <li class="active"><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/myplan">Meal Plan</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="#">Meal Plan</a></li>
+                <li class="active"><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/myplan">Meal Plan</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </div>
     </nav>
-    <h3>Dashboard</h3>
+    <h4>Dashboard</h4>
     <div class="row">
         <div class="col s12 l4">
-            <div class="card small cyan lighten-4">
+            <div class="card small">
                 <div class="card-content">
                     <span class="card-title">My Nutrition Profile</span>
                     <div id="card-body-nutrient">
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="col s12 l4">
-            <div class="card small cyan lighten-4">
+            <div class="card small">
                 <div class="card-content">
                     <span class="card-title"> Progress Tracker</span>
                     <!--TODO- progress tracker for weight-->
@@ -75,12 +75,12 @@
             </div>
         </div>
         <div class="col s12 l4">
-            <div class="card small cyan lighten-4">
+            <div class="card small">
                 <div class="card-content">
                     <span class="card-title">Shopping List</span>
                    <!--TODO - button for shopping list-->
                     <div id="card-body-shopping">
-                        <a class="waves-effect waves-light btn-large">Shopping List</a>
+                        <a class="waves-effect waves-light blue lighten-1 btn-large">Shopping List</a>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
     </div>
     <div class="row">
         <div class="col s12 l4">
-            <div class="card small cyan lighten-4">
+            <div class="card small">
                 <div class="card-content">
                     <span class="card-title">Macronutrient Breakdown (per day)</span>
                     <!--TODO- Pie chart-->
@@ -97,11 +97,11 @@
             </div>
         </div>
         <div class="col s12 l4">
-            <div class="card small cyan lighten-4">
+            <div class="card small">
                 <div class="card-content">
                     <div class="row">
                         <span class="col s10 card-title"> My Fitness Profile </span>
-                        <a href="#fitness-profile-modal" class="waves-effect waves-light btn col s2" id="edit-button">edit</a>
+                        <a href="#fitness-profile-modal" class="waves-effect waves-light btn blue lighten-1 col s2" id="edit-button">edit</a>
                     </div>
                     <!--TODO- Update button and modal for updating stats-->
                     <p>Gender: <span class="fitness-info" id="gender"></span></p>
@@ -115,7 +115,7 @@
             </div>
         </div>
         <div class="col s12 l4">
-            <div class="card small cyan lighten-4">
+            <div class="card small">
                 <div class="card-content">
                     <span class="card-title">My Account</span>
                     <div id="card-body-account">

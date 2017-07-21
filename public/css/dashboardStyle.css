@@ -1,5 +1,23 @@
+html, body {
+    height: 100%;
+    background-image: url(/images/cream_pixels.png);
+    background-repeat: repeat;
+}
+
 *, *:before, *:after {
     box-sizing: initial;
+}
+
+h4 {
+    text-align: center;
+}
+
+.card {
+   background-color: #ABD9FC;
+}
+
+.card.small {
+    height: 275px;
 }
 
 .card-title {
