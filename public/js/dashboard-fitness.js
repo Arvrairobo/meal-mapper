@@ -99,6 +99,8 @@ $(document).ready(function() {
         $("#current-weight-input").attr("value", data.currentWeight);
         $("#start-weight-input").attr("value", data.startWeight);
         $("#target-weight-input").attr("value", data.targetWeight);
+        
+        localStorage.setItem('id', data._id);
 
         if (data.height == null) {
             $("#height").text("")

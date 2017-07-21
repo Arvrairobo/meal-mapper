@@ -8,7 +8,7 @@ var Mealplan = new mongoose.Schema({
 	},
 	
 	// 2D array format
-	meals: [
+	meals:[
 		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],
 		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],
 		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],

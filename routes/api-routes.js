@@ -127,6 +127,60 @@ module.exports = function(server){
 		});
 	});
 
+	server.get('/api/shoppinglist/:userId', function(request, response){
+		// First get the user ID
+		User.findOne({ _id: request.params.userId }).populate('mealplans').exec(function(error, user){
+			if(error) throw error;
+			
+			// Get latest meal plan ID
+			var planId = user.mealplans[user.mealplans.length - 1]._id;
+
+			// Get recipes for that meal plan
+			Mealplan.findOne({ _id: planId })
+				.populate({
+					path: 'meals',
+					model: 'Recipe'
+				}).exec(function(error, mealplan){
+				if(error) throw error;
+
+				var shoppingList = [];
+				// Go through each meal and add ingredients to list
+
+				for(var i = 0; i < 7; i++){
+					if(mealplan.meals[i].length){
+						for(var j = 0; j < mealplan.meals[i].length; j++){
+							for(k = 0; k < mealplan.meals[i][j].ingredients.length; k++){
+								shoppingList.push(mealplan.meals[i][j].ingredients[k].ingredient);
+							}
+						}
+					}
+				}
+
+				var minList = [];
+				var minAmount = [];
+				for(var i = 0; i < shoppingList.length; i++){
+					var index = minList.indexOf(shoppingList[i]);
+					if(index === -1){
+						minList.push(shoppingList[i]);
+						minAmount.push(1);
+					} else {
+						minAmount[index]++;
+					}
+				}
+
+				var finalList = [];
+				for(var i = 0; i < minList.length; i++){
+					finalList[i] = {
+						ingredient: minList[i],
+						amount: minAmount[i]
+					}
+				}
+
+				response.json(finalList);
+			});
+		});
+	});
+
 	server.put('/api/mealplan/:id', function(request, response){
 		var arr = { meals: [[],[],[],[],[],[],[]] }
 		var data = request.body;
