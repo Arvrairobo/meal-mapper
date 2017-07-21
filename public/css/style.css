@@ -23,6 +23,13 @@ html, body {
 	margin: 20px;
 }
 
+#plan-date {
+	font-size: 26px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 35px;
+}
+
 #calendar {
 	overflow-x: scroll;
 	white-space: nowrap;

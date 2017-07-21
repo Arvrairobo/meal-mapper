@@ -18,7 +18,8 @@ var Main = React.createClass({
 			// this.state plan will hold all meal data (initialize empty) / database only holds IDs then populates
 			mealPlan: { meals: [[],[],[],[],[],[],[]] },
 			planId: '',
-			update: false
+			update: false,
+			startDate: ''
 		}
 	},
 
@@ -49,7 +50,8 @@ var Main = React.createClass({
 					helpers.getMealPlan(lastMealPlan._id).then(function(mealplan){
 						this.setState({
 							mealPlan: { meals: mealplan.data.meals },
-							planId: lastMealPlan._id
+							planId: lastMealPlan._id,
+							startDate: lastMealPlan.startDate
 						});
 					}.bind(this));
 				}
@@ -110,6 +112,10 @@ var Main = React.createClass({
 
 		// Save empty meal plan with startDate (also saves to user id)
 		helpers.createEmptyMealPlan(startDate, userId);
+		
+		this.setState({
+			startDate: startDate
+		})
 	},
 
 	// Every time meal plan is modified, update database
@@ -128,6 +134,14 @@ var Main = React.createClass({
 		helpers.saveMealPlan(tempPlan, this.state.planId);
 	},
 
+	clearPlan: function(){
+		this.setState({
+			mealPlan: { meals: [[],[],[],[],[],[],[]] },
+			update: false
+		})
+		
+	},
+
 	render: function() {
 		return (
 			<div>
@@ -144,7 +158,8 @@ var Main = React.createClass({
 				</nav>
 
 				{/* Meal planner (left side of screen) */}
-				<Planner mealPlan={this.state.mealPlan} removeFromMealPlan={this.removeFromMealPlan} />
+				<Planner mealPlan={this.state.mealPlan} startDate={this.state.startDate} removeFromMealPlan={this.removeFromMealPlan}
+					clearPlan={this.clearPlan}/>
 
 				{/* Search bar (right side of screen) */}
 				<Search setSearch={this.setSearch} searchResults={this.state.searchResults}
