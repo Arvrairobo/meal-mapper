@@ -26,34 +26,48 @@ var Search = React.createClass({
 
 	render: function(){
 		return (
-			<div className='search-panel'>
-				<p>Find a recipe</p>
-				<input value={this.state.searchTerm} onChange={this.changeSearch} />
-				<a className="waves-effect waves-light btn" onClick={this.sendSearch}>Search</a>
 
-				<h5>Search Results</h5>
+			<div id='search-bar'>
+				<div id='pull-search' className='center-align valign-wrapper'><i className="material-icons no-select">search</i></div>
 
-				<div id='search-scroll'>
-					{this.props.searchResults.map((recipe, i) => {
-						return (
-							<div key={i} className='search-find'>
-								<p>{recipe.name}</p>
-								<p className='small-text'>Carbs: {recipe.carbs}g</p>
-								<p className='small-text'>Protein: {recipe.protein}g</p>
-								<p className='small-text'>Fat: {recipe.fat}g</p>
+				<div className='row'>
+					<div className='col sm12 center-align'>
+						<h3>Find Food For Me</h3>
+						
+						<input value={this.state.searchTerm} onChange={this.changeSearch} className='center-align' id='search-term' />
+						<a className="waves-effect waves-light btn blue lighten-1" onClick={this.sendSearch}>Search</a>
 
-								<a href='#' onClick={this.addRecipe.bind(null, 0, i)} >S</a> |
-								<a href='#' onClick={this.addRecipe.bind(null, 1, i)} >M</a> |
-								<a href='#' onClick={this.addRecipe.bind(null, 2, i)} >T</a> |
-								<a href='#' onClick={this.addRecipe.bind(null, 3, i)} >W</a> |
-								<a href='#' onClick={this.addRecipe.bind(null, 4, i)} >T</a> |
-								<a href='#' onClick={this.addRecipe.bind(null, 5, i)} >F</a> |
-								<a href='#' onClick={this.addRecipe.bind(null, 6, i)} >S</a>
-							</div>
-						)
-					})}
+					</div>
 				</div>
 
+				<div className='row'>
+					<div className='col sm12'>
+						<div className='search-results'>
+							{this.props.searchResults.map((recipe, i) => {
+								return (
+									<div key={i} className='search-result'>
+										<h3>{recipe.name}</h3>
+										<p className='small-text'>Carbs: {recipe.carbs}g</p>
+										<p className='small-text'>Protein: {recipe.protein}g</p>
+										<p className='small-text'>Fat: {recipe.fat}g</p>
+
+										<div className='center-align'>
+											<p>
+												<a href='#' onClick={this.addRecipe.bind(null, 0, i)} >S</a> |
+												<a href='#' onClick={this.addRecipe.bind(null, 1, i)} >M</a> |
+												<a href='#' onClick={this.addRecipe.bind(null, 2, i)} >T</a> |
+												<a href='#' onClick={this.addRecipe.bind(null, 3, i)} >W</a> |
+												<a href='#' onClick={this.addRecipe.bind(null, 4, i)} >T</a> |
+												<a href='#' onClick={this.addRecipe.bind(null, 5, i)} >F</a> |
+												<a href='#' onClick={this.addRecipe.bind(null, 6, i)} >S</a>
+											</p>
+										</div>
+									</div>
+								)
+							})}
+						</div>
+					</div>
+				</div>
 			</div>
 		)
 	}
