@@ -101,6 +101,8 @@ $(document).ready(function() {
         $("#gender").text(data.gender);
         $("#age").text(data.age);
 
+        localStorage.setItem('id', data._id);
+
         if (data.height == null) {
             $("#height").text("")
         } else {

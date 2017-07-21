@@ -111,11 +111,16 @@ var Main = React.createClass({
 		startDate.format('x');
 
 		// Save empty meal plan with startDate (also saves to user id)
-		helpers.createEmptyMealPlan(startDate, userId);
-		
-		this.setState({
-			startDate: startDate
-		})
+		helpers.createEmptyMealPlan(startDate, userId)
+		.then(function(mealplan){
+			console.log('PLAN');
+			console.log(mealplan);
+			this.setState({
+				mealPlan: { meals: [[],[],[],[],[],[],[]] },
+				startDate: startDate,
+				planId: mealplan.data._id
+			});
+		}.bind(this));
 	},
 
 	// Every time meal plan is modified, update database
@@ -138,8 +143,7 @@ var Main = React.createClass({
 		this.setState({
 			mealPlan: { meals: [[],[],[],[],[],[],[]] },
 			update: false
-		})
-		
+		});
 	},
 
 	render: function() {
@@ -150,9 +154,9 @@ var Main = React.createClass({
 					<div className="nav-wrapper blue">
 						<a href="#" className="brand-logo">Logo</a>
 						<ul id="nav-mobile" className="right hide-on-med-and-down">
-							<li><a href="#">Dashboard</a></li>
-							<li><a href="#">My Plan</a></li>
-							<li><a href="#">Logout</a></li>
+							<li><a href="/dashboard">Dashboard</a></li>
+							<li className='active'><a href="#">My Plan</a></li>
+							<li><a href="/logout">Logout</a></li>
 						</ul>
 					</div>
 				</nav>

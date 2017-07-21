@@ -21,7 +21,6 @@ var Planner = React.createClass({
 	},
 
 	render: function(){
-
 		var showDate = moment(this.props.startDate).format('dddd, MMMM Do');
 
 		return (
