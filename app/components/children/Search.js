@@ -47,9 +47,16 @@ var Search = React.createClass({
 								return (
 									<div key={i} className='search-result'>
 										<h3>{recipe.name}</h3>
-										<p className='small-text'>Carbs: {recipe.carbs}g</p>
-										<p className='small-text'>Protein: {recipe.protein}g</p>
-										<p className='small-text'>Fat: {recipe.fat}g</p>
+										<p className='small-text'>Carbs: {recipe.carbs}g, Protein: {recipe.protein}g, Fat: {recipe.fat}g</p>
+										<p className='small-text'>Meal: {recipe.meal}</p>
+										<p className='small-text'>Tags: 
+
+										{recipe.tags.map((tag, i) => {
+											return (
+												<span key={i}> {tag}, </span>
+											)
+										})} </p>
+
 
 										<div className='center-align'>
 											<p>

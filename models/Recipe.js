@@ -11,8 +11,7 @@ var Recipe = new mongoose.Schema({
 		type: String
 	},
 	creator: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
+		type: String
 	},
 	servings: {
 		type: Number

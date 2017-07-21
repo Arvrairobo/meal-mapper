@@ -110,7 +110,7 @@ var Day = React.createClass({
 										<h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }><i className="material-icons delete-meal">delete</i></h3>
 									</div>
 
-									<p>Added by Matthew Sells</p>
+									<p>Added by {recipe.creator}</p>
 									<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: 152</p>
 								</div>
 							)
