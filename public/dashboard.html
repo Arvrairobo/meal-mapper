@@ -41,7 +41,7 @@
                 <div class="card-content">
                     <span class="card-title">My Nutrition Profile</span>
                     <div id="card-body-nutrient">
-                        <p>Diet Preference: <span id="dietPref"></span></p>
+                        <p>Dietary Restriction: <span id="dietPref"></span></p>
                         <p>Total Calories: <span id="totalCalories"></span></p>
                         <p>Protein</p>
                         <p>Fat</p>
@@ -60,7 +60,7 @@
                             <p> Current Weight: <span class="currentWeight"></span></p>
                         </div>
                         <div class="meter fill nostripes">
-                            <span id="progress-bar" style="width: 50%"></span>
+                            <span id="progress-bar"></span>
                         </div>
                         <div class="row" id="weight-div">
                             <p class="col s6 start-weight"><span id="startWeight"></span></p>
@@ -142,7 +142,7 @@
                                     <select id="gender-input">
                                         <option value="" disabled selected="selected">Select</option>
                                         <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option value="Female" >Female</option>
                                     </select>
                                     <label for="gender-input">Gender</label>
                                 </div>
@@ -170,7 +170,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <!--dropdown-->
                                 <div class="input-field col s6">
                                     <select id="activity-level-input">
                                         <option value="" disabled selected="selected">Select</option>
@@ -183,7 +182,6 @@
                                     <label for="activity-level-input">Activity Level</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <!--dropdown-->
                                     <select id="change-rate-input">
                                         <option value="" disabled selected="selected">Select</option>
                                         <option value="1">Gain 1lb per week</option>
@@ -206,7 +204,8 @@
         </div>
     </div>
 
-<script type="text/javascript" src="js/dashboard.js"></script>
+<script type="text/javascript" src="js/dashboard-nutrition.js"></script>
+<script type="text/javascript" src="js/dashboard-fitness.js"></script>
 
 </body>
 </html>
