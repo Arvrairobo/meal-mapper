@@ -82,15 +82,17 @@ $(document).ready(function() {
 
          }
 
-
 //    Display user info on dashboard
     $.get("/api/user_data").then(function(data) {
         $("#name").text(data.firstName + " " + data.lastName);
         $("#email").text(data.email);
         $("#gender").text(data.gender);
         $("#age").text(data.age);
+        $("#gender-input option[value='" + data.gender + "']").attr("selected", "selected");
 
-        var selected = $("#gender-input option[value='" + data.gender + "']").attr("selected", "selected");
+        $("#activity-level-input option[value='" + data.activityLevel + "']").attr("selected", "selected");
+
+        $("#change-rate-input option[value='" + data.rateOfChange + "']").attr("selected", "selected");
 
         $("#age-input").attr("value", data.age);
         $("#height-input").attr("value", data.height);
@@ -145,8 +147,14 @@ $(document).ready(function() {
         };
 
 
+        if (data.startWeight == null || data.currentWeight == null || data.targetWeight == null) {
+            progressWidth = "width: 0%"
+            $("#progress-bar").attr("style", progressWidth)
+            console.log("no start weight")
 
+        } else {
         calculateProgress(data.startWeight, data.currentWeight, data.targetWeight);
+        };
 
         Materialize.updateTextFields();
 

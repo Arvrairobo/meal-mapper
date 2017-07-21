@@ -138,13 +138,13 @@
                     <div class="row">
                         <form class="col s12 login-form">
                             <div class="row">
-                                <div class="input-field col s4">
-                                    <select id="gender-input">
+                                <div class="col s4">
+                                    <label for="gender-input">Gender</label>
+                                    <select class ="browser-default" id="gender-input">
                                         <option value="" disabled selected="selected">Select</option>
                                         <option value="Male">Male</option>
                                         <option value="Female" >Female</option>
                                     </select>
-                                    <label for="gender-input">Gender</label>
                                 </div>
                                 <div class="input-field col s4">
                                     <input id="age-input"  type="number" class="validate" >
@@ -170,8 +170,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="input-field col s6">
-                                    <select id="activity-level-input">
+                                <div class="col s6">
+                                    <label for="activity-level-input">Activity Level</label>
+                                    <select class="browser-default" id="activity-level-input">
                                         <option value="" disabled selected="selected">Select</option>
                                         <option value="1">Sedentary (little or no exercise)</option>
                                         <option value="2">Lightly active (light exercise 1-3 days/week)</option>
@@ -179,10 +180,10 @@
                                         <option value="4">Very active (hard exercise 6-7 days a week)</option>
                                         <option value="5">Extra active (very hard exercise & physical job)</option>
                                     </select>
-                                    <label for="activity-level-input">Activity Level</label>
                                 </div>
-                                <div class="input-field col s6">
-                                    <select id="change-rate-input">
+                                <div class="col s6">
+                                    <label for="change-rate-input">Desired Rate of Weight Change</label>
+                                    <select class="browser-default" id="change-rate-input">
                                         <option value="" disabled selected="selected">Select</option>
                                         <option value="1">Gain 1lb per week</option>
                                         <option value="2">Gain .5lb per week</option>
@@ -190,7 +191,6 @@
                                         <option value="4">Lose 1lb per week</option>
 
                                     </select>
-                                    <label for="change-rate-input">Desired Rate of Weight Change</label>
                                 </div>
                             </div>
                         </form>
