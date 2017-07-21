@@ -100,20 +100,22 @@ var Day = React.createClass({
 						</div>
 					</div>
 
-					{/* Cylce through and create a listing for each recipe in a day */}
-					{this.props.meals.map((recipe, i) => {
-						return (
-							<div className='day-recipe' key={i}>
-								<div className='row'>
-									<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
-									<h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }><i className="material-icons delete-meal">delete</i></h3>
-								</div>
+					<div className='recipe-area'>
+						{/* Cylce through and create a listing for each recipe in a day */}
+						{this.props.meals.map((recipe, i) => {
+							return (
+								<div className='day-recipe' key={i}>
+									<div className='row'>
+										<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
+										<h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }><i className="material-icons delete-meal">delete</i></h3>
+									</div>
 
-								<p>Added by Matthew Sells</p>
-								<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: 152</p>
-							</div>
-						)
-					})}
+									<p>Added by {recipe.creator}</p>
+									<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: 152</p>
+								</div>
+							)
+						})}
+					</div>
 				</div>
 							
 		)
