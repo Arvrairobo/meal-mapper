@@ -1,6 +1,9 @@
 // Import dependencies
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
+const expressSession = require('express-session');
 
 // Create new Express server
 var server = express();
@@ -10,9 +13,20 @@ var PORT = process.env.PORT || 3000;
 
 // Set middleware functions
 server.use(express.static('./public'));
+server.use(cookieParser());
 server.use(bodyParser.text());
 server.use(bodyParser.json({type: 'application/vnd.api+json'}));
 server.use(bodyParser.urlencoded({extended: true}));
+
+// Configuring Passport
+
+server.use(expressSession({secret: 'keyboard-cat', resave: true, saveUninitialized: true }));
+server.use(passport.initialize());
+server.use(passport.session());
+
+// Initialize Passport
+var initPassport = require('./passport/init');
+initPassport(passport);
 
 // Connect routes
 require('./routes/html-routes.js')(server);

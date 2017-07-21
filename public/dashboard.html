@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Meal Planner</title>
+
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width initial-scale=1.0'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/dashboardStyle.css">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>-->
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">Meal Planner</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Meal Plan</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Meal Plan</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h3>Dashboard</h3>
+    <div class="row">
+        <div class="col s12 l4">
+            <div class="card small cyan lighten-4">
+                <div class="card-content">
+                    <span class="card-title">My Nutrition Profile</span>
+                    <div id="card-body-nutrient">
+                        <p>Dietary Restriction: <span id="dietPref"></span></p>
+                        <p>Total Calories: <span id="totalCalories"></span></p>
+                        <p>Protein</p>
+                        <p>Fat</p>
+                        <p>Carbs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4">
+            <div class="card small cyan lighten-4">
+                <div class="card-content">
+                    <span class="card-title"> Progress Tracker</span>
+                    <!--TODO- progress tracker for weight-->
+                    <div id="card-body-progress">
+                        <div class="row" id="current-weight-label">
+                            <p> Current Weight: <span class="currentWeight"></span></p>
+                        </div>
+                        <div class="meter fill nostripes">
+                            <span id="progress-bar"></span>
+                        </div>
+                        <div class="row" id="weight-div">
+                            <p class="col s6 start-weight"><span id="startWeight"></span></p>
+                            <p class="col s6 goal-weight"><span id="targetWeight"></span></p>
+                        </div>
+                        <div class="row">
+                            <p class="col s6 start-weight">Start Weight</p>
+                            <p class="col s6 goal-weight">Target Weight</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4">
+            <div class="card small cyan lighten-4">
+                <div class="card-content">
+                    <span class="card-title">Shopping List</span>
+                   <!--TODO - button for shopping list-->
+                    <div id="card-body-shopping">
+                        <a class="waves-effect waves-light btn-large">Shopping List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 l4">
+            <div class="card small cyan lighten-4">
+                <div class="card-content">
+                    <span class="card-title">Macronutrient Breakdown (per day)</span>
+                    <!--TODO- Pie chart-->
+                    <div id="piechart_3d"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4">
+            <div class="card small cyan lighten-4">
+                <div class="card-content">
+                    <div class="row">
+                        <span class="col s10 card-title"> My Fitness Profile </span>
+                        <a href="#fitness-profile-modal" class="waves-effect waves-light btn col s2" id="edit-button">edit</a>
+                    </div>
+                    <!--TODO- Update button and modal for updating stats-->
+                    <p>Gender: <span class="fitness-info" id="gender"></span></p>
+                    <p>Age: <span class="fitness-info" id="age"></span></p>
+                    <p>Activity Level: <span class="fitness-info" id="activity"></span></p>
+                    <p>Height: <span class="fitness-info" id="height"></span></p>
+                    <p>Current Body Fat Level: <span class="fitness-info" id="bodyFat"></span></p>
+                    <p>Current Weight: <span class="fitness-info currentWeight"></span></p>
+                    <p>Desired Rate of Weight Change: <span class="fitness-info" id="rateOfChange"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4">
+            <div class="card small cyan lighten-4">
+                <div class="card-content">
+                    <span class="card-title">My Account</span>
+                    <div id="card-body-account">
+                        <p>Name: <span id="name"></span></p>
+                        <p>Email: <span id="email"></span></p>
+                        <!--TODO figure out how to update user password using nodemailer and passport etc-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal-->
+
+    <div id="fitness-profile-modal" class="modal">
+        <div class="row">
+            <div id="login" class="col s12">
+                <div class="modal-content">
+                    <h3>Fitness Profile</h3>
+                    <div class="row">
+                        <form class="col s12 login-form">
+                            <div class="row">
+                                <div class="input-field col s4">
+                                    <select id="gender-input">
+                                        <option value="" disabled selected="selected">Select</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female" >Female</option>
+                                    </select>
+                                    <label for="gender-input">Gender</label>
+                                </div>
+                                <div class="input-field col s4">
+                                    <input id="age-input"  type="number" class="validate" >
+                                    <label for="age-input">Age</label>
+                                </div>
+                                <div class="input-field col s4">
+                                    <input id="height-input" type="number" class="validate" >
+                                    <label for="height-input">Height (in inches)</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s4">
+                                    <input id="current-weight-input" type="number" class="validate" >
+                                    <label for="current-weight-input">Current Weight (in pounds)</label>
+                                </div>
+                                <div class="input-field col s4">
+                                    <input id="start-weight-input" type="number" class="validate" >
+                                    <label for="start-weight-input">Start Weight (in pounds)</label>
+                                </div>
+                                <div class="input-field col s4">
+                                    <input id="target-weight-input" type="number" class="validate" >
+                                    <label for="target-weight-input">Target Weight (in pounds)</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <select id="activity-level-input">
+                                        <option value="" disabled selected="selected">Select</option>
+                                        <option value="1">Sedentary (little or no exercise)</option>
+                                        <option value="2">Lightly active (light exercise 1-3 days/week)</option>
+                                        <option value="3">Moderately active (moderate exercise 3-5 days/week)</option>
+                                        <option value="4">Very active (hard exercise 6-7 days a week)</option>
+                                        <option value="5">Extra active (very hard exercise & physical job)</option>
+                                    </select>
+                                    <label for="activity-level-input">Activity Level</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <select id="change-rate-input">
+                                        <option value="" disabled selected="selected">Select</option>
+                                        <option value="1">Gain 1lb per week</option>
+                                        <option value="2">Gain .5lb per week</option>
+                                        <option value="2">Lose .5lb per week</option>
+                                        <option value="4">Lose 1lb per week</option>
+
+                                    </select>
+                                    <label for="change-rate-input">Desired Rate of Weight Change</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" id="save-button">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="js/dashboard-nutrition.js"></script>
+<script type="text/javascript" src="js/dashboard-fitness.js"></script>
+
+</body>
+</html>

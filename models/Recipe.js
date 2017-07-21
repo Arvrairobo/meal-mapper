@@ -10,6 +10,12 @@ var Recipe = new mongoose.Schema({
 	image: {
 		type: String
 	},
+	creator: {
+		type: String
+	},
+	servings: {
+		type: Number
+	},
 
 	protein: {
 		type: Number
@@ -21,11 +27,17 @@ var Recipe = new mongoose.Schema({
 		type: Number
 	},
 
-	ingredients: {
+	ingredients: [{
+		amount: Number,
+		measurement: String,
+		ingredient: String
+	}],
+
+	tags: {
 		type: [String]
 	},
-	servings: {
-		type: Number
+	meal: {
+		type: String
 	}
 })
 

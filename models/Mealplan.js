@@ -1,21 +1,24 @@
 const mongoose = require('mongoose');
 
 var Mealplan = new mongoose.Schema({
+	// Date of start of week
 	startDate: {
-		type: Date
+		type: Date,
+		required: true
 	},
-
-	// Array of each meal plan
-	meals: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "Recipe",
-
-		// Track the time and day that the specific meal is used
-		mealtime: {
-			day: Number, // (0-6, Sunday-Saturday)
-			meal: Number, // (0-2, breakfast-dinner)
-		}
-	}]
+	
+	// 2D array format
+	meals:[
+		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],
+		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],
+		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],
+		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],
+		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],
+		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}],
+		[{type: mongoose.Schema.Types.ObjectId, ref: "Recipe"}]
+	]
 });
+
+// teachers: [ { teacher: { type: Schema.ObjectId, ref: "Teacher" } } ]
 
 module.exports = mongoose.model('Mealplan', Mealplan);

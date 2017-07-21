@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Meal Planner</title>
+
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width initial-scale=1.0'>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+<div>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">Meal Planner</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Meal Plan</a></li>
+                <li><a href="#login-signup-modal">Log In/Sign up</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Meal Plan</a></li>
+                <li><a href="#login-signup-modal">Log In/Sign up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Modal Structure -->
+    <div id="login-signup-modal" class="modal">
+        <div class="row">
+            <div>
+                <ul class="tabs">
+                    <li class="tab col s6"><a class="active" href="#login">Login</a></li>
+                    <li class="tab col s6"><a href="#signup">Sign Up</a></li>
+                </ul>
+            </div>
+            <div id="login" class="col s12">
+                <div class="modal-content">
+                    <div class="row">
+                        <form class="col s12 login-form">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="login-email" type="email" class="validate" >
+                                    <label for="login-email">Email Address</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="login-password" type="password" class="validate">
+                                    <label for="login-password">Password</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" id="login-button">Login</button>
+                </div>
+            </div>
+            <div id="signup" class="col s12">
+                <div class="modal-content">
+                    <div class="row">
+                        <form class="col s12 signup-form">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="first-name" type="text" class="validate">
+                                    <label for="first-name">First Name</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="last-name" type="text" class="validate">
+                                    <label for="last-name">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="signup-email" type="email" class="validate">
+                                    <label for="signup-email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="signup-password" type="password" class="validate">
+                                    <label for="signup-password">Password</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" id="signup-button">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <h3>Home Page (Patrick is building)</h3>
+
+</div>
+
+<script type="text/javascript" src="js/home.js"></script>
+
+</body>
+</html>

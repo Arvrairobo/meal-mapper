@@ -1,0 +1,197 @@
+/* app.html styles */
+
+/* ELEMENTS */
+html, body {
+	height: 100%;
+	overflow: hidden;
+	background-image: url('../images/cream_pixels.png');
+	background-repeat: repeat;
+}
+
+/* COMPONENTS */
+
+.no-select {
+	user-select: none;
+}
+
+/*.input-field input[type=text]:focus {
+	color: red;
+}*/
+
+.app-wrapper {
+	height: 100%;
+	margin: 20px;
+}
+
+#plan-date {
+	font-size: 26px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 35px;
+}
+
+#calendar {
+	overflow-x: scroll;
+	white-space: nowrap;
+}
+
+.day-column {
+	border: 1px solid #91cdf7;
+	display: inline-block;
+	width: 255px;
+	margin-left: 7px;
+	margin-right: 7px;
+	margin-bottom: 5px;
+	border-radius: 7px;
+	background-color: #abd9fc;
+	box-shadow: 1px 1px 4px #58585a;
+	min-height: 150px;
+	vertical-align: top;
+	padding-bottom: 5px;
+}
+
+.day-column-left {
+	margin-left: 0px !important;
+}
+
+.day-column-right {
+	margin-right: 0px !important;
+}
+
+.recipe-area {
+	overflow: scroll;
+}
+
+.day-recipe {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #e3f1fc;
+}
+
+.day-recipe > p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.day-recipe .row {
+	margin-bottom: 5px;
+}
+
+.macro-text {
+	font-size: 9.5px;
+}
+
+table {
+	font-size: 10px;
+	padding: 2px;
+	width: 120px;
+	margin: auto;
+	margin-top: 8px;
+}
+
+tr {
+	padding: 1px;
+	margin: 0px;
+}
+
+td {
+	padding: 1px;
+	margin: 0px;
+}
+
+th {
+	padding: 1px;
+	margin: 0px;
+}
+
+h3.day-name {
+	font-size: 22px;
+	margin-top: 8px;
+	margin-left: 5px;
+	margin-bottom: 8px;
+}
+
+h3.recipe-name {
+	margin: 0px;
+	font-size: 18px;
+	float: left;
+}
+
+h3.btn-delete {
+	margin: 0px;
+	font-size: 18px;
+	float: right;
+}
+
+.delete-meal {
+	font-size: 20px;
+}
+
+#search-bar {
+	width: 280px;
+	height: 100%;
+	z-index: 100;
+	background-color: #ABD9FC;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	box-shadow: -2px 0px 2px #58585a;
+}
+
+#search-bar h3 {
+	font-size: 18px;
+}
+
+#pull-search {
+	position: absolute;
+	left: -70px;
+	top: 69px;
+	background-color: white;
+	width: 62px;
+	height: 62px;
+	border: 3px solid #1c77bc;
+	border-radius: 100%;
+	box-shadow: 1px 1px 4px #58585a;
+}
+
+#pull-search:hover {
+	background-color: #4ea3e5;
+}
+
+#pull-search i {
+	font-size: 48px;
+	color: #2196F3;
+	margin: auto;
+}
+
+.search-results {
+	overflow: scroll;
+}
+
+.search-result {
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #e3f1fc;
+	margin: auto;
+	margin-top: 5px;
+	width: 255px;
+}
+
+.search-result h3 {
+	margin-top: 3px;
+	margin-bottom: 9px;
+	line-height: 12px;
+}
+
+.search-result p {
+	margin: 5px;
+}
+
+.small-text {
+	line-height: 9px;
+	font-size: 12px;
+}

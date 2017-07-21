@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -17,11 +18,17 @@
   },
   "homepage": "https://github.com/mattsells/MealPlanner#readme",
   "dependencies": {
+    "axios": "^0.16.2",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "moment": "^2.18.1",
     "mongoose": "^4.11.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "qs": "^6.5.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
