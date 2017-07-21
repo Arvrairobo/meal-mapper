@@ -131,27 +131,25 @@ var Main = React.createClass({
 	render: function() {
 		return (
 			<div>
+				{/* Navigation section */}
 				<nav>
-					<div className='nav-wrapper'>
-						<a href="/" className="brand-logo">Meal Planner</a>
-						<ul id='nav-mobile' className='right'>
-							<li><a href='/dashboard'>My Dashboard</a></li>
-							<li><a href='#'>Meal Plan</a></li>
-							<li><a href='/'>Log Out</a></li>
+					<div className="nav-wrapper blue">
+						<a href="#" className="brand-logo">Logo</a>
+						<ul id="nav-mobile" className="right hide-on-med-and-down">
+							<li><a href="#">Dashboard</a></li>
+							<li><a href="#">My Plan</a></li>
+							<li><a href="#">Logout</a></li>
 						</ul>
 					</div>
 				</nav>
-				
-				<div className='row'>
-					<div className='col s9'>
-						<Planner mealPlan={this.state.mealPlan} removeFromMealPlan={this.removeFromMealPlan} />
-					</div>
 
-					<div className='col s3'>
-						<Search setSearch={this.setSearch} searchResults={this.state.searchResults}
-							addToMealPlan={this.addToMealPlan}/>
-					</div>
-				</div>
+				{/* Meal planner (left side of screen) */}
+				<Planner mealPlan={this.state.mealPlan} removeFromMealPlan={this.removeFromMealPlan} />
+
+				{/* Search bar (right side of screen) */}
+				<Search setSearch={this.setSearch} searchResults={this.state.searchResults}
+						addToMealPlan={this.addToMealPlan}/>
+			
 			</div>
 		)
 	}

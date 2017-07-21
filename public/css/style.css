@@ -1,44 +1,22 @@
-html, body {
-	width: 100%;
-	height: 100%;
-}
-
-/* Search component styles */
-
-#search-scroll {
-	overflow: scroll;
-	/*height: 300px;*/
-}
-
-.search-find {
-	border: 1px solid black;
-	margin-bottom: 2px;
-	background-color: #b2cfff;
-}
-
-.small-text {
-	font-size: .8em;
-	line-height: 2px;
-}
-
-/* Planner component styles */
-
-.day-col {
-	width: 12%;
-	margin: 3px;
-	border: 1px solid black;
-	float: left;
-	min-width: 200px;
-}
-
-.day-col p {
-	text-align: center;
-}
-
 /* app.html styles */
+
+/* ELEMENTS */
 html, body {
 	height: 100%;
+	overflow: hidden;
+	background-image: url('../images/cream_pixels.png');
+	background-repeat: repeat;
 }
+
+/* COMPONENTS */
+
+.no-select {
+	user-select: none;
+}
+
+/*.input-field input[type=text]:focus {
+	color: red;
+}*/
 
 .app-wrapper {
 	height: 100%;
@@ -58,6 +36,9 @@ html, body {
 	margin-right: 7px;
 	border-radius: 7px;
 	background-color: #abd9fc;
+	box-shadow: 1px 1px 4px #58585a;
+	min-height: 150px;
+	vertical-align: top;
 }
 
 .day-column-left {
@@ -94,7 +75,7 @@ html, body {
 table {
 	font-size: 10px;
 	padding: 2px;
-	width: 100px;
+	width: 120px;
 	margin: auto;
 	margin-top: 8px;
 }
@@ -133,7 +114,7 @@ h3.btn-delete {
 	float: right;
 }
 
-.material-icons {
+.delete-meal {
 	font-size: 20px;
 }
 
@@ -141,22 +122,57 @@ h3.btn-delete {
 	width: 280px;
 	height: 100%;
 	z-index: 100;
-	background-color: red;
+	background-color: #ABD9FC;
 	position: absolute;
 	right: 0px;
 	top: 0px;
+	box-shadow: -2px 0px 2px #58585a;
 }
 
 #search-bar h3 {
-	font-size: 22px;
+	font-size: 18px;
+}
+
+#pull-search {
+	position: absolute;
+	left: -70px;
+	top: 69px;
+	background-color: white;
+	width: 62px;
+	height: 62px;
+	border: 3px solid #1c77bc;
+	border-radius: 100%;
+	box-shadow: 1px 1px 4px #58585a;
+}
+
+#pull-search:hover {
+	background-color: #4ea3e5;
+}
+
+#pull-search i {
+	font-size: 48px;
+	color: #2196F3;
+	margin: auto;
 }
 
 .search-result {
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-top: 5px;
-	margin-bottom: 5px;
 	padding: 5px;
 	border-radius: 5px;
 	background-color: #e3f1fc;
+	margin: auto;
+	margin-top: 5px;
+	width: 255px;
+}
+
+.search-result h3 {
+	margin-top: 3px;
+}
+
+.search-result p {
+	margin: 5px;
+}
+
+.small-text {
+	line-height: 8px;
+	font-size: 12px;
 }

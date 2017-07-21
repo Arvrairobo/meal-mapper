@@ -58,28 +58,64 @@ var Day = React.createClass({
 		var calories = Math.floor((carbs * 4) + (protein * 4) + (fat * 9));
 
 		return (
-			<div className='day-col' onClick={ () => this.props.clickDay(this.props.dayNum) } >
-				{/* When user clicks the column, run clickDay in parent component */}
-				<p>{ this.props.day }</p>
-				<hr/>
+			<div className='day-column' onClick={ () => this.props.clickDay(this.props.dayNum) } >
+				<h3 className='day-name center-align'>{ this.props.day }</h3>
 
-			{/* Load all recipes for the day and add to column */}
-				{this.props.meals.map((recipe, i) => {
-					return (
-						<div key={i}>
-							<p><a href={recipe.url} target='_blank'>{recipe.name}</a></p>
-							<button onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }>X</button>
+				<div className="divider"></div>
+					<div className='center-align'>
+						<div>
+
+							{/* Table showing macros */}
+							<table>
+								<thead>
+								<tr>
+									<td></td>
+									<th>Total</th>
+									<th>Targ.</th>
+									<th>Avail.</th>
+								</tr>
+								</thead>
+
+								<tbody>
+								<tr>
+									<td><strong>C |</strong></td>
+									<td>{carbs}g</td>
+									<td>10.0g</td>
+									<td>10.0g</td>
+								</tr>
+								<tr>
+									<td><strong>P |</strong></td>
+									<td>{protein}g</td>
+									<td>10.0g</td>
+									<td>10.0g</td>
+								</tr>
+								<tr>
+									<td><strong>F |</strong></td>
+									<td>{fat}g</td>
+									<td>10.0g</td>
+									<td>10.0g</td>
+								</tr>
+								</tbody>
+							</table>
 						</div>
-					)
-				})}
+					</div>
 
-				<hr/>
-				<p className='small-text'>Carbs: {carbs}g</p>
-				<p className='small-text'>Protein: {protein}g</p>
-				<p className='small-text'>Fat: {fat}g</p>
-				<p className='small-text'><strong>Calories: {calories}</strong></p>
+					{/* Cylce through and create a listing for each recipe in a day */}
+					{this.props.meals.map((recipe, i) => {
+						return (
+							<div className='day-recipe' key={i}>
+								<div className='row'>
+									<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
+									<h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }><i className="material-icons delete-meal">delete</i></h3>
+								</div>
 
-			</div>
+								<p>Added by Matthew Sells</p>
+								<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: 152</p>
+							</div>
+						)
+					})}
+				</div>
+							
 		)
 	}
 

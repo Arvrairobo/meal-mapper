@@ -58,6 +58,7 @@
 							<div class='center-align'>
 								<div>
 								<table>
+								
 									<tr>
 										<td></td>
 										<th>Total</th>
@@ -89,7 +90,7 @@
 							<div class='day-recipe'>
 								<div class='row'>
 									<h3 class='recipe-name'>Milkshake</h3>
-									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+									<h3 class='btn-delete'><i class="material-icons delete-meal">delete</i></h3>
 								</div>
 
 								<p>Added by Matthew Sells</p>
@@ -100,7 +101,7 @@
 							<div class='day-recipe'>
 								<div class='row'>
 									<h3 class='recipe-name'>Milkshake</h3>
-									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+									<h3 class='btn-delete'><i class="material-icons delete-meal">delete</i></h3>
 								</div>
 
 								<p>Added by Matthew Sells</p>
@@ -147,7 +148,7 @@
 							<div class='day-recipe'>
 								<div class='row'>
 									<h3 class='recipe-name'>Milkshake</h3>
-									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+									<h3 class='btn-delete'><i class="material-icons delete-meal">delete</i></h3>
 								</div>
 
 								<p>Added by Matthew Sells</p>
@@ -158,7 +159,7 @@
 							<div class='day-recipe'>
 								<div class='row'>
 									<h3 class='recipe-name'>Milkshake</h3>
-									<h3 class='btn-delete'><i class="material-icons">delete</i></h3>
+									<h3 class='btn-delete'><i class="material-icons delete-meal">delete</i></h3>
 								</div>
 
 								<p>Added by Matthew Sells</p>
@@ -191,19 +192,34 @@
 </div>
 
 <div id='search-bar'>
+	<div id='pull-search' class='center-align valign-wrapper'><i class="material-icons no-select">search</i></div>
+
 	<div class='row'>
 		<div class='col sm12 center-align'>
 			<h3>Find Food For Me</h3>
 			
-			<input class='center-align' value='hello'/>
+			<input class='center-align' id='search-term' />
 			<a class="waves-effect waves-light btn blue lighten-1">Search</a>
 
-			<div class='search-result'>
-				<p>Awsome</p>
+		</div>
+	</div>
+
+	<div class='row'>
+		<div class='col sm12'>
+			<div class='search-results'>
+				<div class='search-result'>
+					<h3>Awesome</h3>
+					<div class='center-align'>
+						<p>S | M | T | W | T | F | S</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
 </div>
+
+<script src='js/search-slide.js'></script>
 
 </body>
 </html>
