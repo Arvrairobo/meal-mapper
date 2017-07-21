@@ -47,6 +47,7 @@ html, body {
 	box-shadow: 1px 1px 4px #58585a;
 	min-height: 150px;
 	vertical-align: top;
+	padding-bottom: 5px;
 }
 
 .day-column-left {
@@ -58,9 +59,7 @@ html, body {
 }
 
 .recipe-area {
-	/*TODO dynamic height based on screen size*/
 	overflow: scroll;
-	max-height: 500px;
 }
 
 .day-recipe {
@@ -167,6 +166,10 @@ h3.btn-delete {
 	font-size: 48px;
 	color: #2196F3;
 	margin: auto;
+}
+
+.search-results {
+	overflow: scroll;
 }
 
 .search-result {
