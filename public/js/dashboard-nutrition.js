@@ -52,6 +52,8 @@ $(document).ready(function() {
 
         $("#dietPref").text(data.diet);
 
+        $("#diet-input option[value='" + data.diet + "']").attr("selected", "selected");
+
       });
 
 
