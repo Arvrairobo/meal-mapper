@@ -1,5 +1,23 @@
+html, body {
+    height: 100%;
+    background-image: url(/images/cream_pixels.png);
+    background-repeat: repeat;
+}
+
 *, *:before, *:after {
     box-sizing: initial;
+}
+
+h4 {
+    text-align: center;
+}
+
+.card {
+   background-color: #ABD9FC;
+}
+
+.card.small {
+    height: 275px;
 }
 
 .card-title {
@@ -8,7 +26,7 @@
 
 #card-body-nutrient {
     text-align: center;
-    padding: 50px 0px;
+    padding: 25px 0px;
 }
 
 #card-body-progress {
@@ -18,7 +36,7 @@
 
 #card-body-shopping {
     text-align: center;
-    padding: 80px 0px;
+    padding: 60px 0px;
 }
 
 #card-body-account {
@@ -35,7 +53,7 @@
 }
 
 #piechart_3d {
-    padding-top: 20px;
+    padding-top: 5px;
 }
 
 .start-weight {
