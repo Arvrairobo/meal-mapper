@@ -223,10 +223,22 @@ module.exports = function(server){
 	server.post('/api/scrape/', function(request, response){
 		var url = request.body.url;
 		urlrequest(url, function(error, response, html){
-
-			var ingredients = [];
-
 			var $ = cheerio.load(html);
+
+			// Get recipe title
+			var recipeName = $('h1.recipe-summary__h1').text();
+			// var recipeImage = ???
+			var recipeCreator = 'Allrecipes.com';
+			var recipeServings = parseInt($('#servings').attr('data-original'));
+
+			// Nutrients
+			var recipeCarbs = parseFloat($('[itemProp=carbohydrateContent]').children().first().text());
+			var recipeProtein = parseFloat($('[itemProp=proteinContent]').children().first().text());
+			var recipeFat = parseFloat($('[itemProp=fatContent]').children().first().text());
+			var recipeCalories = parseInt($('[itemProp=calories]').children().first().text());
+
+			// Create ingredients list
+			var ingredients = [];
 			$('.recipe-ingred_txt').each(function(i, element){
 				var ingd = $(this).text();
 				if(ingd != '' && ingd != 'Add all ingredients to list'){
@@ -234,7 +246,10 @@ module.exports = function(server){
 				}
 			});
 
+			console.log(recipeName);
 			console.log(ingredients);
+			console.log('servings: ' + recipeServings);
+			console.log('protein: ' + recipeProtein);
 		});
 		response.end();
 	});

@@ -26,6 +26,9 @@ var Recipe = new mongoose.Schema({
 	fat: {
 		type: Number
 	},
+	calories: {
+		type: Number
+	},
 
 	ingredients: [{
 		amount: Number,
