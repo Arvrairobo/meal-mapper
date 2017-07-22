@@ -21,7 +21,7 @@ module.exports = function(server){
 		response.sendFile(path.resolve(__dirname + "/../public/dashboard.html"));
 	});
 
-	server.get('/myplan', function(request, response){
+	server.get('/myplan', isAuthenticated, function(request, response){
 		response.sendFile(path.resolve(__dirname + "/../public/app.html"));
 	});
 
