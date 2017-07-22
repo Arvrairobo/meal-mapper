@@ -18,7 +18,9 @@
 			data: {
 				url: url,
 				meal: $('#mealdrop').val(),
-				tags: $('#recipe-tags').val().split(' ')
+				tags: $('#recipe-tags').val().split(' '),
+				vegetarian: $('#vegetarian-check').prop('checked'),
+				vegan: $('#vegan-check').prop('checked')
 			}
 		}).done(function(response){
 			console.log(response);

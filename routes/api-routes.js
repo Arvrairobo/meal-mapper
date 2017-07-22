@@ -29,6 +29,17 @@ var Recipe = require('../models/Recipe.js');
 var urlrequest = require('request');
 var cheerio = require('cheerio');
 
+var measurements = ['teaspoon', 'teaspoons', 'tablespoon', 'tablespoons', 'cup', 'cups', 'pound', 'pounds', 'whole',
+'clove', 'cloves', 'head', 'can', 'stalk', 'stalks', 'pinch', 'container',
+ 'pint', 'pints', 'ounce', 'ounces', 'gallon', 'gallons'];
+
+function isMeasurement(word){
+	if(measurements.indexOf(word.toLowerCase()) !== -1){
+		return true;
+	}
+	return false;
+}
+
 module.exports = function(server){
 
 		/* Handle Login POST */
@@ -224,11 +235,15 @@ module.exports = function(server){
 		var url = request.body.url;
 		var meal = request.body.meal;
 		var tags = request.body.tags;
+		var vegetarian = request.body.vegetarian;
+		var vegan = request.body.vegan;
+
+		console.log('veggie: ' + vegetarian);
+		console.log('vegan: ' + vegan);
 
 		Recipe.findOne({url: url}, function(error, recipe){
+			// Only add if the recipe is not yet in the database
 			if(!recipe){
-				// Only add if the recipe is not yet in the database
-
 				// Get url data
 				urlrequest(url, function(err, rsp, html){
 					var $ = cheerio.load(html);
@@ -245,7 +260,7 @@ module.exports = function(server){
 					var recipeFat = parseFloat($('[itemProp=fatContent]').children().first().text());
 					var recipeCalories = parseInt($('[itemProp=calories]').children().first().text());
 
-					// Create ingredients list
+					// Get ingredients list
 					var ingredients = [];
 					$('.recipe-ingred_txt').each(function(i, element){
 						var ingd = $(this).text();
@@ -253,62 +268,47 @@ module.exports = function(server){
 							ingredients.push(ingd);
 						}
 					});
-					console.log(ingredients);
 
-					
-					// // Parse list into readable format
-					// var ingredientsFormatted = [];
-					// for(var i = 0; i < ingredients.length; i++){
-					// 	var tempIng = ingredients[i].split(' ');
+					// Parse list into readable format
+					var ingredientsFormatted = [];
+					for(var i = 0; i < ingredients.length; i++){
 
-					// 	// See if second element has parenthases (meaning it's a measurement addendum)
-					// 	// if(tempIng[1].indexOf('(') !== -1 || typeof(parseInt(tempIng[1][0])) === 'Number'){
-					// 	// 	tempIng.splice(1, 1);
-					// 	// }
+						var amount = '';
+						var measurement = '';
+						var ingredient = '';
 
-					// 	// First element is amount
-					// 	var amount = tempIng[0];
-					// 	if(amount.indexOf('/') === -1){
-					// 		amount = parseInt(amount);
-					// 	} else {
-					// 		amts = amount.split('/');
-					// 		amts[0] = parseInt(amts[0]);
-					// 		amts[1] = parseInt(amts[1]);
-					// 		amount = amts[0]/amts[1];
-					// 	}
+						var tmplist = ingredients[i].split(' ');
 
-					// 	// Second element is measurement
-					// 	var measurement = tempIng[1];
+						var measureFound = false;
+						// Find the measurement
+						for(var j = 0; j < tmplist.length; j++){
+							if(isMeasurement(tmplist[j])){
+								measureFound = true;
+								amount = tmplist.slice(0, j).join(' ');
+								measurement = tmplist[j];
+								ingredient = tmplist.slice(j + 1).join(' ');
+							}
+						}
 
-					// 	// Following elements are ingredient name, up to a comma
-					// 	var ingredient = tempIng[2];
-					// 	for(var i = 3; i < tempIng.length; i++){
-					// 		if(tempIng[i].indexOf(',') === -1){
-					// 			ingredient += (' ' + tempIng[i]);
-					// 		} else {
-					// 			break;
-					// 		}
-					// 	}
+						// If there isn't a measurement, add all numbers to amount and everything else to ingredient
+						if(!measureFound){
+							var j = 0;
+							while(j < tmplist.length){
+								if(isNaN(parseInt(tmplist[j])) && tmplist[j][0] != '('){
+									amount = tmplist.slice(0, j).join(' ');
+									ingredient = tmplist.slice(j).join(' ');
+									break;
+								}
+								j++;
+							}
+						}
 
-					// 	// If measurement has a comma or there is no third element, measurment moves to ingredient
-					// 	// if(measurement.indexOf(',') !== -1 || tempIng.length === 2){
-					// 	// 	ingredient = measurement;
-					// 	// 	measurement = '';
-					// 	// }
-
-					// 	if(ingredient.indexOf(',') !== -1){
-					// 		ingredient = ingredient.slice(0, ingredient.length - 1);
-					// 	}
-
-					// 	ingredientsFormatted.push({
-					// 		amount: amount,
-					// 		measurement: measurement,
-					// 		ingredient: ingredient
-					// 	});
-					// }
-
-					console.log('formatted');
-					// console.log(ingredientsFormatted);
+						ingredientsFormatted.push({
+							amount: amount,
+							measurement: measurement,
+							ingredient: ingredient
+						});
+					}
 
 					var newRecipe = {
 						name: recipeName,
@@ -320,7 +320,10 @@ module.exports = function(server){
 						fat: recipeFat,
 						calories: recipeCalories,
 						meal: meal,
-						tags: tags
+						tags: tags,
+						vegetarian: vegetarian,
+						vegan: vegan,
+						ingredients: ingredientsFormatted
 					}
 					
 					Recipe.create(newRecipe, function(error, recipe){
