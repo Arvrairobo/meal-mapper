@@ -45,17 +45,19 @@ var Day = React.createClass({
 		var carbs = 0;
 		var protein = 0;
 		var fat = 0;
+		var calories = 0;
 
 		for(var i = 0; i < this.props.meals.length; i++){
 			carbs += this.props.meals[i].carbs;
 			protein += this.props.meals[i].protein;
 			fat += this.props.meals[i].fat;
+			calories += this.props.meals[i].calories;
 		}
 
 		carbs = carbs.toFixed(1);
 		protein = protein.toFixed(1);
 		fat = fat.toFixed(1);
-		var calories = Math.floor((carbs * 4) + (protein * 4) + (fat * 9));
+		calories = Math.floor(calories);
 
 		return (
 			<div className='day-column' onClick={ () => this.props.clickDay(this.props.dayNum) } >
@@ -111,7 +113,7 @@ var Day = React.createClass({
 									</div>
 
 									<p>Added by {recipe.creator}</p>
-									<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: 152</p>
+									<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: {recipe.calories}</p>
 								</div>
 							)
 						})}

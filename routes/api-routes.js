@@ -222,35 +222,117 @@ module.exports = function(server){
 	// Scrape recipe from Allrecipes.com
 	server.post('/api/scrape/', function(request, response){
 		var url = request.body.url;
-		urlrequest(url, function(error, response, html){
-			var $ = cheerio.load(html);
+		var meal = request.body.meal;
+		var tags = request.body.tags;
 
-			// Get recipe title
-			var recipeName = $('h1.recipe-summary__h1').text();
-			// var recipeImage = ???
-			var recipeCreator = 'Allrecipes.com';
-			var recipeServings = parseInt($('#servings').attr('data-original'));
+		Recipe.findOne({url: url}, function(error, recipe){
+			if(!recipe){
+				// Only add if the recipe is not yet in the database
 
-			// Nutrients
-			var recipeCarbs = parseFloat($('[itemProp=carbohydrateContent]').children().first().text());
-			var recipeProtein = parseFloat($('[itemProp=proteinContent]').children().first().text());
-			var recipeFat = parseFloat($('[itemProp=fatContent]').children().first().text());
-			var recipeCalories = parseInt($('[itemProp=calories]').children().first().text());
+				// Get url data
+				urlrequest(url, function(err, rsp, html){
+					var $ = cheerio.load(html);
 
-			// Create ingredients list
-			var ingredients = [];
-			$('.recipe-ingred_txt').each(function(i, element){
-				var ingd = $(this).text();
-				if(ingd != '' && ingd != 'Add all ingredients to list'){
-					ingredients.push(ingd);
-				}
-			});
+					// Get recipe title
+					var recipeName = $('h1.recipe-summary__h1').text();
+					// var recipeImage = ???
+					var recipeCreator = 'Allrecipes.com';
+					var recipeServings = parseInt($('#servings').attr('data-original'));
 
-			console.log(recipeName);
-			console.log(ingredients);
-			console.log('servings: ' + recipeServings);
-			console.log('protein: ' + recipeProtein);
+					// Nutrients
+					var recipeCarbs = parseFloat($('[itemProp=carbohydrateContent]').children().first().text());
+					var recipeProtein = parseFloat($('[itemProp=proteinContent]').children().first().text());
+					var recipeFat = parseFloat($('[itemProp=fatContent]').children().first().text());
+					var recipeCalories = parseInt($('[itemProp=calories]').children().first().text());
+
+					// Create ingredients list
+					var ingredients = [];
+					$('.recipe-ingred_txt').each(function(i, element){
+						var ingd = $(this).text();
+						if(ingd != '' && ingd != 'Add all ingredients to list'){
+							ingredients.push(ingd);
+						}
+					});
+					console.log(ingredients);
+
+					
+					// // Parse list into readable format
+					// var ingredientsFormatted = [];
+					// for(var i = 0; i < ingredients.length; i++){
+					// 	var tempIng = ingredients[i].split(' ');
+
+					// 	// See if second element has parenthases (meaning it's a measurement addendum)
+					// 	// if(tempIng[1].indexOf('(') !== -1 || typeof(parseInt(tempIng[1][0])) === 'Number'){
+					// 	// 	tempIng.splice(1, 1);
+					// 	// }
+
+					// 	// First element is amount
+					// 	var amount = tempIng[0];
+					// 	if(amount.indexOf('/') === -1){
+					// 		amount = parseInt(amount);
+					// 	} else {
+					// 		amts = amount.split('/');
+					// 		amts[0] = parseInt(amts[0]);
+					// 		amts[1] = parseInt(amts[1]);
+					// 		amount = amts[0]/amts[1];
+					// 	}
+
+					// 	// Second element is measurement
+					// 	var measurement = tempIng[1];
+
+					// 	// Following elements are ingredient name, up to a comma
+					// 	var ingredient = tempIng[2];
+					// 	for(var i = 3; i < tempIng.length; i++){
+					// 		if(tempIng[i].indexOf(',') === -1){
+					// 			ingredient += (' ' + tempIng[i]);
+					// 		} else {
+					// 			break;
+					// 		}
+					// 	}
+
+					// 	// If measurement has a comma or there is no third element, measurment moves to ingredient
+					// 	// if(measurement.indexOf(',') !== -1 || tempIng.length === 2){
+					// 	// 	ingredient = measurement;
+					// 	// 	measurement = '';
+					// 	// }
+
+					// 	if(ingredient.indexOf(',') !== -1){
+					// 		ingredient = ingredient.slice(0, ingredient.length - 1);
+					// 	}
+
+					// 	ingredientsFormatted.push({
+					// 		amount: amount,
+					// 		measurement: measurement,
+					// 		ingredient: ingredient
+					// 	});
+					// }
+
+					console.log('formatted');
+					// console.log(ingredientsFormatted);
+
+					var newRecipe = {
+						name: recipeName,
+						url: url,
+						creator: recipeCreator,
+						servings: recipeServings,
+						protein: recipeProtein,
+						carbs: recipeCarbs,
+						fat: recipeFat,
+						calories: recipeCalories,
+						meal: meal,
+						tags: tags
+					}
+					
+					Recipe.create(newRecipe, function(error, recipe){
+						if(error) throw error;
+						console.log('Recipe added');
+						response.json(recipe);
+					});
+				});
+			} else {
+				console.log('Recipe in database');
+				response.send('Recipe already in database');
+			}
 		});
-		response.end();
 	});
 }

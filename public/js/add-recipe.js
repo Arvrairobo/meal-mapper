@@ -15,9 +15,13 @@
 		var url = $('#recipe-url').val();
 		$.post({
 			url: '/api/scrape/',
-			data: {url: url}
-		}).done(function(data){
-			console.log('data returned');
+			data: {
+				url: url,
+				meal: $('#mealdrop').val(),
+				tags: $('#recipe-tags').val().split(' ')
+			}
+		}).done(function(response){
+			console.log(response);
 		});
 	});
 

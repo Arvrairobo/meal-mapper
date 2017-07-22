@@ -41,6 +41,12 @@ var Recipe = new mongoose.Schema({
 	},
 	meal: {
 		type: String
+	},
+	vegetarian: {
+		type: Boolean
+	},
+	vegan: {
+		type: Boolean
 	}
 })
 
