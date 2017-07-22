@@ -27,7 +27,8 @@ module.exports = function(server){
 
 	// Admin use only for now
 	server.get('/recipe', function(request, response){
-		response.sendFile(path.resolve(__dirname + "/../public/recipe.html"));
+		// response.sendFile(path.resolve(__dirname + "/../public/recipe.html"));
+		response.sendFile(path.resolve(__dirname + "/../public/add-recipe.html"));
 	});
 
     /* Handle Logout */

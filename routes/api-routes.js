@@ -25,6 +25,10 @@ var User = require('../models/User.js');
 var Mealplan = require('../models/Mealplan.js');
 var Recipe = require('../models/Recipe.js');
 
+// For scraping
+var urlrequest = require('request');
+var cheerio = require('cheerio');
+
 module.exports = function(server){
 
 		/* Handle Login POST */
@@ -213,5 +217,25 @@ module.exports = function(server){
 		});
 
 		// TODO make an actual search algorithm
+	});
+
+	// Scrape recipe from Allrecipes.com
+	server.post('/api/scrape/', function(request, response){
+		var url = request.body.url;
+		urlrequest(url, function(error, response, html){
+
+			var ingredients = [];
+
+			var $ = cheerio.load(html);
+			$('.recipe-ingred_txt').each(function(i, element){
+				var ingd = $(this).text();
+				if(ingd != '' && ingd != 'Add all ingredients to list'){
+					ingredients.push(ingd);
+				}
+			});
+
+			console.log(ingredients);
+		});
+		response.end();
 	});
 }
