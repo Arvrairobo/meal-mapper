@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var saveButton = $("#save-button");
+    var saveButton = $("#save-fitness-button");
     var genderInput = $("#gender-input");
     var ageInput = $("#age-input");
     var heightInput = $("#height-input");
@@ -14,7 +14,7 @@ $(document).ready(function() {
     //Navigation bar for smaller screens
     $(".button-collapse").sideNav();
 
-    $('#fitness-profile-modal').modal();
+    $('.modal').modal();
 
     $('select').material_select();
 

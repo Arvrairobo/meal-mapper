@@ -56,7 +56,7 @@ module.exports = function(server){
        }
      });
 
-// TODO- Post route to update user info
+    // Route to update user's fitness profile
     server.post("/api/user_data", function(req, res) {
         User.findOneAndUpdate({"_id": req.user.id},
             {
@@ -79,7 +79,22 @@ module.exports = function(server){
                res.send(doc);
              }
            });
-    })
+    });
+
+    // Route to update user's nutrition info
+    server.post("/api/user_data/diet", function(req, res) {
+            User.findOneAndUpdate({"_id": req.user.id}, {diet: req.body.diet}
+                ).exec(function(err, doc) {
+                 // Log any errors
+                 if (err) {
+                   console.log(err);
+                 }
+                 else {
+                   // Or send the document to the browser
+                   res.send(doc);
+                 }
+               });
+        })
 
 	// Create a new recipe
 	server.post('/api/recipe', function(request, response){

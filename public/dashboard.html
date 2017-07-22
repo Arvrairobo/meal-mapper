@@ -39,7 +39,10 @@
         <div class="col s12 l4">
             <div class="card small">
                 <div class="card-content">
-                    <span class="card-title">My Nutrition Profile</span>
+                    <div class="row">
+                        <span class="col s10 card-title">My Nutrition Profile</span>
+                        <a href="#nutrition-modal" class="waves-effect waves-light btn blue lighten-1 col s2">edit</a>
+                    </div>
                     <div id="card-body-nutrient">
                         <p>Dietary Restriction: <span id="dietPref"></span></p>
                         <p>Total Calories: <span id="totalCalories"></span></p>
@@ -101,7 +104,7 @@
                 <div class="card-content">
                     <div class="row">
                         <span class="col s10 card-title"> My Fitness Profile </span>
-                        <a href="#fitness-profile-modal" class="waves-effect waves-light btn blue lighten-1 col s2" id="edit-button">edit</a>
+                        <a href="#fitness-profile-modal" class="waves-effect waves-light btn blue lighten-1 col s2">edit</a>
                     </div>
                     <!--TODO- Update button and modal for updating stats-->
                     <p>Gender: <span class="fitness-info" id="gender"></span></p>
@@ -128,15 +131,15 @@
         </div>
     </div>
 
-    <!--Modal-->
+    <!--Fitness Modal-->
 
     <div id="fitness-profile-modal" class="modal">
         <div class="row">
-            <div id="login" class="col s12">
+            <div class="col s12">
                 <div class="modal-content">
                     <h3>Fitness Profile</h3>
                     <div class="row">
-                        <form class="col s12 login-form">
+                        <form class="col s12">
                             <div class="row">
                                 <div class="col s4">
                                     <label for="gender-input">Gender</label>
@@ -198,7 +201,34 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
-                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" id="save-button">Save</button>
+                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" id="save-fitness-button">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Nutrition Modal-->
+
+    <div id="nutrition-modal" class="modal">
+        <div class="row">
+            <div class="col s12">
+                <div class="modal-content">
+                    <h3>Nutrition Profile</h3>
+                    <div class="row">
+                        <form class="col s12">
+                            <label for="diet-input">Dietary Restriction</label>
+                            <select class ="browser-default" id="diet-input">
+                                <option value="" disabled selected="selected">Select</option>
+                                <option value="None">None</option>
+                                <option value="Vegetarian">Vegetarian</option>
+                                <option value="Vegan" >Vegan</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" id="save-nutrition-button">Save</button>
                 </div>
             </div>
         </div>
