@@ -30,7 +30,7 @@ var urlrequest = require('request');
 var cheerio = require('cheerio');
 
 var measurements = ['teaspoon', 'teaspoons', 'tablespoon', 'tablespoons', 'cup', 'cups', 'pound', 'pounds', 'whole',
-'clove', 'cloves', 'head', 'can', 'stalk', 'stalks', 'pinch', 'container',
+'clove', 'cloves', 'head', 'can', 'stalk', 'stalks', 'pinch', 'container', 'jar', 'jars',
  'pint', 'pints', 'ounce', 'ounces', 'gallon', 'gallons'];
 
 function isMeasurement(word){
@@ -238,9 +238,6 @@ module.exports = function(server){
 		var vegetarian = request.body.vegetarian;
 		var vegan = request.body.vegan;
 
-		console.log('veggie: ' + vegetarian);
-		console.log('vegan: ' + vegan);
-
 		Recipe.findOne({url: url}, function(error, recipe){
 			// Only add if the recipe is not yet in the database
 			if(!recipe){
@@ -310,6 +307,7 @@ module.exports = function(server){
 						});
 					}
 
+					console.log(ingredientsFormatted);
 					var newRecipe = {
 						name: recipeName,
 						url: url,

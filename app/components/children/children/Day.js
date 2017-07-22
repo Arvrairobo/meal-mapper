@@ -1,4 +1,5 @@
 var React = require('react');
+// var Chart = require('./Chart')
 
 // Each of these is a column to be used in the calendar view
 var Day = React.createClass({

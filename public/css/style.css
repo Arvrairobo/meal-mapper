@@ -58,6 +58,10 @@ html, body {
 	margin-right: 0px !important;
 }
 
+.chartArea {
+	width: 95%;
+}
+
 .recipe-area {
 	overflow: scroll;
 }

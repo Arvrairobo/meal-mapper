@@ -31,7 +31,7 @@ var Recipe = new mongoose.Schema({
 	},
 
 	ingredients: [{
-		amount: Number,
+		amount: String,
 		measurement: String,
 		ingredient: String
 	}],
