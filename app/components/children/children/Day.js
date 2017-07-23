@@ -72,7 +72,7 @@ var Day = React.createClass({
 					<div className='center-align'>
 						<div>
 
-								<PieChart width={250} height={120} margin={{ top: 15, right: 50, left: 50, bottom: 15 }}>
+								{/*<PieChart width={250} height={120} margin={{ top: 15, right: 50, left: 50, bottom: 15 }}>
 								  <Pie data={pieData} cx="50%" cy="50%" outerRadius={30} fill="#8884d8" label>
 								   {
 							        pieData.map((entry, index) => (
@@ -80,7 +80,7 @@ var Day = React.createClass({
 							        ))
 							      }
 							      </Pie>
-								</PieChart>
+								</PieChart>*/}
 
 							{/* Table showing macros */}
 							<table>
@@ -127,7 +127,7 @@ var Day = React.createClass({
 										<h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }><i className="material-icons delete-meal">delete</i></h3>
 									</div>
 
-									<p>Added by {recipe.creator}</p>
+									<p>Recipe by {recipe.creator}</p>
 									<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: {recipe.calories}</p>
 								</div>
 							)

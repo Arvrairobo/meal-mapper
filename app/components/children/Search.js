@@ -62,6 +62,7 @@ var Search = React.createClass({
 										<div className='center-align'>
 
 											<table className='add-day'>
+												<tbody>
 												<tr>
 													<td><i className="material-icons no-select">add</i></td>
 													<td><a href='#' onClick={this.addRecipe.bind(null, 0, i)} >S</a></td>
@@ -72,6 +73,7 @@ var Search = React.createClass({
 													<td><a href='#' onClick={this.addRecipe.bind(null, 5, i)} >F</a></td>
 													<td><a href='#' onClick={this.addRecipe.bind(null, 6, i)} >S</a></td>
 												</tr>
+												</tbody>
 											</table>
 										
 										</div>

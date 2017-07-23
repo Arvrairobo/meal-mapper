@@ -58,7 +58,6 @@ var Main = React.createClass({
 							planInfo.meals = { meals: [[],[],[],[],[],[],[]] }
 						}
 
-						console.log(planInfo);
 						this.setState(planInfo);
 						
 					}.bind(this));
@@ -80,6 +79,8 @@ var Main = React.createClass({
 
 		// Only update database if recipe is added or removed from week
 		if(this.state.update){
+			console.log('State plan on update');
+			console.log(this.state.mealPlan);
 			this.setState({ update: false });
 			this.saveMealPlan();
 		}
@@ -121,8 +122,6 @@ var Main = React.createClass({
 		// Save empty meal plan with startDate (also saves to user id)
 		helpers.createEmptyMealPlan(startDate, userId)
 		.then(function(mealplan){
-			console.log('PLAN');
-			console.log(mealplan);
 			this.setState({
 				mealPlan: { meals: [[],[],[],[],[],[],[]] },
 				startDate: startDate,

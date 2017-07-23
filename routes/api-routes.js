@@ -228,10 +228,13 @@ module.exports = function(server){
 			}
 		}
 
+		// console.log(arr.meals);
+
 		Mealplan.findOneAndUpdate({_id: planId}, {$set: {meals: arr.meals}}, function(error, mealplan){
 			if(error) throw error;
 
 			response.json(mealplan);
+			console.log(mealplan);
 		})
 	});
 
