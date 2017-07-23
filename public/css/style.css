@@ -202,6 +202,10 @@ h3.btn-delete {
 	margin: auto;
 }
 
+.dropdown-button {
+	margin-left: 10px;
+}
+
 .search-results {
 	overflow: scroll;
 }

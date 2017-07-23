@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var Search = React.createClass({
 
@@ -34,9 +35,21 @@ var Search = React.createClass({
 					<div className='col sm12 center-align'>
 						<h3>Find Food For Me</h3>
 						
+						{/*Search bar and button */}
 						<input value={this.state.searchTerm} onChange={this.changeSearch} className='center-align'
 							id='search-term' placeholder="Cupcakes"/>
 						<a className="waves-effect waves-light btn blue lighten-1" onClick={this.sendSearch}>Search</a>
+
+						{/*Dropdown for filtering*/}
+						<a className='dropdown-button btn' href='#' data-activates='meal-filter'>Filter</a>
+						<ul id='meal-filter' className='dropdown-content'>
+							<li><a href="#!">All</a></li>
+							<li className="divider"></li>
+							<li><a href="#!">Breakfast</a></li>
+							<li><a href="#!">Lunch</a></li>
+							<li><a href="#!">Dinner</a></li>
+							<li><a href="#!">Snack</a></li>
+						</ul>
 
 					</div>
 				</div>
