@@ -1,19 +1,15 @@
 var passport = require('passport');
-// Keys for Edamam API
-const appId = '1d8fc3d8';
-const appKey = '82b0696857a06bb20b6bc51dedc0360f';
-const search = 'https://api.edamam.com/search';
 
 // Set up and connect to database
 const mongoose = require('mongoose');
 
 mongoose.Promise = Promise;
-// mongoose.connect('mongodb://localhost/mealplanner', {
-//      useMongoClient: true,
-// });
-mongoose.connect('mongodb://heroku_q17fkdn3:p02nngcpfag5strbkodo11t41f@ds151820.mlab.com:51820/heroku_q17fkdn3', {
-	useMongoClient: true,
+mongoose.connect('mongodb://localhost/mealplanner', {
+     useMongoClient: true,
 });
+// mongoose.connect('mongodb://heroku_q17fkdn3:p02nngcpfag5strbkodo11t41f@ds151820.mlab.com:51820/heroku_q17fkdn3', {
+// 	useMongoClient: true,
+// });
 var database = mongoose.connection;
 
 database.on('error', function(error){
@@ -219,6 +215,8 @@ module.exports = function(server){
 		var data = request.body;
 		var planId = request.params.id;
 
+		console.log(data);
+
 		for(var i = 0; i < 7; i ++){
 			key = i.toString();
 			if(key in data){
@@ -228,14 +226,9 @@ module.exports = function(server){
 			}
 		}
 
-		// console.log(arr.meals);
-
 		Mealplan.findOneAndUpdate({_id: planId}, {$set: {meals: arr.meals}}, function(error, mealplan){
 			if(error) throw error;
-
-			response.json(mealplan);
-			console.log(mealplan);
-		})
+		});
 	});
 
 	// Search for all recipes based on search term

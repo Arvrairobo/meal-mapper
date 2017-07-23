@@ -21,6 +21,7 @@ var Planner = React.createClass({
 	},
 
 	render: function(){
+		// console.log(this.props.mealPlan);
 		var showDate = moment(this.props.startDate).format('dddd, MMMM Do');
 
 		return (
@@ -35,10 +36,10 @@ var Planner = React.createClass({
 						<div className='row'>
 							<div className='col s12'>
 								<div className='center-align'>
-									<a className="waves-effect waves-light btn blue lighten-1">Previous Plans</a>
+									{/*<a className="waves-effect waves-light btn blue lighten-1">Previous Plans</a>*/}
 									<a className="waves-effect waves-light btn blue lighten-1" onClick={this.props.clearPlan}>Clear</a>
-									<a className="waves-effect waves-light btn blue lighten-1">Save & Start Over</a>
-									<a className="waves-effect waves-light btn blue lighten-1">Feed Me</a>
+									<a className="waves-effect waves-light btn blue lighten-1" onClick={this.props.savePlan}>Save Plan</a>
+									{/*<a className="waves-effect waves-light btn blue lighten-1">Feed Me</a>*/}
 									<a className="waves-effect waves-light btn blue lighten-1">Shopping List</a>
 								</div>
 							</div>

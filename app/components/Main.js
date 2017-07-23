@@ -19,7 +19,8 @@ var Main = React.createClass({
 			mealPlan: { meals: [[],[],[],[],[],[],[]] },
 			planId: '',
 			update: false,
-			startDate: ''
+			startDate: '',
+			updatePlan: {}
 		}
 	},
 
@@ -52,12 +53,12 @@ var Main = React.createClass({
 							planId: lastMealPlan._id,
 							startDate: lastMealPlan.startDate
 						}
-						if(mealplan.data.meals.length === 0){
-							planInfo.meals = { meals: mealplan.data.meals };
-						} else {
-							planInfo.meals = { meals: [[],[],[],[],[],[],[]] }
-						}
 
+						if(mealplan.data.meals.length === 0){
+							planInfo.mealPlan = { meals: [[],[],[],[],[],[],[]] }
+						} else {
+							planInfo.mealPlan = { meals: mealplan.data.meals };	
+						}
 						this.setState(planInfo);
 						
 					}.bind(this));
@@ -79,11 +80,11 @@ var Main = React.createClass({
 
 		// Only update database if recipe is added or removed from week
 		if(this.state.update){
-			console.log('State plan on update');
-			console.log(this.state.mealPlan);
 			this.setState({ update: false });
-			this.saveMealPlan();
+			helpers.saveMealPlan(this.state.updatePlan, this.state.planId);
 		}
+
+		console.log(this.state.mealPlan);
 	},
 
 	setSearch: function(newSearch){
@@ -96,7 +97,7 @@ var Main = React.createClass({
 
 		// Push the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].push(recipe);
-		this.setState({ mealPlan: newPlan, update: true });
+		this.setState({ mealPlan: newPlan });
 	},
 
 	// Day (0-6) and recipe number (0-n)
@@ -105,7 +106,7 @@ var Main = React.createClass({
 
 		// Pop the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].splice(recipe, 1);
-		this.setState({ mealPlan: newPlan, update: true });
+		this.setState({ mealPlan: newPlan });
 	},
 
 	// Create a new 7 day meal plan on a user id
@@ -143,7 +144,10 @@ var Main = React.createClass({
 			}
 		}
 		
-		helpers.saveMealPlan(tempPlan, this.state.planId);
+		this.setState({
+			update: true,
+			updatePlan: tempPlan
+		});
 	},
 
 	clearPlan: function(){
@@ -169,12 +173,16 @@ var Main = React.createClass({
 				</nav>
 
 				{/* Meal planner (left side of screen) */}
-				<Planner mealPlan={this.state.mealPlan} startDate={this.state.startDate} removeFromMealPlan={this.removeFromMealPlan}
-					clearPlan={this.clearPlan}/>
+				<Planner mealPlan={this.state.mealPlan}
+					startDate={this.state.startDate}
+					removeFromMealPlan={this.removeFromMealPlan}
+					clearPlan={this.clearPlan}
+					savePlan={this.saveMealPlan} />
 
 				{/* Search bar (right side of screen) */}
-				<Search setSearch={this.setSearch} searchResults={this.state.searchResults}
-						addToMealPlan={this.addToMealPlan}/>
+				<Search setSearch={this.setSearch}
+					searchResults={this.state.searchResults}
+					addToMealPlan={this.addToMealPlan} />
 			
 			</div>
 		)
