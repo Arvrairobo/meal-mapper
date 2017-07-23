@@ -58,6 +58,14 @@ html, body {
 	margin-right: 0px !important;
 }
 
+.day-column a {
+	color: #58585a;
+}
+
+.marco-chart {
+	
+}
+
 .chartArea {
 	width: 95%;
 }
@@ -122,6 +130,7 @@ h3.day-name {
 h3.recipe-name {
 	margin: 0px;
 	font-size: 18px;
+	max-width: 200px;
 	float: left;
 }
 
@@ -144,6 +153,21 @@ h3.btn-delete {
 	right: 0px;
 	top: 0px;
 	box-shadow: -2px 0px 2px #58585a;
+}
+
+#search-term {
+	border: 1px solid #E3F1FC;
+	background-color: #f2f2f2;
+	box-shadow: 1px 1px 4px #58585a;
+}
+
+#search-term:focus {
+	background-color: white;
+}
+
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
 }
 
 #search-bar h3 {
@@ -198,4 +222,12 @@ h3.btn-delete {
 .small-text {
 	line-height: 9px;
 	font-size: 12px;
+}
+
+.add-day {
+	font-size: 12px;
+}
+
+.add-day .material-icons {
+	font-size: 14px;
 }

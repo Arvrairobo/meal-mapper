@@ -1,5 +1,5 @@
 var React = require('react');
-// var Chart = require('./Chart')
+import { PieChart, Pie, Tooltip, Cell } from 'recharts';
 
 // Each of these is a column to be used in the calendar view
 var Day = React.createClass({
@@ -60,6 +60,10 @@ var Day = React.createClass({
 		fat = fat.toFixed(1);
 		calories = Math.floor(calories);
 
+		var pieData = [{name: 'Carbs', value: Math.floor(carbs)}, {name: 'Protein', value: Math.floor(protein)},
+                  {name: 'Fat', value: Math.floor(fat)}];
+      var colors = ['#2196F3', '#8884d8', '#f04e23'];
+
 		return (
 			<div className='day-column' onClick={ () => this.props.clickDay(this.props.dayNum) } >
 				<h3 className='day-name center-align'>{ this.props.day }</h3>
@@ -67,6 +71,16 @@ var Day = React.createClass({
 				<div className="divider"></div>
 					<div className='center-align'>
 						<div>
+
+								<PieChart width={250} height={120} margin={{ top: 15, right: 50, left: 50, bottom: 15 }}>
+								  <Pie data={pieData} cx="50%" cy="50%" outerRadius={30} fill="#8884d8" label>
+								   {
+							        pieData.map((entry, index) => (
+							          <Cell key={`cell-${index}`} fill={colors[index]}/>
+							        ))
+							      }
+							      </Pie>
+								</PieChart>
 
 							{/* Table showing macros */}
 							<table>

@@ -34,7 +34,8 @@ var Search = React.createClass({
 					<div className='col sm12 center-align'>
 						<h3>Find Food For Me</h3>
 						
-						<input value={this.state.searchTerm} onChange={this.changeSearch} className='center-align' id='search-term' />
+						<input value={this.state.searchTerm} onChange={this.changeSearch} className='center-align'
+							id='search-term' placeholder="Cupcakes"/>
 						<a className="waves-effect waves-light btn blue lighten-1" onClick={this.sendSearch}>Search</a>
 
 					</div>
@@ -59,15 +60,20 @@ var Search = React.createClass({
 										})} </p>
 
 										<div className='center-align'>
-											<p>
-												<a href='#' onClick={this.addRecipe.bind(null, 0, i)} >S</a> |
-												<a href='#' onClick={this.addRecipe.bind(null, 1, i)} >M</a> |
-												<a href='#' onClick={this.addRecipe.bind(null, 2, i)} >T</a> |
-												<a href='#' onClick={this.addRecipe.bind(null, 3, i)} >W</a> |
-												<a href='#' onClick={this.addRecipe.bind(null, 4, i)} >T</a> |
-												<a href='#' onClick={this.addRecipe.bind(null, 5, i)} >F</a> |
-												<a href='#' onClick={this.addRecipe.bind(null, 6, i)} >S</a>
-											</p>
+
+											<table className='add-day'>
+												<tr>
+													<td><i className="material-icons no-select">add</i></td>
+													<td><a href='#' onClick={this.addRecipe.bind(null, 0, i)} >S</a></td>
+													<td><a href='#' onClick={this.addRecipe.bind(null, 1, i)} >M</a></td>
+													<td><a href='#' onClick={this.addRecipe.bind(null, 2, i)} >T</a></td>
+													<td><a href='#' onClick={this.addRecipe.bind(null, 3, i)} >W</a></td>
+													<td><a href='#' onClick={this.addRecipe.bind(null, 4, i)} >T</a></td>
+													<td><a href='#' onClick={this.addRecipe.bind(null, 5, i)} >F</a></td>
+													<td><a href='#' onClick={this.addRecipe.bind(null, 6, i)} >S</a></td>
+												</tr>
+											</table>
+										
 										</div>
 									</div>
 								)
