@@ -48,11 +48,19 @@ var Main = React.createClass({
 				} else {
 					// Otherwise, get recipes for plan and save as state (then loads into children)
 					helpers.getMealPlan(lastMealPlan._id).then(function(mealplan){
-						this.setState({
-							mealPlan: { meals: mealplan.data.meals },
+						var planInfo = {
 							planId: lastMealPlan._id,
 							startDate: lastMealPlan.startDate
-						});
+						}
+						if(mealplan.data.meals.length === 0){
+							planInfo.meals = { meals: mealplan.data.meals };
+						} else {
+							planInfo.meals = { meals: [[],[],[],[],[],[],[]] }
+						}
+
+						console.log(planInfo);
+						this.setState(planInfo);
+						
 					}.bind(this));
 				}
 
