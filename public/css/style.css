@@ -81,7 +81,13 @@ html, body {
 	margin-bottom: 5px;
 	padding: 5px;
 	border-radius: 5px;
+	border: 1px solid #e3f1fc;
 	background-color: #e3f1fc;
+}
+
+.day-recipe:hover {
+	background-color: #c8e2f7;
+	border: 1px solid #a6ceea;
 }
 
 .day-recipe > p {
