@@ -34,7 +34,7 @@ var cheerio = require('cheerio');
 
 var measurements = ['teaspoon', 'teaspoons', 'tablespoon', 'tablespoons', 'cup', 'cups', 'pound', 'pounds', 'whole',
 'clove', 'cloves', 'head', 'can', 'stalk', 'stalks', 'pinch', 'container', 'jar', 'jars',
- 'pint', 'pints', 'ounce', 'ounces', 'gallon', 'gallons'];
+ 'pint', 'pints', 'ounce', 'ounces', 'gallon', 'gallons', 'small', 'medium', 'large'];
 
 function isMeasurement(word){
 	if(measurements.indexOf(word.toLowerCase()) !== -1){
