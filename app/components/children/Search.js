@@ -29,7 +29,8 @@ var Search = React.createClass({
 		return (
 
 			<div id='search-bar'>
-				<div id='pull-search' className='center-align valign-wrapper'><i className="material-icons no-select">search</i></div>
+				<div id='pull-search' className='center-align valign-wrapper'>
+					<a href='#'><i className="material-icons no-select">search</i></a></div>
 
 				<div className='row'>
 					<div className='col sm12 center-align'>

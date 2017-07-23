@@ -123,8 +123,11 @@ var Day = React.createClass({
 							return (
 								<div className='day-recipe' key={i}>
 									<div className='row'>
-										<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
-										<h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }><i className="material-icons delete-meal">delete</i></h3>
+										<div className='recipe-wrap'>
+											<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
+										</div>
+										<a href='#' className='btn-delete'><h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }>
+											<i className="material-icons delete-meal">delete</i></h3></a>
 									</div>
 
 									<p>Recipe by {recipe.creator}</p>

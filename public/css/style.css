@@ -83,6 +83,7 @@ html, body {
 	border-radius: 5px;
 	border: 1px solid #e3f1fc;
 	background-color: #e3f1fc;
+	transition: background-color 0.5s ease;
 }
 
 .day-recipe:hover {
@@ -137,13 +138,22 @@ h3.recipe-name {
 	margin: 0px;
 	font-size: 18px;
 	max-width: 200px;
-	float: left;
+	/*float: left;*/
 }
 
 h3.btn-delete {
 	margin: 0px;
 	font-size: 18px;
-	float: right;
+	/*float: right;*/
+}
+
+a.btn-delete {
+	color: black;
+	transition: color 0.25s ease;
+}
+
+a.btn-delete:hover {
+	color: red;
 }
 
 .delete-meal {
@@ -190,6 +200,7 @@ h3.btn-delete {
 	border: 3px solid #1c77bc;
 	border-radius: 100%;
 	box-shadow: 1px 1px 4px #58585a;
+	transition: background-color 0.5s ease;
 }
 
 #pull-search:hover {
