@@ -4,12 +4,12 @@ var passport = require('passport');
 const mongoose = require('mongoose');
 
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/mealplanner', {
-     useMongoClient: true,
-});
-// mongoose.connect('mongodb://heroku_q17fkdn3:p02nngcpfag5strbkodo11t41f@ds151820.mlab.com:51820/heroku_q17fkdn3', {
-// 	useMongoClient: true,
+// mongoose.connect('mongodb://localhost/mealplanner', {
+//      useMongoClient: true,
 // });
+mongoose.connect('mongodb://heroku_q17fkdn3:p02nngcpfag5strbkodo11t41f@ds151820.mlab.com:51820/heroku_q17fkdn3', {
+	useMongoClient: true,
+});
 var database = mongoose.connection;
 
 database.on('error', function(error){
