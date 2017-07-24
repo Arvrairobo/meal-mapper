@@ -163,7 +163,7 @@ var Main = React.createClass({
 				{/* Navigation section */}
 				<nav>
 					<div className="nav-wrapper blue">
-						<a href="/" className="brand-logo">Logo</a>
+						<a href="/" className="brand-logo"><img src='images/meal-mapper-logo.png'></img></a>
 						<ul id="nav-mobile" className="right hide-on-med-and-down">
 							<li><a href="/dashboard">Dashboard</a></li>
 							<li className='active'><a href="#">My Plan</a></li>

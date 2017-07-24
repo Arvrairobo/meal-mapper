@@ -14,6 +14,13 @@ html, body {
 	user-select: none;
 }
 
+.brand-logo img {
+	height: 60px;
+	width: auto;
+	margin-left: 35px;
+	margin-top: 2px;
+}
+
 /*.input-field input[type=text]:focus {
 	color: red;
 }*/
@@ -71,7 +78,7 @@ html, body {
 }
 
 .recipe-area {
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 .day-recipe {
@@ -84,6 +91,7 @@ html, body {
 	border: 1px solid #e3f1fc;
 	background-color: #e3f1fc;
 	transition: background-color 0.5s ease;
+	width: 243px;
 }
 
 .day-recipe:hover {
@@ -137,19 +145,23 @@ h3.day-name {
 h3.recipe-name {
 	margin: 0px;
 	font-size: 18px;
-	max-width: 200px;
-	/*float: left;*/
+	float: left;
+	transition: background-color 0.5s ease;
+}
+
+h3.recipe-name:hover {
+	background-color: white;
 }
 
 h3.btn-delete {
 	margin: 0px;
 	font-size: 18px;
-	/*float: right;*/
 }
 
 a.btn-delete {
 	color: black;
 	transition: color 0.25s ease;
+	float: right;
 }
 
 a.btn-delete:hover {
@@ -168,7 +180,7 @@ a.btn-delete:hover {
 	position: absolute;
 	right: 0px;
 	top: 0px;
-	box-shadow: -2px 0px 2px #58585a;
+	box-shadow: -4px 0px 8px #58585a;
 }
 
 #search-term {
