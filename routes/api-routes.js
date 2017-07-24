@@ -233,15 +233,75 @@ module.exports = function(server){
 
 	// Search for all recipes based on search term
 	server.get('/api/recipes/:search', function(request, response){
-		var search = request.params.search;
-		// TODO add search algorithm that only returns results based on search term
-		// For now just search all recipes
+		var search = request.params.search.toLowerCase().trim();
+		var searchArray = search.split(' ');
+		var resultsItems = [];
+		var resultsRank = [];
+
+		// This is the no-time-left search algirithm. Needs to be worked on.
+
+		// First get all recipes
 		Recipe.find({}, function(error, recipes){
 			if(error) throw error;
-			response.json(recipes);
+			
+			// Go through each recipe
+			for(var i = 0; i < recipes.length; i++){
+				var recipeName = recipes[i].name.toLowerCase();
+				var recipeMeal = recipes[i].meal.toLowerCase();
+				var recipeTags = recipes[i].tags;
+				var recipeRank = 0;
+				var addRecipe = false;
+
+				// Add if search term is a meal
+				if(searchArray.indexOf(recipeMeal) !== -1){
+					addRecipe = true;
+					recipeRank += 4;
+				}
+
+				// Make each tag lower case
+				for(var j = 0; j < recipeTags.length; j++){
+					recipeTags[j] = recipeTags[j].toLowerCase();
+				}
+
+				// Go through each word in the search array
+				for(var j = 0; j < searchArray.length; j++){
+					// If the word is in the title, add to resultsItems and add points for ranking
+					var testWord = searchArray[j];
+					if(recipeName.indexOf(testWord) !== -1){
+						addRecipe = true;
+						recipeRank += 2 + (testWord.length);
+					}
+
+					if(recipeTags.indexOf(testWord) !== -1){
+						addRecipe = true;
+						recipeRank += (testWord.length);
+					}
+				}
+
+				if(addRecipe){
+					resultsItems.push(recipes[i]);
+					resultsRank.push(recipeRank);
+				}
+			}
+
+			// Now order the arrays based on the results ranking
+			for(var i = 0; i < resultsRank.length - 1; i++){
+				for(var j = i + 1; j < resultsRank.length; j++){
+					if(resultsRank[j] > resultsRank[i]){
+						var rankTemp = resultsRank[i];
+						resultsRank[i] = resultsRank[j]
+						resultsRank[j] = rankTemp;
+
+						var itemTemp = resultsItems[i];
+						resultsItems[i] = resultsItems[j]
+						resultsItems[j] = rankItems;
+					}
+				}
+			}
+
+			response.json(resultsItems);
 		});
 
-		// TODO make an actual search algorithm
 	});
 
 	// Scrape recipe from Allrecipes.com
