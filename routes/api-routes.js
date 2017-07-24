@@ -304,7 +304,7 @@ module.exports = function(server){
 
 	});
 
-	// Scrape recipe from Allrecipes.com
+	// Scrape recipe from food site
 	server.post('/api/scrape/', function(request, response){
 		var url = request.body.url;
 		var meal = request.body.meal;
@@ -315,97 +315,102 @@ module.exports = function(server){
 		Recipe.findOne({url: url}, function(error, recipe){
 			// Only add if the recipe is not yet in the database
 			if(!recipe){
-				// Get url data
-				urlrequest(url, function(err, rsp, html){
-					var $ = cheerio.load(html);
 
-					// Get recipe title
-					var recipeName = $('h1.recipe-summary__h1').text();
-					// var recipeImage = ???
-					var recipeCreator = 'Allrecipes.com';
-					var recipeServings = parseInt($('#servings').attr('data-original'));
+				// Scrape Allrecipes
+				if(url.toLowerCase().indexOf('allrecipes.com') !== -1){
 
-					// Nutrients
-					var recipeCarbs = parseFloat($('[itemProp=carbohydrateContent]').children().first().text());
-					var recipeProtein = parseFloat($('[itemProp=proteinContent]').children().first().text());
-					var recipeFat = parseFloat($('[itemProp=fatContent]').children().first().text());
-					var recipeCalories = parseInt($('[itemProp=calories]').children().first().text());
+					// Get url data
+					urlrequest(url, function(err, rsp, html){
+						var $ = cheerio.load(html);
 
-					// Get ingredients list
-					var ingredients = [];
-					$('.recipe-ingred_txt').each(function(i, element){
-						var ingd = $(this).text();
-						if(ingd != '' && ingd != 'Add all ingredients to list'){
-							ingredients.push(ingd);
-						}
-					});
+						// Get recipe title
+						var recipeName = $('h1.recipe-summary__h1').text();
+						var recipeImage = $('.rec-photo').attr('src');
+						var recipeCreator = 'Allrecipes.com';
+						var recipeServings = parseInt($('#servings').attr('data-original'));
 
-					// Parse list into readable format
-					var ingredientsFormatted = [];
-					for(var i = 0; i < ingredients.length; i++){
+						// Nutrients
+						var recipeCarbs = parseFloat($('[itemProp=carbohydrateContent]').children().first().text());
+						var recipeProtein = parseFloat($('[itemProp=proteinContent]').children().first().text());
+						var recipeFat = parseFloat($('[itemProp=fatContent]').children().first().text());
+						var recipeCalories = parseInt($('[itemProp=calories]').children().first().text());
 
-						var amount = '';
-						var measurement = '';
-						var ingredient = '';
-
-						var tmplist = ingredients[i].split(' ');
-
-						var measureFound = false;
-						// Find the measurement
-						for(var j = 0; j < tmplist.length; j++){
-							if(isMeasurement(tmplist[j])){
-								measureFound = true;
-								amount = tmplist.slice(0, j).join(' ');
-								measurement = tmplist[j];
-								ingredient = tmplist.slice(j + 1).join(' ');
+						// Get ingredients list
+						var ingredients = [];
+						$('.recipe-ingred_txt').each(function(i, element){
+							var ingd = $(this).text();
+							if(ingd != '' && ingd != 'Add all ingredients to list'){
+								ingredients.push(ingd);
 							}
-						}
-
-						// If there isn't a measurement, add all numbers to amount and everything else to ingredient
-						if(!measureFound){
-							var j = 0;
-							while(j < tmplist.length){
-								if(isNaN(parseInt(tmplist[j])) && tmplist[j][0] != '('){
-									amount = tmplist.slice(0, j).join(' ');
-									ingredient = tmplist.slice(j).join(' ');
-									break;
-								}
-								j++;
-							}
-						}
-
-						ingredientsFormatted.push({
-							amount: amount,
-							measurement: measurement,
-							ingredient: ingredient
 						});
-					}
 
-					console.log(ingredientsFormatted);
-					var newRecipe = {
-						name: recipeName,
-						url: url,
-						creator: recipeCreator,
-						servings: recipeServings,
-						protein: recipeProtein,
-						carbs: recipeCarbs,
-						fat: recipeFat,
-						calories: recipeCalories,
-						meal: meal,
-						tags: tags,
-						vegetarian: vegetarian,
-						vegan: vegan,
-						ingredients: ingredientsFormatted
-					}
-					
-					Recipe.create(newRecipe, function(error, recipe){
-						if(error) throw error;
-						console.log('Recipe added');
-						response.json(recipe);
+						// Parse list into readable format
+						var ingredientsFormatted = [];
+						for(var i = 0; i < ingredients.length; i++){
+
+							var amount = '';
+							var measurement = '';
+							var ingredient = '';
+
+							var tmplist = ingredients[i].split(' ');
+
+							var measureFound = false;
+							// Find the measurement
+							for(var j = 0; j < tmplist.length; j++){
+								if(isMeasurement(tmplist[j])){
+									measureFound = true;
+									amount = tmplist.slice(0, j).join(' ');
+									measurement = tmplist[j];
+									ingredient = tmplist.slice(j + 1).join(' ');
+								}
+							}
+
+							// If there isn't a measurement, add all numbers to amount and everything else to ingredient
+							if(!measureFound){
+								var j = 0;
+								while(j < tmplist.length){
+									if(isNaN(parseInt(tmplist[j])) && tmplist[j][0] != '('){
+										amount = tmplist.slice(0, j).join(' ');
+										ingredient = tmplist.slice(j).join(' ');
+										break;
+									}
+									j++;
+								}
+							}
+
+							ingredientsFormatted.push({
+								amount: amount,
+								measurement: measurement,
+								ingredient: ingredient
+							});
+						}
+
+						var newRecipe = {
+							name: recipeName,
+							url: url,
+							image: recipeImage,
+							creator: recipeCreator,
+							servings: recipeServings,
+							protein: recipeProtein,
+							carbs: recipeCarbs,
+							fat: recipeFat,
+							calories: recipeCalories,
+							meal: meal,
+							tags: tags,
+							vegetarian: vegetarian,
+							vegan: vegan,
+							ingredients: ingredientsFormatted
+						}
+						
+						Recipe.create(newRecipe, function(error, recipe){
+							if(error) throw error;
+							response.json(recipe);
+						});
 					});
-				});
+				} else {
+					response.send('Can\'t scrape that site');
+				}
 			} else {
-				console.log('Recipe in database');
 				response.send('Recipe already in database');
 			}
 		});

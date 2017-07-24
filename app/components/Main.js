@@ -83,8 +83,6 @@ var Main = React.createClass({
 			this.setState({ update: false });
 			helpers.saveMealPlan(this.state.updatePlan, this.state.planId);
 		}
-
-		console.log(this.state.mealPlan);
 	},
 
 	setSearch: function(newSearch){

@@ -57,10 +57,12 @@ var Search = React.createClass({
 
 				<div className='row'>
 					<div className='col sm12'>
-						<div className='search-results'>
+						<div className='search-results' >
 							{this.props.searchResults.map((recipe, i) => {
 								return (
-									<div key={i} className='search-result'>
+									<div key={i} className='search-result'
+										style={{backgroundImage: 'url(' + recipe.image + ')', backgroundSize: 'cover'}}>
+
 										<h3><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
 										<p className='small-text'>Carbs: {recipe.carbs}g, Protein: {recipe.protein}g, Fat: {recipe.fat}g</p>
 										<p className='small-text'>Calories {recipe.calories}g</p>

@@ -236,6 +236,7 @@ a.btn-delete:hover {
 .search-result {
 	padding: 5px;
 	border-radius: 5px;
+	/*Background color if image isn't available*/
 	background-color: #e3f1fc;
 	margin: auto;
 	margin-top: 5px;
