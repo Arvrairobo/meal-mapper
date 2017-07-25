@@ -62,6 +62,9 @@ var Day = React.createClass({
 		fat = fat.toFixed(1);
 		calories = Math.floor(calories);
 
+		var maxCalories = 2000;
+		var caloriePercent = ((calories/maxCalories)*100).toFixed(1);
+
 		// Set all to 1 for equality if nothing for the day
 		if(carbs === 0 && protein === 0 && fat === 0){
 			carbs = 1;
@@ -74,6 +77,11 @@ var Day = React.createClass({
 				data: [carbs, protein, fat],
 				backgroundColor: ['rgba(67, 101, 224, .2)', 'rgba(172, 67, 224, .2)', 'rgba(45, 237, 89, .2)'],
 				hoverBackgroundColor: ['rgba(67, 101, 224, .6)', 'rgba(172, 67, 224, .6)', 'rgba(45, 237, 89, .6)'],
+				options: {
+					legend: {
+						display: false
+					}
+				}
 			}],
 			labels: ['Carbs','Protein','Fat']
 		}
@@ -84,12 +92,12 @@ var Day = React.createClass({
 
 				<div className="divider"></div>
 					<div className='center-align'>
-						<div>
 
 							<Pie data={pieData} />
+							<p>Daily Calories: {calories}/{maxCalories} ({caloriePercent}%)</p>
 
 							{/* Table showing macros */}
-							<table>
+						{/*}	<table>
 								<thead>
 								<tr>
 									<td></td>
@@ -119,12 +127,13 @@ var Day = React.createClass({
 									<td>10.0g</td>
 								</tr>
 								</tbody>
-							</table>
-						</div>
+							</table> */}
 					</div>
 
-					<ReactCSSTransitionGroup className='recipe-area'
+					<div className='recipe-area'>
+					<ReactCSSTransitionGroup
 						transitionName="popout"
+						transitionEnterTimeout={500}
 						transitionLeaveTimeout={500}
 						transitionLeave={true} >
 
@@ -150,6 +159,7 @@ var Day = React.createClass({
 								)
 							})}
 					</ReactCSSTransitionGroup>
+					</div>
 				</div>
 							
 		)
