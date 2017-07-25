@@ -3,13 +3,16 @@ var passport = require('passport');
 // Set up and connect to database
 const mongoose = require('mongoose');
 
+var caloriesUtil = require('./caloriesUtil');
+var calculateFFF = caloriesUtil.calculateFFF;
+
 mongoose.Promise = Promise;
-// mongoose.connect('mongodb://localhost/mealplanner', {
-//      useMongoClient: true,
-// });
-mongoose.connect('mongodb://heroku_q17fkdn3:p02nngcpfag5strbkodo11t41f@ds151820.mlab.com:51820/heroku_q17fkdn3', {
-	useMongoClient: true,
-});
+ mongoose.connect('mongodb://localhost/mealplanner', {
+      useMongoClient: true,
+ });
+//mongoose.connect('mongodb://heroku_q17fkdn3:p02nngcpfag5strbkodo11t41f@ds151820.mlab.com:51820/heroku_q17fkdn3', {
+//	useMongoClient: true,
+//});
 var database = mongoose.connection;
 
 database.on('error', function(error){
@@ -72,6 +75,7 @@ module.exports = function(server){
 
     // Route to update user's fitness profile
     server.post("/api/user_data", function(req, res) {
+        calculateFFF(req.body)
         User.findOneAndUpdate({"_id": req.user.id},
             {
             height: req.body.height,
@@ -82,6 +86,10 @@ module.exports = function(server){
             gender: req.body.gender,
             activityLevel: req.body.activityLevel,
             rateOfChange: req.body.rateOfChange,
+            calories: calculateFFF(req.body)[0],
+            protein: calculateFFF(req.body)[1],
+            fat: calculateFFF(req.body)[3],
+            carbs: calculateFFF(req.body)[2]
             }
         ).exec(function(err, doc) {
              // Log any errors
@@ -97,18 +105,19 @@ module.exports = function(server){
 
     // Route to update user's nutrition info
     server.post("/api/user_data/diet", function(req, res) {
-            User.findOneAndUpdate({"_id": req.user.id}, {diet: req.body.diet}
-                ).exec(function(err, doc) {
-                 // Log any errors
+        User.findOneAndUpdate({"_id": req.user.id}, {diet: req.body.diet}
+            ).exec(function(err, doc) {
+             // Log any errors
                  if (err) {
                    console.log(err);
                  }
                  else {
+                 doc.diet = req.body.diet;
                    // Or send the document to the browser
                    res.send(doc);
                  }
-               });
-        })
+           });
+    })
 
 	// Create a new recipe
 	server.post('/api/recipe', function(request, response){
