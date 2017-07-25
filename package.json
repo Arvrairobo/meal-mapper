@@ -31,7 +31,9 @@
     "passport-local": "^1.0.0",
     "qs": "^6.5.0",
     "react": "^15.6.1",
+    "react-addons-css-transition-group": "^15.6.0",
     "react-dom": "^15.6.1",
+    "react-transition-group": "^2.2.0",
     "recharts": "^1.0.0-alpha.2",
     "request": "^2.81.0"
   },

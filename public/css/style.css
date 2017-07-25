@@ -88,6 +88,15 @@ html, body {
 	background-color: #e3f1fc;
 }
 
+.popout-leave {
+  opacity: 1;
+}
+
+.popout-leave.popout-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
 .day-recipe-tl {
 	width: 213px;
 	padding: 5px;
