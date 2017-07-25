@@ -121,7 +121,7 @@ var Day = React.createClass({
 						{/* Cylce through and create a listing for each recipe in a day */}
 						{this.props.meals.map((recipe, i) => {
 							return (
-								<div className='day-recipe' key={i}>
+								<div className='day-recipe wobble' key={i} >
 									<div className='row'>
 										<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
 										<a href='#' className='btn-delete'><h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }>

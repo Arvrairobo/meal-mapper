@@ -99,6 +99,14 @@ html, body {
 	border: 1px solid #a6ceea;
 }
 
+.day-recipe-tr {
+
+}
+
+.day-recipe-tl {
+	
+}
+
 .day-recipe > p {
 	margin-top: 0px;
 	margin-bottom: 0px;
@@ -264,4 +272,19 @@ a.btn-delete:hover {
 
 .add-day .material-icons {
 	font-size: 14px;
+}
+
+@keyframes wobble {
+	0% { transform: rotate(0deg)  } 
+	15% { transform: rotate(-3deg); } 
+	30% { transform: rotate(2.5deg); } 
+	45% { transform: rotate(-2deg); } 
+	60% { transform: rotate(1.5deg); }
+	75% { transform: rotate(-1deg); }
+	100% { transform: rotate(0deg) } 
+}
+
+.wobble {
+	animation-duration: 1.5s;
+	animation-name: wobble; 
 }

@@ -4,9 +4,15 @@ var ReactDOM = require('react-dom');
 var Search = React.createClass({
 
 	getInitialState: function(){
+
+		var randList = ['lobster', 'cupcakes', 'lunch', 'easy meal', 'Italian', 'steak', 'grill', 'christmas',
+				'spicy', 'Mexican', 'Thai', 'pepper', 'snack', 'cheese', 'chicken', 'salmon', 'bread']
+		var searchDefault = randList[Math.floor(Math.random() * randList.length)];
+		
 		return {
 			searchTerm: '',
-			addRecipe: {}
+			addRecipe: {},
+			searchDefault: searchDefault
 		}
 	},
 
@@ -26,6 +32,7 @@ var Search = React.createClass({
 	},
 
 	render: function(){
+
 		return (
 
 			<div id='search-bar'>
@@ -34,11 +41,11 @@ var Search = React.createClass({
 
 				<div className='row'>
 					<div className='col sm12 center-align'>
-						<h3>Find Food For Me</h3>
+						<h3>Search for Recipes</h3>
 						
 						{/*Search bar and button */}
 						<input value={this.state.searchTerm} onChange={this.changeSearch} className='center-align'
-							id='search-term' placeholder="Cupcakes"/>
+							id='search-term' placeholder={this.state.searchDefault}/>
 						<a className="waves-effect waves-light btn blue lighten-1" onClick={this.sendSearch}>Search</a>
 
 						{/*Dropdown for filtering*/}
