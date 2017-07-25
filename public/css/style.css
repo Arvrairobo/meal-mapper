@@ -3,7 +3,7 @@
 /* ELEMENTS */
 html, body {
 	height: 100%;
-	overflow: hidden;
+	overflow-x: hidden;
 	background-image: url('../images/cream_pixels.png');
 	background-repeat: repeat;
 }
@@ -12,6 +12,13 @@ html, body {
 
 .no-select {
 	user-select: none;
+}
+
+.brand-logo img {
+	height: 60px;
+	width: auto;
+	margin-left: 35px;
+	margin-top: 2px;
 }
 
 /*.input-field input[type=text]:focus {
@@ -58,10 +65,6 @@ html, body {
 	margin-right: 0px !important;
 }
 
-.day-column a {
-	color: #58585a;
-}
-
 .marco-chart {
 	
 }
@@ -71,7 +74,7 @@ html, body {
 }
 
 .recipe-area {
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 .day-recipe {
@@ -79,15 +82,68 @@ html, body {
 	margin-right: 5px;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	padding: 5px;
 	border-radius: 5px;
 	border: 1px solid #e3f1fc;
+	width: 243px;
 	background-color: #e3f1fc;
 }
 
-.day-recipe:hover {
-	background-color: #c8e2f7;
-	border: 1px solid #a6ceea;
+.popout-leave {
+  opacity: 1;
+}
+
+.popout-leave.popout-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.day-recipe-tl {
+	width: 213px;
+	padding: 5px;
+	height: 30px;
+	border-top-left-radius: 5px;
+	background-color: #2196F3;
+	overflow-x: hidden;
+	display: inline-block;
+	color: white;
+	transition: background-color 0.3s ease;
+}
+
+.day-recipe-tl:hover {
+	background-color: #F2F2F2;
+}
+
+.day-recipe-tl a {
+	transition: color 0.3s ease;
+	color: white;
+}
+
+.day-recipe-tl a:hover {
+	color: #1B79C4;
+}
+
+.recipe-name {
+	margin: 0px;
+	width: 100%;
+	font-size: 18px;
+}
+
+.day-recipe-tr {
+	padding: 5px 3px 5px 7px;
+	width: 27px;
+	height: 30px;
+	border-top-right-radius: 5px;
+	display: inline-block;
+	transition: color 0.3s ease;
+}
+
+.day-recipe-body {
+	margin: 0px;
+	width: 243px;
+}
+
+.day-recipe-body p {
+	margin: 3px 6px;
 }
 
 .day-recipe > p {
@@ -97,6 +153,22 @@ html, body {
 
 .day-recipe .row {
 	margin-bottom: 5px;
+}
+
+p.btn-delete {
+	margin: 0px;
+	font-size: 14px;
+	line-height: 0px;
+}
+
+a.btn-delete {
+	color: black;
+	transition: color 0.3s ease;
+	float: right;
+}
+
+a.btn-delete:hover {
+	color: red;
 }
 
 .macro-text {
@@ -133,19 +205,6 @@ h3.day-name {
 	margin-bottom: 8px;
 }
 
-h3.recipe-name {
-	margin: 0px;
-	font-size: 18px;
-	max-width: 200px;
-	float: left;
-}
-
-h3.btn-delete {
-	margin: 0px;
-	font-size: 18px;
-	float: right;
-}
-
 .delete-meal {
 	font-size: 20px;
 }
@@ -158,7 +217,7 @@ h3.btn-delete {
 	position: absolute;
 	right: 0px;
 	top: 0px;
-	box-shadow: -2px 0px 2px #58585a;
+	box-shadow: -4px 0px 8px #58585a;
 }
 
 #search-term {
@@ -190,6 +249,7 @@ h3.btn-delete {
 	border: 3px solid #1c77bc;
 	border-radius: 100%;
 	box-shadow: 1px 1px 4px #58585a;
+	transition: background-color 0.5s ease;
 }
 
 #pull-search:hover {
@@ -202,6 +262,10 @@ h3.btn-delete {
 	margin: auto;
 }
 
+.dropdown-button {
+	margin-left: 10px;
+}
+
 .search-results {
 	overflow: scroll;
 }
@@ -209,6 +273,7 @@ h3.btn-delete {
 .search-result {
 	padding: 5px;
 	border-radius: 5px;
+	/*Background color if image isn't available*/
 	background-color: #e3f1fc;
 	margin: auto;
 	margin-top: 5px;
@@ -236,4 +301,19 @@ h3.btn-delete {
 
 .add-day .material-icons {
 	font-size: 14px;
+}
+
+@keyframes wobble {
+	0% { transform: rotate(0deg)  } 
+	15% { transform: rotate(-3deg); } 
+	30% { transform: rotate(2.5deg); } 
+	45% { transform: rotate(-2deg); } 
+	60% { transform: rotate(1.5deg); }
+	75% { transform: rotate(-1deg); }
+	100% { transform: rotate(0deg) } 
+}
+
+.wobble {
+	animation-duration: 1.5s;
+	animation-name: wobble; 
 }

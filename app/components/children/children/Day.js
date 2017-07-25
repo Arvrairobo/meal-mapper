@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 import { PieChart, Pie, Tooltip, Cell } from 'recharts';
 
 // Each of these is a column to be used in the calendar view
@@ -117,22 +118,35 @@ var Day = React.createClass({
 						</div>
 					</div>
 
-					<div className='recipe-area'>
-						{/* Cylce through and create a listing for each recipe in a day */}
-						{this.props.meals.map((recipe, i) => {
-							return (
-								<div className='day-recipe' key={i}>
-									<div className='row'>
-										<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
-										<h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }><i className="material-icons delete-meal">delete</i></h3>
-									</div>
+					<ReactCSSTransitionGroup
+						transitionName="popout"
+						transitionLeaveTimeout={300}
+						transitionLeave={true} >
 
-									<p>Recipe by {recipe.creator}</p>
-									<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: {recipe.calories}</p>
-								</div>
-							)
-						})}
-					</div>
+						<div className='recipe-area'>
+							{/* Cylce through and create a listing for each recipe in a day */}
+							{this.props.meals.map((recipe, i) => {
+								return (
+									<div className='day-recipe wobble' key={i} >
+
+										<div className='day-recipe-tl'>
+											<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
+										</div>
+
+										<div className='day-recipe-tr'>
+											<a href='#' className='btn-delete'><p className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }>
+												<i className="material-icons delete-meal">delete</i></p></a>
+										</div>
+
+										<div className='day-recipe-body'>
+											<p>Recipe by {recipe.creator}</p>
+											<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: {recipe.calories}</p>
+										</div>
+									</div>
+								)
+							})}
+						</div>
+					</ReactCSSTransitionGroup>
 				</div>
 							
 		)
