@@ -3,7 +3,7 @@
 /* ELEMENTS */
 html, body {
 	height: 100%;
-	overflow: hidden;
+	overflow-x: hidden;
 	background-image: url('../images/cream_pixels.png');
 	background-repeat: repeat;
 }
@@ -65,10 +65,6 @@ html, body {
 	margin-right: 0px !important;
 }
 
-.day-column a {
-	color: #58585a;
-}
-
 .marco-chart {
 	
 }
@@ -86,25 +82,59 @@ html, body {
 	margin-right: 5px;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	padding: 5px;
 	border-radius: 5px;
 	border: 1px solid #e3f1fc;
-	background-color: #e3f1fc;
-	transition: background-color 0.5s ease;
 	width: 243px;
-}
-
-.day-recipe:hover {
-	background-color: #c8e2f7;
-	border: 1px solid #a6ceea;
-}
-
-.day-recipe-tr {
-
+	background-color: #e3f1fc;
 }
 
 .day-recipe-tl {
-	
+	width: 213px;
+	padding: 5px;
+	height: 30px;
+	border-top-left-radius: 5px;
+	background-color: #2196F3;
+	overflow-x: hidden;
+	display: inline-block;
+	color: white;
+	transition: background-color 0.3s ease;
+}
+
+.day-recipe-tl:hover {
+	background-color: #F2F2F2;
+}
+
+.day-recipe-tl a {
+	transition: color 0.3s ease;
+	color: white;
+}
+
+.day-recipe-tl a:hover {
+	color: #1B79C4;
+}
+
+.recipe-name {
+	margin: 0px;
+	width: 100%;
+	font-size: 18px;
+}
+
+.day-recipe-tr {
+	padding: 5px 3px 5px 7px;
+	width: 27px;
+	height: 30px;
+	border-top-right-radius: 5px;
+	display: inline-block;
+	transition: color 0.3s ease;
+}
+
+.day-recipe-body {
+	margin: 0px;
+	width: 243px;
+}
+
+.day-recipe-body p {
+	margin: 3px 6px;
 }
 
 .day-recipe > p {
@@ -114,6 +144,22 @@ html, body {
 
 .day-recipe .row {
 	margin-bottom: 5px;
+}
+
+p.btn-delete {
+	margin: 0px;
+	font-size: 14px;
+	line-height: 0px;
+}
+
+a.btn-delete {
+	color: black;
+	transition: color 0.3s ease;
+	float: right;
+}
+
+a.btn-delete:hover {
+	color: red;
 }
 
 .macro-text {
@@ -148,32 +194,6 @@ h3.day-name {
 	margin-top: 8px;
 	margin-left: 5px;
 	margin-bottom: 8px;
-}
-
-h3.recipe-name {
-	margin: 0px;
-	font-size: 18px;
-	float: left;
-	transition: background-color 0.5s ease;
-}
-
-h3.recipe-name:hover {
-	background-color: white;
-}
-
-h3.btn-delete {
-	margin: 0px;
-	font-size: 18px;
-}
-
-a.btn-delete {
-	color: black;
-	transition: color 0.25s ease;
-	float: right;
-}
-
-a.btn-delete:hover {
-	color: red;
 }
 
 .delete-meal {

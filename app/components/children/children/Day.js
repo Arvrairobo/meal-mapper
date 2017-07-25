@@ -122,14 +122,20 @@ var Day = React.createClass({
 						{this.props.meals.map((recipe, i) => {
 							return (
 								<div className='day-recipe wobble' key={i} >
-									<div className='row'>
+
+									<div className='day-recipe-tl'>
 										<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
-										<a href='#' className='btn-delete'><h3 className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }>
-											<i className="material-icons delete-meal">delete</i></h3></a>
 									</div>
 
-									<p>Recipe by {recipe.creator}</p>
-									<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: {recipe.calories}</p>
+									<div className='day-recipe-tr'>
+										<a href='#' className='btn-delete'><p className='btn-delete' onClick={ this.props.removeRecipe.bind(null, this.props.dayNum, i) }>
+											<i className="material-icons delete-meal">delete</i></p></a>
+									</div>
+
+									<div className='day-recipe-body'>
+										<p>Recipe by {recipe.creator}</p>
+										<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: {recipe.calories}</p>
+									</div>
 								</div>
 							)
 						})}
