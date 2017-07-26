@@ -10,3 +10,7 @@
 })();
 // with graphs, 445
 // without graphs, 320
+
+$('#calendar').on('mouseenter', '.recipe-name', function(){
+	var width = $(this)
+});

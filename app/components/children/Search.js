@@ -74,7 +74,6 @@ var Search = React.createClass({
 							
 							{this.props.searchResults.map((recipe, i) => {
 								return (
-								<div>
 									<div key={i} className='search-result'>
 										<div className='search-recipe-name'>
 											<h3 ><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
@@ -109,7 +108,6 @@ var Search = React.createClass({
 										
 										</div>
 									</div>
-								</div>
 								)
 							})}
 							</ReactCSSTransitionGroup>
