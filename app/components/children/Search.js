@@ -13,13 +13,23 @@ var Search = React.createClass({
 		return {
 			searchTerm: '',
 			addRecipe: {},
-			searchDefault: searchDefault
+			searchDefault: searchDefault,
+			filter: 'all'
 		}
+	},
+
+	componentDidUpdate: function(){
+		console.log(this.state.filter);
 	},
 
 	// As user types in search box this will update
 	changeSearch: function(event){
 		this.setState({ searchTerm: event.target.value });
+	},
+
+	changeFilter: function(event){
+		console.log('change filter');
+		this.setState({ filter: event.target.value });
 	},
 
 	// When search button is pressed, send to parent component
@@ -49,16 +59,21 @@ var Search = React.createClass({
 							id='search-term' placeholder={this.state.searchDefault}/>
 						<a className="waves-effect waves-light btn blue lighten-1" onClick={this.sendSearch}>Search</a>
 
-						{/*Dropdown for filtering*/}
-						<a className='dropdown-button btn' href='#' data-activates='meal-filter'>Filter</a>
-						<ul id='meal-filter' className='dropdown-content'>
-							<li><a href="#!">All</a></li>
-							<li className="divider"></li>
-							<li><a href="#!">Breakfast</a></li>
-							<li><a href="#!">Lunch</a></li>
-							<li><a href="#!">Dinner</a></li>
-							<li><a href="#!">Snack</a></li>
-						</ul>
+						<form>
+							<p>
+							<input type="checkbox" id="breakfast" />
+							<label htmlFor="breakfast">Breakfast</label>
+							<br/>
+							<input type="checkbox" id="lunch" />
+							<label htmlFor="lunch">Lunch</label>
+							<br/>
+							<input type="checkbox" id="dinner" />
+							<label htmlFor="dinner">Dinner</label>
+							<br/>
+							<input type="checkbox" id="snack" />
+							<label htmlFor="snack">Snack</label>
+							</p>
+						</form>
 					</div>
 				</div>
 
