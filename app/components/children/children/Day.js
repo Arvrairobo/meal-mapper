@@ -23,13 +23,11 @@ var Day = React.createClass({
 			calories += this.props.meals[i].calories;
 		}
 
-		carbs = carbs;
-		protein = protein;
-		fat = fat;
 		calories = Math.floor(calories);
 
 		var totalMac = carbs + protein + fat;
 
+		// Calculate macro daily ratio
 		if(totalMac > 0){
 			var carbRatio = ((carbs/totalMac) * 100).toFixed(1);
 			var proteinRatio = ((protein/totalMac) * 100).toFixed(1);
@@ -40,22 +38,68 @@ var Day = React.createClass({
 			fatRatio = 0;
 		}
 
+		// Determine differences for border
+
 		var maxCalories = userMacros.calories;
 		var caloriePercent = ((calories/maxCalories)*100).toFixed(1);
+
+		// Determine differences for border shading
+		var userMacros = this.props.userMacros;
+
+		totalMac = userMacros.carbs + userMacros.protein + userMacros.fat;
+
+		if(totalMac > 0){
+			var carbMacPct = ((userMacros.carbs / totalMac)*100);
+			var proteinMacPct = ((userMacros.protein / totalMac)*100);
+			var fatMacPct = ((userMacros.fat / totalMac)*100);
+		} else {
+			carbMacPct = proteinMacPct = fatMacPct = 33.33;
+		}
+		
+		var carbDiff = Math.abs(carbRatio - carbMacPct);
+		var proteinDiff = Math.abs(proteinRatio - proteinMacPct);
+		var fatDiff = Math.abs(fatRatio - fatMacPct);
+
+		// Set colors - 0 - 10 diff normal, 10-20 diff yellow, 20+ diff red
+		var borderColor = ['rgba(255, 255, 255, 1', 'rgba(255, 255, 255, 1', 'rgba(255, 255, 255, 1'];
+		if(carbDiff >= 20){
+			borderColor[0] = 'rgba(209, 29, 29, .8';
+		} else if(carbDiff >= 10){
+			borderColor[0] = 'rgba(244, 229, 66, .8';
+		}
+
+		if(proteinDiff >= 20){
+			borderColor[1] = 'rgba(209, 29, 29, .8';
+		} else if(proteinDiff >= 10){
+			borderColor[1] = 'rgba(244, 229, 66, .8';
+		}
+
+		if(this.props.day === 'Sunday'){
+			console.log(fatDiff);
+		}
+		if(fatDiff >= 20){
+			borderColor[2] = 'rgba(209, 29, 29, .8';
+		} else if(fatDiff >= 10){
+			borderColor[2] = 'rgba(244, 229, 66, .8';
+		}
+
+		var hoverBorderColor = borderColor;
 
 		var pieData = {
 			datasets: [{
 				data: [carbRatio, proteinRatio, fatRatio],
 				backgroundColor: ['rgba(67, 101, 224, .5)', 'rgba(172, 67, 224, .5)', 'rgba(45, 237, 89, .5)'],
 				hoverBackgroundColor: ['rgba(67, 101, 224, .9)', 'rgba(172, 67, 224, .9)', 'rgba(45, 237, 89, .9)'],
+				borderColor: borderColor,
+				hoverBorderColor: hoverBorderColor,
 				options: {
 					pieceLabel: {
 						mode: 'percent',
 						precision: 1,
 					}
-				}
+				},
 			}],
-			labels: ['Carbs %','Protein %','Fat %']
+			labels: ['Carbs %','Protein %','Fat %'],
 		}
 
 		return (
@@ -68,7 +112,7 @@ var Day = React.createClass({
 					<div className='center-align'>
 
 							<Pie data={pieData} />
-							<p className='calories-txt'>Daily Calories: {calories}/{maxCalories} ({caloriePercent}%)</p>
+							<p className='calories-txt'>Calories: {calories}/{maxCalories} ({caloriePercent}%)</p>
 					</div>
 
 					<div className='recipe-area'>

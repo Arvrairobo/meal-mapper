@@ -14,12 +14,17 @@ var Search = React.createClass({
 			searchTerm: '',
 			addRecipe: {},
 			searchDefault: searchDefault,
-			filter: 'all'
+			filter: {
+				breakfast: true,
+				lunch: true,
+				dinner: true,
+				snack: true
+			}
 		}
 	},
 
 	componentDidUpdate: function(){
-		console.log(this.state.filter);
+		
 	},
 
 	// As user types in search box this will update
@@ -52,7 +57,7 @@ var Search = React.createClass({
 
 				<div className='row'>
 					<div className='col sm12 center-align'>
-						<h3>Search for Recipes</h3>
+						<h3 className='search-header'>Search for Recipes</h3>
 						
 						{/*Search bar and button */}
 						<input value={this.state.searchTerm} onChange={this.changeSearch} className='center-align'
