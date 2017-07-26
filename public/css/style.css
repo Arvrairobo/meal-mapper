@@ -89,6 +89,11 @@ html, body {
 	width: 95%;
 }
 
+p.calories-txt {
+	margin: 6px 3px 3px 8px;
+	background-color: white;
+}
+
 .recipe-area {
 	overflow-y: scroll;
 }
@@ -248,6 +253,10 @@ td {
 
 td a {
 	color: #30c963;
+}
+
+td a:hover {
+	color: #1f9346;
 }
 
 th {

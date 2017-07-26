@@ -108,7 +108,7 @@ var Search = React.createClass({
 											<table className='add-day'>
 												<tbody>
 												<tr>
-													<td><i className="material-icons no-select">add</i></td>
+													<td>Add:</td>
 													<td><a href='#' onClick={this.addRecipe.bind(null, 0, i)} >S</a></td>
 													<td><a href='#' onClick={this.addRecipe.bind(null, 1, i)} >M</a></td>
 													<td><a href='#' onClick={this.addRecipe.bind(null, 2, i)} >T</a></td>
