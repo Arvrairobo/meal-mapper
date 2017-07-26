@@ -63,9 +63,9 @@ function drawChart(protein, carbs, fat) {
 
         var data = google.visualization.arrayToDataTable([
          ['Macronutrient', 'Grams'],
-         ['Protein', protein],
-         ['Carbohydrates', carbs],
-         ['Fat',  fat]
+         ['Protein', proPct],
+         ['Carbohydrates', carbPct],
+         ['Fat',  fatPct]
         ]);
 
         var options = {

@@ -8,9 +8,12 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/nouislider.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/dashboardStyle.css">
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/wNumb.js"></script>
+    <script type="text/javascript" src="js/nouislider.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -218,6 +221,26 @@
                                 <option value="Vegetarian">Vegetarian</option>
                                 <option value="Vegan" >Vegan</option>
                             </select>
+
+                            <!-- // Macrosliders HTML -->
+
+                            <div id="macropicker">
+                                <div class="sliders" id="rangeSlider1"></div>
+                                Protein
+                                <span id="slider-range-value1"></span>
+                                %
+                                <div class="sliders" id="rangeSlider2"></div>
+                                Fat
+                                <span id="slider-range-value2"></span>
+                                %
+                                <div class="sliders" id="rangeSlider3"></div>
+                                Carb
+                                <span id="slider-range-value3"></span>
+                                %
+                            </div>
+
+                            <!-- End Macrosliders HTML -->
+
                         </form>
                     </div>
                 </div>
