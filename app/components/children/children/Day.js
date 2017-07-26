@@ -6,49 +6,15 @@ import {Pie} from 'react-chartjs-2';
 // Each of these is a column to be used in the calendar view
 var Day = React.createClass({
 
-	// Start with 0 for each macro
-	getInitialState: function(){
-		return ({
-			totalCarbs: (0).toFixed(1),
-			totalProtein: (0).toFixed(1),
-			totalFat: (0).toFixed(1),
-			totalCalories: 0
-		})
-	},
-
-	// On update, recalculate macros
-	componentWillReceiveProps: function(){
-		this.loadNutrientData();
-	},
-
-	loadNutrientData: function(){
-		var carbs = 0;
-		var protein = 0;
-		var fat = 0;
-
-		for(var i = 0; i < this.props.meals.length; i++){
-			carbs += this.props.meals[i].carbs;
-			protein += this.props.meals[i].protein;
-			fat += this.props.meals[i].fat;
-		}
-
-		var calories = Math.floor((carbs * 4) + (protein * 4) + (fat * 9));
-
-		this.setState({
-			totalCarbs: carbs.toFixed(1),
-			totalProtein: protein.toFixed(1),
-			totalFat: fat.toFixed(1),
-			totalCalories: calories
-		});
-	},
-
 	render: function(){
 
-		// Calculate macros
+		// Recalculate macros when rendering
 		var carbs = 0;
 		var protein = 0;
 		var fat = 0;
 		var calories = 0;
+
+		var userMacros = this.props.userMacros;
 
 		for(var i = 0; i < this.props.meals.length; i++){
 			carbs += this.props.meals[i].carbs;
@@ -57,93 +23,113 @@ var Day = React.createClass({
 			calories += this.props.meals[i].calories;
 		}
 
-		carbs = carbs.toFixed(1);
-		protein = protein.toFixed(1);
-		fat = fat.toFixed(1);
 		calories = Math.floor(calories);
 
-		var maxCalories = 2000;
+		var totalMac = carbs + protein + fat;
+
+		// Calculate macro daily ratio
+		if(totalMac > 0){
+			var carbRatio = ((carbs/totalMac) * 100).toFixed(1);
+			var proteinRatio = ((protein/totalMac) * 100).toFixed(1);
+			var fatRatio = ((fat/totalMac) * 100).toFixed(1);
+		} else {
+			carbRatio = 0;
+			proteinRatio = 0;
+			fatRatio = 0;
+		}
+
+		// Determine differences for border
+
+		var maxCalories = userMacros.calories;
 		var caloriePercent = ((calories/maxCalories)*100).toFixed(1);
 
-		// Set all to 1 for equality if nothing for the day
-		if(carbs === 0 && protein === 0 && fat === 0){
-			carbs = 1;
-			protein = 1;
-			fat = 1;
+		// Determine differences for border shading
+		var userMacros = this.props.userMacros;
+
+		totalMac = userMacros.carbs + userMacros.protein + userMacros.fat;
+
+		if(totalMac > 0){
+			var carbMacPct = ((userMacros.carbs / totalMac)*100);
+			var proteinMacPct = ((userMacros.protein / totalMac)*100);
+			var fatMacPct = ((userMacros.fat / totalMac)*100);
+		} else {
+			carbMacPct = proteinMacPct = fatMacPct = 33.33;
 		}
+		
+		var carbDiff = Math.abs(carbRatio - carbMacPct);
+		var proteinDiff = Math.abs(proteinRatio - proteinMacPct);
+		var fatDiff = Math.abs(fatRatio - fatMacPct);
+
+		// Set colors - 0 - 10 diff normal, 10-20 diff yellow, 20+ diff red
+		var borderColor = ['rgba(255, 255, 255, 1', 'rgba(255, 255, 255, 1', 'rgba(255, 255, 255, 1'];
+		if(carbDiff >= 20){
+			borderColor[0] = 'rgba(209, 29, 29, .8';
+		} else if(carbDiff >= 10){
+			borderColor[0] = 'rgba(244, 229, 66, .8';
+		}
+
+		if(proteinDiff >= 20){
+			borderColor[1] = 'rgba(209, 29, 29, .8';
+		} else if(proteinDiff >= 10){
+			borderColor[1] = 'rgba(244, 229, 66, .8';
+		}
+
+		if(this.props.day === 'Sunday'){
+			console.log(fatDiff);
+		}
+		if(fatDiff >= 20){
+			borderColor[2] = 'rgba(209, 29, 29, .8';
+		} else if(fatDiff >= 10){
+			borderColor[2] = 'rgba(244, 229, 66, .8';
+		}
+
+		var hoverBorderColor = borderColor;
 
 		var pieData = {
 			datasets: [{
-				data: [carbs, protein, fat],
-				backgroundColor: ['rgba(67, 101, 224, .2)', 'rgba(172, 67, 224, .2)', 'rgba(45, 237, 89, .2)'],
-				hoverBackgroundColor: ['rgba(67, 101, 224, .6)', 'rgba(172, 67, 224, .6)', 'rgba(45, 237, 89, .6)'],
+				data: [carbRatio, proteinRatio, fatRatio],
+				backgroundColor: ['rgba(67, 101, 224, .5)', 'rgba(172, 67, 224, .5)', 'rgba(45, 237, 89, .5)'],
+				hoverBackgroundColor: ['rgba(67, 101, 224, .9)', 'rgba(172, 67, 224, .9)', 'rgba(45, 237, 89, .9)'],
+				borderColor: borderColor,
+				hoverBorderColor: hoverBorderColor,
 				options: {
-					legend: {
-						display: false
+					pieceLabel: {
+						mode: 'percent',
+						precision: 1,
 					}
-				}
+				},
 			}],
-			labels: ['Carbs','Protein','Fat']
+			labels: ['Carbs %','Protein %','Fat %'],
 		}
 
 		return (
 			<div className='day-column' onClick={ () => this.props.clickDay(this.props.dayNum) } >
-				<h3 className='day-name center-align'>{ this.props.day }</h3>
+				<div className='day-name center-align'>
+					<h3>{ this.props.day }</h3>
+				</div>
 
 				<div className="divider"></div>
 					<div className='center-align'>
 
 							<Pie data={pieData} />
-							<p>Daily Calories: {calories}/{maxCalories} ({caloriePercent}%)</p>
-
-							{/* Table showing macros */}
-						{/*}	<table>
-								<thead>
-								<tr>
-									<td></td>
-									<th>Total</th>
-									<th>Targ.</th>
-									<th>Avail.</th>
-								</tr>
-								</thead>
-
-								<tbody>
-								<tr>
-									<td><strong>C |</strong></td>
-									<td>{carbs}g</td>
-									<td>10.0g</td>
-									<td>10.0g</td>
-								</tr>
-								<tr>
-									<td><strong>P |</strong></td>
-									<td>{protein}g</td>
-									<td>10.0g</td>
-									<td>10.0g</td>
-								</tr>
-								<tr>
-									<td><strong>F |</strong></td>
-									<td>{fat}g</td>
-									<td>10.0g</td>
-									<td>10.0g</td>
-								</tr>
-								</tbody>
-							</table> */}
+							<p className='calories-txt'>Calories: {calories}/{maxCalories} ({caloriePercent}%)</p>
 					</div>
 
 					<div className='recipe-area'>
 					<ReactCSSTransitionGroup
 						transitionName="popout"
 						transitionEnterTimeout={500}
-						transitionLeaveTimeout={500}
+						transitionLeaveTimeout={250}
 						transitionLeave={true} >
 
 							{/* Cylce through and create a listing for each recipe in a day */}
 							{this.props.meals.map((recipe, i) => {
 								return (
-									<div className='day-recipe wobble' key={i} >
+									<div className='day-recipe wobble' key={i} 
+										style={{backgroundImage: 'url(' + recipe.image + ')', backgroundSize: 'cover'}}>
 
 										<div className='day-recipe-tl'>
-											<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
+											<h3 className='recipe-name'><a href={recipe.url} target='_blank'><span className='recipe-span'>{recipe.name}</span></a></h3>
 										</div>
 
 										<div className='day-recipe-tr'>

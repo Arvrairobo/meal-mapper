@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var Search = React.createClass({
 
@@ -12,13 +13,28 @@ var Search = React.createClass({
 		return {
 			searchTerm: '',
 			addRecipe: {},
-			searchDefault: searchDefault
+			searchDefault: searchDefault,
+			filter: {
+				breakfast: true,
+				lunch: true,
+				dinner: true,
+				snack: true
+			}
 		}
+	},
+
+	componentDidUpdate: function(){
+		
 	},
 
 	// As user types in search box this will update
 	changeSearch: function(event){
 		this.setState({ searchTerm: event.target.value });
+	},
+
+	changeFilter: function(event){
+		console.log('change filter');
+		this.setState({ filter: event.target.value });
 	},
 
 	// When search button is pressed, send to parent component
@@ -41,38 +57,48 @@ var Search = React.createClass({
 
 				<div className='row'>
 					<div className='col sm12 center-align'>
-						<h3>Search for Recipes</h3>
+						<h3 className='search-header'>Search for Recipes</h3>
 						
 						{/*Search bar and button */}
 						<input value={this.state.searchTerm} onChange={this.changeSearch} className='center-align'
 							id='search-term' placeholder={this.state.searchDefault}/>
 						<a className="waves-effect waves-light btn blue lighten-1" onClick={this.sendSearch}>Search</a>
 
-						{/*Dropdown for filtering*/}
-						<a className='dropdown-button btn' href='#' data-activates='meal-filter'>Filter</a>
-						<ul id='meal-filter' className='dropdown-content'>
-							<li><a href="#!">All</a></li>
-							<li className="divider"></li>
-							<li><a href="#!">Breakfast</a></li>
-							<li><a href="#!">Lunch</a></li>
-							<li><a href="#!">Dinner</a></li>
-							<li><a href="#!">Snack</a></li>
-						</ul>
-
+						<form>
+							<p>
+							<input className='checkbox-blue' type="checkbox" id="breakfast" />
+							<label htmlFor="breakfast">Breakfast</label>
+							<br/>
+							<input className='checkbox-blue' type="checkbox" id="lunch" />
+							<label htmlFor="lunch">Lunch</label>
+							<br/>
+							<input className='checkbox-blue' type="checkbox" id="dinner" />
+							<label htmlFor="dinner">Dinner</label>
+							<br/>
+							<input className='checkbox-blue' type="checkbox" id="snack" />
+							<label htmlFor="snack">Snack</label>
+							</p>
+						</form>
 					</div>
 				</div>
 
 				<div className='row'>
 					<div className='col sm12'>
 						<div className='search-results' >
+
+							<ReactCSSTransitionGroup
+							transitionName="popout"
+							transitionEnterTimeout={250}
+							transitionLeaveTimeout={250}>
+							
 							{this.props.searchResults.map((recipe, i) => {
 								return (
-									<div key={i} className='search-result'
-										style={{backgroundImage: 'url(' + recipe.image + ')', backgroundSize: 'cover'}}>
+									<div key={i} className='search-result'>
+										<div className='search-recipe-name'>
+											<h3 ><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
+										</div>
 
-										<h3><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
-										<p className='small-text'>Carbs: {recipe.carbs}g, Protein: {recipe.protein}g, Fat: {recipe.fat}g</p>
-										<p className='small-text'>Calories {recipe.calories}g</p>
+										<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: {recipe.calories}</p>
 										<p className='small-text'>Meal: {recipe.meal}</p>
 										<p className='small-text'>Tags: 
 
@@ -87,7 +113,7 @@ var Search = React.createClass({
 											<table className='add-day'>
 												<tbody>
 												<tr>
-													<td><i className="material-icons no-select">add</i></td>
+													<td>Add:</td>
 													<td><a href='#' onClick={this.addRecipe.bind(null, 0, i)} >S</a></td>
 													<td><a href='#' onClick={this.addRecipe.bind(null, 1, i)} >M</a></td>
 													<td><a href='#' onClick={this.addRecipe.bind(null, 2, i)} >T</a></td>
@@ -103,6 +129,7 @@ var Search = React.createClass({
 									</div>
 								)
 							})}
+							</ReactCSSTransitionGroup>
 						</div>
 					</div>
 				</div>

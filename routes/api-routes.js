@@ -7,12 +7,12 @@ var caloriesUtil = require('./caloriesUtil');
 var calculateFFF = caloriesUtil.calculateFFF;
 
 mongoose.Promise = Promise;
- mongoose.connect('mongodb://localhost/mealplanner', {
-      useMongoClient: true,
- });
-//mongoose.connect('mongodb://heroku_q17fkdn3:p02nngcpfag5strbkodo11t41f@ds151820.mlab.com:51820/heroku_q17fkdn3', {
-//	useMongoClient: true,
-//});
+ // mongoose.connect('mongodb://localhost/mealplanner', {
+ //      useMongoClient: true,
+ // });
+mongoose.connect('mongodb://heroku_q17fkdn3:p02nngcpfag5strbkodo11t41f@ds151820.mlab.com:51820/heroku_q17fkdn3', {
+	useMongoClient: true,
+});
 var database = mongoose.connection;
 
 database.on('error', function(error){
@@ -32,7 +32,7 @@ var urlrequest = require('request');
 var cheerio = require('cheerio');
 
 var measurements = ['teaspoon', 'teaspoons', 'tablespoon', 'tablespoons', 'cup', 'cups', 'pound', 'pounds', 'whole',
-'clove', 'cloves', 'head', 'can', 'stalk', 'stalks', 'pinch', 'container', 'jar', 'jars',
+'clove', 'cloves', 'head', 'can', 'cans', 'stalk', 'stalks', 'pinch', 'container', 'jar', 'jars',
  'pint', 'pints', 'ounce', 'ounces', 'gallon', 'gallons', 'small', 'medium', 'large'];
 
 function isMeasurement(word){
