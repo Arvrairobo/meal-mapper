@@ -1,7 +1,4 @@
 $(document).ready(function() {
-
-  $(".modal-trigger").leanModal();
-
   // Getting references to our form and inputs
   var loginButton = $("#login-button");
   var loginEmail = $("input#login-email");
@@ -13,7 +10,7 @@ $(document).ready(function() {
   var lastNameInput = $("input#last-name");
 
   // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-      $('#modal1').modal();
+      $(".modal-trigger").leanModal();
 
       $('ul.tabs').tabs();
 
@@ -35,7 +32,7 @@ $(document).ready(function() {
     loginUser(userData.email, userData.password);
     loginEmail.val("");
     loginPassword.val("");
-    $('#modal1').modal('close');
+    $('#login-signup-modal').modal('close');
   });
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
@@ -82,7 +79,7 @@ $(document).ready(function() {
         firstName: firstName,
         lastName: lastName
       }).then(function(data) {
-        window.location.replace("/home");
+        window.location.replace("/dashboard");
       }).catch(function(err) {
         console.log(err);
       });

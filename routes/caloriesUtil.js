@@ -26,9 +26,8 @@ function calculateDCN(BMR, activityLevel) {
 
 module.exports = {
     calculateFFF: function(user) {
-         var userBMR = calculateBMR(user.gender, user.height, user.currentWeight, user.age)
-
-        var DCN = calculateDCN(userBMR, user.activityLevel)
+         var userBMR = calculateBMR(user.gender, user.height, user.currentWeight, user.age);
+        var DCN = calculateDCN(userBMR, user.activityLevel);
         var ROC = user.rateOfChange;
         var userFFF = [];
         var proteinGram = 0;
