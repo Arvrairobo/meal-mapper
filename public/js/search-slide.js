@@ -19,4 +19,12 @@
 		}
 	}
 	toggleBar();
+
+	
+
+	/* Search slide pseudo
+	1. on click, set target x and direction of slide
+	2. set interval to constantly change x and 
+
+	 */
 })();

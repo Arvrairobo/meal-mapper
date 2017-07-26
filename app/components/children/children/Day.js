@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-import { PieChart, Pie, Tooltip, Cell } from 'recharts';
+
+import {Pie} from 'react-chartjs-2';
 
 // Each of these is a column to be used in the calendar view
 var Day = React.createClass({
@@ -61,9 +62,29 @@ var Day = React.createClass({
 		fat = fat.toFixed(1);
 		calories = Math.floor(calories);
 
-		var pieData = [{name: 'Carbs', value: Math.floor(carbs)}, {name: 'Protein', value: Math.floor(protein)},
-                  {name: 'Fat', value: Math.floor(fat)}];
-      var colors = ['#2196F3', '#8884d8', '#f04e23'];
+		var maxCalories = 2000;
+		var caloriePercent = ((calories/maxCalories)*100).toFixed(1);
+
+		// Set all to 1 for equality if nothing for the day
+		if(carbs === 0 && protein === 0 && fat === 0){
+			carbs = 1;
+			protein = 1;
+			fat = 1;
+		}
+
+		var pieData = {
+			datasets: [{
+				data: [carbs, protein, fat],
+				backgroundColor: ['rgba(67, 101, 224, .2)', 'rgba(172, 67, 224, .2)', 'rgba(45, 237, 89, .2)'],
+				hoverBackgroundColor: ['rgba(67, 101, 224, .6)', 'rgba(172, 67, 224, .6)', 'rgba(45, 237, 89, .6)'],
+				options: {
+					legend: {
+						display: false
+					}
+				}
+			}],
+			labels: ['Carbs','Protein','Fat']
+		}
 
 		return (
 			<div className='day-column' onClick={ () => this.props.clickDay(this.props.dayNum) } >
@@ -71,20 +92,12 @@ var Day = React.createClass({
 
 				<div className="divider"></div>
 					<div className='center-align'>
-						<div>
 
-								{/*<PieChart width={250} height={120} margin={{ top: 15, right: 50, left: 50, bottom: 15 }}>
-								  <Pie data={pieData} cx="50%" cy="50%" outerRadius={30} fill="#8884d8" label>
-								   {
-							        pieData.map((entry, index) => (
-							          <Cell key={`cell-${index}`} fill={colors[index]}/>
-							        ))
-							      }
-							      </Pie>
-								</PieChart>*/}
+							<Pie data={pieData} />
+							<p>Daily Calories: {calories}/{maxCalories} ({caloriePercent}%)</p>
 
 							{/* Table showing macros */}
-							<table>
+						{/*}	<table>
 								<thead>
 								<tr>
 									<td></td>
@@ -114,16 +127,16 @@ var Day = React.createClass({
 									<td>10.0g</td>
 								</tr>
 								</tbody>
-							</table>
-						</div>
+							</table> */}
 					</div>
 
+					<div className='recipe-area'>
 					<ReactCSSTransitionGroup
 						transitionName="popout"
-						transitionLeaveTimeout={300}
+						transitionEnterTimeout={500}
+						transitionLeaveTimeout={500}
 						transitionLeave={true} >
 
-						<div className='recipe-area'>
 							{/* Cylce through and create a listing for each recipe in a day */}
 							{this.props.meals.map((recipe, i) => {
 								return (
@@ -145,8 +158,8 @@ var Day = React.createClass({
 									</div>
 								)
 							})}
-						</div>
 					</ReactCSSTransitionGroup>
+					</div>
 				</div>
 							
 		)

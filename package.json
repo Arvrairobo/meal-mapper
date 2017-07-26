@@ -21,6 +21,7 @@
     "axios": "^0.16.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
+    "chart.js": "^2.6.0",
     "cheerio": "^1.0.0-rc.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
@@ -32,9 +33,9 @@
     "qs": "^6.5.0",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
+    "react-chartjs-2": "^2.5.5",
     "react-dom": "^15.6.1",
     "react-transition-group": "^2.2.0",
-    "recharts": "^1.0.0-alpha.2",
     "request": "^2.81.0"
   },
   "devDependencies": {
