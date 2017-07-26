@@ -57,16 +57,27 @@ html, body {
 	padding-bottom: 5px;
 }
 
+.day-name {
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	background-color: white;
+	padding-top: 8px;
+	padding-bottom: 5px;
+}
+
+.day-name h3 {
+	font-size: 22px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	color: #0f5991;
+}
+
 .day-column-left {
 	margin-left: 0px !important;
 }
 
 .day-column-right {
 	margin-right: 0px !important;
-}
-
-.marco-chart {
-	
 }
 
 .chartArea {
@@ -88,13 +99,45 @@ html, body {
 	background-color: #e3f1fc;
 }
 
+.day-recipe:hover {
+	background-blend-mode: lighten;
+}
+
+.day-recipe:hover > .day-recipe-body {
+	color: rgba(0, 0, 0, 1);
+}
+
+.popout-enter {
+  opacity: 0.01;
+}
+
+.popout-enter.popout-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+@keyframes wobble {
+	0% { transform: rotate(0deg)  } 
+	15% { transform: rotate(-3deg); } 
+	30% { transform: rotate(2.5deg); } 
+	45% { transform: rotate(-2deg); } 
+	60% { transform: rotate(1.5deg); }
+	75% { transform: rotate(-1deg); }
+	100% { transform: rotate(0deg) } 
+}
+
+.wobble {
+	animation-duration: 1.5s;
+	animation-name: wobble; 
+}
+
 .popout-leave {
   opacity: 1;
 }
 
 .popout-leave.popout-leave-active {
   opacity: 0.01;
-  transition: opacity 500ms ease-in;
+  transition: opacity 250ms ease-in;
 }
 
 .day-recipe-tl {
@@ -159,6 +202,7 @@ a.btn-delete {
 .day-recipe-body {
 	margin: 0px;
 	width: 243px;
+	color: rgba(0, 0, 0, 0);
 }
 
 .day-recipe-body p {
@@ -179,7 +223,7 @@ a.btn-delete {
 }
 
 table {
-	font-size: 10px;
+	font-size: 14px;
 	padding: 2px;
 	width: 120px;
 	margin: auto;
@@ -196,16 +240,13 @@ td {
 	margin: 0px;
 }
 
+td a {
+	color: #30c963;
+}
+
 th {
 	padding: 1px;
 	margin: 0px;
-}
-
-h3.day-name {
-	font-size: 22px;
-	margin-top: 8px;
-	margin-left: 5px;
-	margin-bottom: 8px;
 }
 
 .delete-meal {
@@ -274,13 +315,43 @@ h3.day-name {
 }
 
 .search-result {
-	padding: 5px;
+	/*padding: 5px;*/
 	border-radius: 5px;
 	/*Background color if image isn't available*/
 	background-color: #e3f1fc;
+	background-blend-mode: lighten;
+	border: 1px solid #e3f1fc;
 	margin: auto;
 	margin-top: 5px;
 	width: 255px;
+}
+
+.search-result:hover {
+	background-blend-mode:normal;
+}
+
+.search-recipe-name {
+	/*width: 100%;*/
+	width: 253px;
+	padding: 5px;
+	height: 30px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-color: #2196F3;
+	overflow-x: hidden;
+	white-space: nowrap;
+}
+
+.search-recipe-name a {
+	color: white;
+}
+
+.search-recipe-name:hover {
+	background-color: #F2F2F2;
+}
+
+.search-recipe-name:hover > h3 > a {
+	color: #30c963;
 }
 
 .search-result h3 {
@@ -304,19 +375,4 @@ h3.day-name {
 
 .add-day .material-icons {
 	font-size: 14px;
-}
-
-@keyframes wobble {
-	0% { transform: rotate(0deg)  } 
-	15% { transform: rotate(-3deg); } 
-	30% { transform: rotate(2.5deg); } 
-	45% { transform: rotate(-2deg); } 
-	60% { transform: rotate(1.5deg); }
-	75% { transform: rotate(-1deg); }
-	100% { transform: rotate(0deg) } 
-}
-
-.wobble {
-	animation-duration: 1.5s;
-	animation-name: wobble; 
 }

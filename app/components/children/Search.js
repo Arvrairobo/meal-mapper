@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var Search = React.createClass({
 
@@ -65,14 +66,21 @@ var Search = React.createClass({
 				<div className='row'>
 					<div className='col sm12'>
 						<div className='search-results' >
+
+							<ReactCSSTransitionGroup
+							transitionName="popout"
+							transitionEnterTimeout={250}
+							transitionLeaveTimeout={250}>
+							
 							{this.props.searchResults.map((recipe, i) => {
 								return (
-									<div key={i} className='search-result'
-										style={{backgroundImage: 'url(' + recipe.image + ')', backgroundSize: 'cover'}}>
+								<div>
+									<div key={i} className='search-result'>
+										<div className='search-recipe-name'>
+											<h3 ><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
+										</div>
 
-										<h3><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
-										<p className='small-text'>Carbs: {recipe.carbs}g, Protein: {recipe.protein}g, Fat: {recipe.fat}g</p>
-										<p className='small-text'>Calories {recipe.calories}g</p>
+										<p className='macro-text'>Carbs: {recipe.carbs}g | Protein: {recipe.protein}g | Fat: {recipe.fat}g | Calories: {recipe.calories}</p>
 										<p className='small-text'>Meal: {recipe.meal}</p>
 										<p className='small-text'>Tags: 
 
@@ -101,8 +109,10 @@ var Search = React.createClass({
 										
 										</div>
 									</div>
+								</div>
 								)
 							})}
+							</ReactCSSTransitionGroup>
 						</div>
 					</div>
 				</div>

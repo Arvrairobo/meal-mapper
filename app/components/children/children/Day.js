@@ -12,7 +12,8 @@ var Day = React.createClass({
 			totalCarbs: (0).toFixed(1),
 			totalProtein: (0).toFixed(1),
 			totalFat: (0).toFixed(1),
-			totalCalories: 0
+			totalCalories: 0,
+			userData: {}
 		})
 	},
 
@@ -75,8 +76,8 @@ var Day = React.createClass({
 		var pieData = {
 			datasets: [{
 				data: [carbs, protein, fat],
-				backgroundColor: ['rgba(67, 101, 224, .2)', 'rgba(172, 67, 224, .2)', 'rgba(45, 237, 89, .2)'],
-				hoverBackgroundColor: ['rgba(67, 101, 224, .6)', 'rgba(172, 67, 224, .6)', 'rgba(45, 237, 89, .6)'],
+				backgroundColor: ['rgba(67, 101, 224, .5)', 'rgba(172, 67, 224, .5)', 'rgba(45, 237, 89, .5)'],
+				hoverBackgroundColor: ['rgba(67, 101, 224, .9)', 'rgba(172, 67, 224, .9)', 'rgba(45, 237, 89, .9)'],
 				options: {
 					legend: {
 						display: false
@@ -88,59 +89,29 @@ var Day = React.createClass({
 
 		return (
 			<div className='day-column' onClick={ () => this.props.clickDay(this.props.dayNum) } >
-				<h3 className='day-name center-align'>{ this.props.day }</h3>
+				<div className='day-name center-align'>
+					<h3>{ this.props.day }</h3>
+				</div>
 
 				<div className="divider"></div>
 					<div className='center-align'>
 
 							<Pie data={pieData} />
 							<p>Daily Calories: {calories}/{maxCalories} ({caloriePercent}%)</p>
-
-							{/* Table showing macros */}
-						{/*}	<table>
-								<thead>
-								<tr>
-									<td></td>
-									<th>Total</th>
-									<th>Targ.</th>
-									<th>Avail.</th>
-								</tr>
-								</thead>
-
-								<tbody>
-								<tr>
-									<td><strong>C |</strong></td>
-									<td>{carbs}g</td>
-									<td>10.0g</td>
-									<td>10.0g</td>
-								</tr>
-								<tr>
-									<td><strong>P |</strong></td>
-									<td>{protein}g</td>
-									<td>10.0g</td>
-									<td>10.0g</td>
-								</tr>
-								<tr>
-									<td><strong>F |</strong></td>
-									<td>{fat}g</td>
-									<td>10.0g</td>
-									<td>10.0g</td>
-								</tr>
-								</tbody>
-							</table> */}
 					</div>
 
 					<div className='recipe-area'>
 					<ReactCSSTransitionGroup
 						transitionName="popout"
 						transitionEnterTimeout={500}
-						transitionLeaveTimeout={500}
+						transitionLeaveTimeout={250}
 						transitionLeave={true} >
 
 							{/* Cylce through and create a listing for each recipe in a day */}
 							{this.props.meals.map((recipe, i) => {
 								return (
-									<div className='day-recipe wobble' key={i} >
+									<div className='day-recipe wobble' key={i} 
+										style={{backgroundImage: 'url(' + recipe.image + ')', backgroundSize: 'cover'}}>
 
 										<div className='day-recipe-tl'>
 											<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>

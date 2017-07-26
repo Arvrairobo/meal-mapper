@@ -40,7 +40,7 @@ var Planner = React.createClass({
 									<a className="waves-effect waves-light btn blue lighten-1" onClick={this.props.clearPlan}>Clear</a>
 									<a className="waves-effect waves-light btn blue lighten-1" onClick={this.props.savePlan}>Save Plan</a>
 									{/*<a className="waves-effect waves-light btn blue lighten-1">Feed Me</a>*/}
-									<a className="waves-effect waves-light btn blue lighten-1">Shopping List</a>
+									{/*<a <a className="waves-effect waves-light btn blue lighten-1">Shopping List</a>*/}
 								</div>
 							</div>
 						</div>
