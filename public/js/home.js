@@ -25,6 +25,7 @@ $(document).ready(function() {
     };
 
     if (!userData.email || !userData.password) {
+        Materialize.toast('Please enter your email address and password to login', 4000)
       return;
     }
 

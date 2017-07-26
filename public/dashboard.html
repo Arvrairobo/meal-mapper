@@ -56,7 +56,6 @@
             <div class="card small">
                 <div class="card-content">
                     <span class="card-title"> Progress Tracker</span>
-                    <!--TODO- progress tracker for weight-->
                     <div id="card-body-progress">
                         <div class="row" id="current-weight-label">
                             <p> Current Weight: <span class="currentWeight"></span></p>
@@ -80,9 +79,8 @@
             <div class="card small">
                 <div class="card-content">
                     <span class="card-title">Shopping List</span>
-                   <!--TODO - button for shopping list-->
                     <div id="card-body-shopping">
-                        <a class="waves-effect waves-light blue lighten-1 btn-large">Shopping List</a>
+                        <a href="#shopping-modal" class="waves-effect waves-light blue lighten-1 btn-large" id="shopping-list">Shopping List</a>
                     </div>
                 </div>
             </div>
@@ -93,7 +91,6 @@
             <div class="card small">
                 <div class="card-content">
                     <span class="card-title">Macronutrient Breakdown (per day)</span>
-                    <!--TODO- Pie chart-->
                     <div id="piechart_3d"></div>
                 </div>
             </div>
@@ -105,7 +102,6 @@
                         <span class="col s10 card-title"> My Fitness Profile </span>
                         <a href="#fitness-profile-modal" class="waves-effect waves-light btn blue lighten-1 col s2">edit</a>
                     </div>
-                    <!--TODO- Update button and modal for updating stats-->
                     <p>Gender: <span class="fitness-info" id="gender"></span></p>
                     <p>Age: <span class="fitness-info" id="age"></span></p>
                     <p>Activity Level: <span class="fitness-info" id="activity"></span></p>
@@ -233,7 +229,23 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="js/dashboard-load.js"></script>
+    <!--Shopping List Modal-->
+    <div id="shopping-modal" class="modal">
+        <div class="row">
+            <div class="col s12">
+                <div class="modal-content">
+                    <h3>Shopping List</h3>
+                    <div id="shoppingList"></div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="js/shoppingList.js"></script>
+<script type="text/javascript" src="js/dashboard-load.js"></script>
 <script type="text/javascript" src="js/dashboard-nutrition.js"></script>
 <script type="text/javascript" src="js/dashboard-fitness.js"></script>
 
