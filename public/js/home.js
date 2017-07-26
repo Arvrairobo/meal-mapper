@@ -10,7 +10,7 @@ $(document).ready(function() {
   var lastNameInput = $("input#last-name");
 
   // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-      $('#login-signup-modal').modal();
+      $(".modal-trigger").leanModal();
 
       $('ul.tabs').tabs();
 
@@ -25,6 +25,7 @@ $(document).ready(function() {
     };
 
     if (!userData.email || !userData.password) {
+        Materialize.toast('Please enter your email address and password to login', 4000)
       return;
     }
 

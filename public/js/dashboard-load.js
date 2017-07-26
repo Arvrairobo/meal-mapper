@@ -57,44 +57,15 @@ function renderRateOfChange(rateOfChange) {
     };
 };
 
-//function drawChart(calories) {
-//    google.charts.load("current", {packages:["corechart"]});
-//    google.charts.setOnLoadCallback(function () {
-//
-//        var proteinGram = 0;
-//        var carbGram = 0;
-//        var fatGram = 0;
-//
-//        proteinGram = Math.round(0.3 * calories / 4);
-//        carbGram = Math.round(0.45 * calories / 4);
-//        fatGram = Math.round(0.25 * calories / 9);
-//
-//        var data = google.visualization.arrayToDataTable([
-//         ['Macronutrient', 'Grams'],
-//         ['Protein', proteinGram],
-//         ['Carbohydrates', carbGram],
-//         ['Fat',  fatGram]
-//        ]);
-//
-//        var options = {
-//         is3D: true,
-//         backgroundColor: { fill:'transparent' }
-//        };
-//
-//        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-//        chart.draw(data, options);
-//    });
-//};
-
 function drawChart(protein, carbs, fat) {
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(function () {
 
         var data = google.visualization.arrayToDataTable([
          ['Macronutrient', 'Grams'],
-         ['Protein', protein],
-         ['Carbohydrates', carbs],
-         ['Fat',  fat]
+         ['Protein', proPct],
+         ['Carbohydrates', carbPct],
+         ['Fat',  fatPct]
         ]);
 
         var options = {
