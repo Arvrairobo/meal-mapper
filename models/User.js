@@ -23,17 +23,17 @@ var User = new mongoose.Schema({
 	protein: {
 		type: Number,
 		required: true,
-		default: 0
+		default: 25
 	},
 	fat: {
 		type: Number,
 		required: true,
-		default: 0
+		default: 25
 	},
 	carbs: {
 		type: Number,
 		required: true,
-		default: 0
+		default: 50
 	},
 
 	// Fitness profile

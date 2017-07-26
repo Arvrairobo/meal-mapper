@@ -336,6 +336,15 @@ th {
 	margin-left: 10px;
 }
 
+form label {
+	color: #0f5991;;
+}
+
+.checkbox-blue:checked {
+	border: 2px solid #ff9800;
+	background-color: #ff9800;
+}
+
 .search-results {
 	overflow: scroll;
 }

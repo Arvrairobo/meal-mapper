@@ -66,16 +66,16 @@ var Search = React.createClass({
 
 						<form>
 							<p>
-							<input type="checkbox" id="breakfast" />
+							<input className='checkbox-blue' type="checkbox" id="breakfast" />
 							<label htmlFor="breakfast">Breakfast</label>
 							<br/>
-							<input type="checkbox" id="lunch" />
+							<input className='checkbox-blue' type="checkbox" id="lunch" />
 							<label htmlFor="lunch">Lunch</label>
 							<br/>
-							<input type="checkbox" id="dinner" />
+							<input className='checkbox-blue' type="checkbox" id="dinner" />
 							<label htmlFor="dinner">Dinner</label>
 							<br/>
-							<input type="checkbox" id="snack" />
+							<input className='checkbox-blue' type="checkbox" id="snack" />
 							<label htmlFor="snack">Snack</label>
 							</p>
 						</form>
