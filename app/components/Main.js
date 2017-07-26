@@ -20,7 +20,8 @@ var Main = React.createClass({
 			planId: '',
 			update: false,
 			startDate: '',
-			updatePlan: {}
+			updatePlan: {},
+			saveColor: 'blue'
 		}
 	},
 
@@ -80,7 +81,7 @@ var Main = React.createClass({
 
 		// Only update database if recipe is added or removed from week
 		if(this.state.update){
-			this.setState({ update: false });
+			this.setState({ update: false, saveColor: 'blue' });
 			helpers.saveMealPlan(this.state.updatePlan, this.state.planId);
 		}
 	},
@@ -95,7 +96,7 @@ var Main = React.createClass({
 
 		// Push the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].push(recipe);
-		this.setState({ mealPlan: newPlan });
+		this.setState({ mealPlan: newPlan, saveColor: 'green' });
 	},
 
 	// Day (0-6) and recipe number (0-n)
@@ -104,7 +105,7 @@ var Main = React.createClass({
 
 		// Pop the selected the selected recipe in state to the day clicked
 		newPlan.meals[day].splice(recipe, 1);
-		this.setState({ mealPlan: newPlan });
+		this.setState({ mealPlan: newPlan, saveColor: 'green' });
 	},
 
 	// Create a new 7 day meal plan on a user id
@@ -151,7 +152,8 @@ var Main = React.createClass({
 	clearPlan: function(){
 		this.setState({
 			mealPlan: { meals: [[],[],[],[],[],[],[]] },
-			update: false
+			update: false,
+			saveColor: 'green'
 		});
 	},
 
@@ -175,7 +177,8 @@ var Main = React.createClass({
 					startDate={this.state.startDate}
 					removeFromMealPlan={this.removeFromMealPlan}
 					clearPlan={this.clearPlan}
-					savePlan={this.saveMealPlan} />
+					savePlan={this.saveMealPlan}
+					saveColor={this.state.saveColor} />
 
 				{/* Search bar (right side of screen) */}
 				<Search setSearch={this.setSearch}

@@ -38,7 +38,7 @@ var Planner = React.createClass({
 								<div className='center-align'>
 									{/*<a className="waves-effect waves-light btn blue lighten-1">Previous Plans</a>*/}
 									<a className="waves-effect waves-light btn blue lighten-1" onClick={this.props.clearPlan}>Clear</a>
-									<a className="waves-effect waves-light btn blue lighten-1" onClick={this.props.savePlan}>Save Plan</a>
+									<a className={"waves-effect waves-light btn lighten-1 " + this.props.saveColor} onClick={this.props.savePlan}>Save Plan</a>
 									{/*<a className="waves-effect waves-light btn blue lighten-1">Feed Me</a>*/}
 									{/*<a <a className="waves-effect waves-light btn blue lighten-1">Shopping List</a>*/}
 								</div>

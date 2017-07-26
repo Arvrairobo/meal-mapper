@@ -114,7 +114,7 @@ var Day = React.createClass({
 										style={{backgroundImage: 'url(' + recipe.image + ')', backgroundSize: 'cover'}}>
 
 										<div className='day-recipe-tl'>
-											<h3 className='recipe-name'><a href={recipe.url} target='_blank'>{recipe.name}</a></h3>
+											<h3 className='recipe-name'><a href={recipe.url} target='_blank'><span className='recipe-span'>{recipe.name}</span></a></h3>
 										</div>
 
 										<div className='day-recipe-tr'>

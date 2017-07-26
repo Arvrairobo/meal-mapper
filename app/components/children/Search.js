@@ -59,7 +59,6 @@ var Search = React.createClass({
 							<li><a href="#!">Dinner</a></li>
 							<li><a href="#!">Snack</a></li>
 						</ul>
-
 					</div>
 				</div>
 
