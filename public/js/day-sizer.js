@@ -12,4 +12,5 @@
 // without graphs, 320
 $(document).ready(function() {
     $('select').material_select();
+    $('.modal').modal();
 });

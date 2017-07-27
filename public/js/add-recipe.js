@@ -1,16 +1,4 @@
 (function(){
-	// Get user ID from local storage
-	var userId = localStorage.getItem('id');
-	var name = '';
-	
-	// Get user data
-	$.ajax({
-		method: 'GET',
-		url: '/api/user/' + userId
-	}).done(function(data){
-		name = data.firstName + ' ' + data.lastName;
-	});
-
 	$('#add-recipe').on('click', function(){
 		var url = $('#recipe-url').val();
 		$.post({
@@ -23,8 +11,16 @@
 				vegan: $('#vegan-check').prop('checked')
 			}
 		}).done(function(response){
-			console.log(response);
+			Materialize.toast('Recipe added!', 4000);
+			clearAll();
 		});
 	});
+
+	function clearAll(){
+		$('#recipe-url').val('');
+		$('#recipe-tags').val('');
+		$('#vegetarian-check').prop('checked', false);
+		$('#vegan-check').prop('checked', false);
+	}
 
 })();

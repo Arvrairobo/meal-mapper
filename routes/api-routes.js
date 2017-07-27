@@ -425,14 +425,14 @@ module.exports = function(server){
 						
 						Recipe.create(newRecipe, function(error, recipe){
 							if(error) throw error;
-							response.json(recipe);
+							response.send('Added ' + recipe.name);
 						});
 					});
 				} else {
-					response.send('Can\'t scrape that site');
+					response.send('Pick a different site!');
 				}
 			} else {
-				response.send('Recipe already in database');
+				response.send('Recipe already added!');
 			}
 		});
 	});

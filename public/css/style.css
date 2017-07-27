@@ -26,9 +26,19 @@ html, body {
 	margin-right: 5px;
 }
 
-/*.input-field input[type=text]:focus {
-	color: red;
-}*/
+/* label color */
+.input-field label {
+	color: #2196F3;
+}
+/* label focus color */
+.input-field:focus + label {
+	color: #2196F3;
+}
+/* label underline focus color */
+.input-field:focus {
+	border-bottom: 1px solid #2196F3;
+	box-shadow: 0 1px 0 0 #2196F3;
+}
 
 .app-wrapper {
 	height: 100%;
@@ -122,12 +132,12 @@ p.calories-txt {
 }
 
 .popout-enter {
-  opacity: 0.01;
+	opacity: 0.01;
 }
 
 .popout-enter.popout-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+	opacity: 1;
+	transition: opacity 500ms ease-in;
 }
 
 @keyframes wobble {
@@ -146,12 +156,12 @@ p.calories-txt {
 }
 
 .popout-leave {
-  opacity: 1;
+	opacity: 1;
 }
 
 .popout-leave.popout-leave-active {
-  opacity: 0.01;
-  transition: opacity 250ms ease-in;
+	opacity: 0.01;
+	transition: opacity 250ms ease-in;
 }
 
 .day-recipe-tl {
@@ -301,8 +311,8 @@ th {
 }
 
 .input-field input[type=text]:focus {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000;
+	border-bottom: 1px solid #000;
+	box-shadow: 0 1px 0 0 #000;
 }
 
 #search-bar h3 {
@@ -414,10 +424,10 @@ form label {
 }
 
 nav ul a{
-    font-size: 1.2rem;
-    color: #FFF;
-    letter-spacing: 2px;
-    display: block;
-    font-weight: 300;
-    padding: 0px 15px;
+		font-size: 1.2rem;
+		color: #FFF;
+		letter-spacing: 2px;
+		display: block;
+		font-weight: 300;
+		padding: 0px 15px;
 }
