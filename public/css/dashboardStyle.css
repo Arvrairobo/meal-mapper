@@ -140,3 +140,7 @@ h4 {
 .animate > span:after {
     display: none;
 }
+
+.noUi-base {
+    background-color: #2196F3
+}

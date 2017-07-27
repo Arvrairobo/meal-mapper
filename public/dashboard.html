@@ -109,7 +109,6 @@
                     <p>Age: <span class="fitness-info" id="age"></span></p>
                     <p>Activity Level: <span class="fitness-info" id="activity"></span></p>
                     <p>Height: <span class="fitness-info" id="height"></span></p>
-                    <p>Current Body Fat Level: <span class="fitness-info" id="bodyFat"></span></p>
                     <p>Current Weight: <span class="fitness-info currentWeight"></span></p>
                     <p>Desired Rate of Weight Change: <span class="fitness-info" id="rateOfChange"></span></p>
                 </div>
@@ -214,31 +213,30 @@
                     <h3>Nutrition Profile</h3>
                     <div class="row">
                         <form class="col s12">
-                            <label for="diet-input">Dietary Restriction</label>
-                            <select class ="browser-default" id="diet-input">
-                                <option value="" disabled selected="selected">Select</option>
-                                <option value="None">None</option>
-                                <option value="Vegetarian">Vegetarian</option>
-                                <option value="Vegan" >Vegan</option>
-                            </select>
-
-                            <!-- // Macrosliders HTML -->
-
-                            <div id="macropicker">
-                                <div class="sliders" id="rangeSlider1"></div>
-                                Protein
-                                <span id="slider-range-value1"></span>
-                                %
-                                <div class="sliders" id="rangeSlider2"></div>
-                                Fat
-                                <span id="slider-range-value2"></span>
-                                %
-                                <div class="sliders" id="rangeSlider3"></div>
-                                Carb
-                                <span id="slider-range-value3"></span>
-                                %
+                            <div class="row">
+                                <h5>Dietary Restriction</h5>
+                                <!--<label for="diet-input">Dietary Restriction</label>-->
+                                <select class ="browser-default" id="diet-input">
+                                    <option value="" disabled selected="selected">Select</option>
+                                    <option value="None">None</option>
+                                    <option value="Vegetarian">Vegetarian</option>
+                                    <option value="Vegan" >Vegan</option>
+                                </select>
                             </div>
 
+                            <!-- Macros sliders -->
+                            <h5>Macros Adjustments</h5>
+                            <div id="macropicker">
+                                <label>Protein</label>
+                                <div class="sliders" id="rangeSlider1"></div>
+                                <span id="slider-range-value1"></span>%</br>
+                                <label>Fat</label>
+                                <div class="sliders" id="rangeSlider2"></div>
+                                <span id="slider-range-value2"></span>%</br>
+                                <label>Carbs</label>
+                                <div class="sliders" id="rangeSlider3"></div>
+                                <span id="slider-range-value3"></span>%</br>
+                            </div>
                             <!-- End Macrosliders HTML -->
 
                         </form>

@@ -1,11 +1,11 @@
 $(document).ready(function() {
     $("#shopping-list").on("click", function(event) {
         var thisId = localStorage.getItem("id");
-        console.log(thisId)
             $.ajax({
                 method: "GET",
                 url: "/api/shoppinglist/" + thisId
             }).done(function(data) {
+            console.log(data)
                 var list = $("<ul>");
                 list.addClass("browser-default")
                 for (var i = 0; i < data.length; i++) {
@@ -15,7 +15,9 @@ $(document).ready(function() {
                     list.append(listItem)
                 }
                 $("#shoppingList").html(list)
-            });
+            }).catch(function(err) {
+                Materialize.toast('Please create a meal plan first.', 4000)
+          });
     })
 
 });
