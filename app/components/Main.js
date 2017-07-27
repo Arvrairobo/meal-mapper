@@ -174,7 +174,7 @@ var Main = React.createClass({
 					<div className="nav-wrapper container">
 						<a href="/" className="brand-logo"><img src='images/meal-mapper-logo.png'></img></a>
 						<ul id="nav-mobile" className="right hide-on-med-and-down">
-							<li><a href="/dashboard">Dashboard</a></li>
+							<li><a href="/dashboard">My Dashboard</a></li>
 							<li className='active'><a href="#">My Plan</a></li>
 							<li><a href="/logout">Logout</a></li>
 						</ul>
