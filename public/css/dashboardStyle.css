@@ -31,6 +31,9 @@ h4 {
 
 .card {
    background-color: #ABD9FC;
+   border: 1px solid #91cdf7;
+   border-radius: 7px;
+
 }
 
 .card.small {
@@ -41,14 +44,38 @@ h4 {
     text-align: center;
 }
 
+.card .card-title {
+    font-weight: 400;
+}
+
+.title {
+    background: white;
+    padding-top: 24px;
+    padding-right: 24px;
+    padding-left: 24px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    margin: 0;
+    color: #0f5991;
+}
+
+.card .card-content {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.card .card-content p {
+    color: darkslategrey;
+}
+
 #card-body-nutrient {
     text-align: center;
-    padding: 25px 0px;
+    padding: 20px 0px;
 }
 
 #card-body-progress {
     text-align: center;
-
 }
 
 #card-body-shopping {
@@ -56,9 +83,19 @@ h4 {
     padding: 60px 0px;
 }
 
+#card-body-fitness {
+    padding-top: 30px;
+}
+
 #card-body-account {
     text-align: center;
     padding: 60px 0px;
+    line-height: 2;
+}
+
+.card-body {
+    padding-left: 24px;
+    padding-right: 24px;
 }
 
 #weight-div {
@@ -66,12 +103,8 @@ h4 {
 }
 
 #current-weight-label {
-    margin: 60px 10px 10px 10px;
-}
-
-#piechart_3d {
-    padding-top: 5px;
-
+    margin: 50px 10px 10px 10px;
+    text-align: center;
 }
 
 .start-weight {
@@ -80,6 +113,26 @@ h4 {
 
 .goal-weight {
     text-align: right
+}
+
+.tag {
+    font-weight: bold;
+}
+
+.nutrition {
+    line-height: 2;
+}
+
+.larger {
+    font-size: 18px;
+}
+
+.comment {
+    text-align: center;
+}
+
+.modal .modal-content {
+    height: 400px;
 }
 
 .meter {

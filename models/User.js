@@ -23,17 +23,17 @@ var User = new mongoose.Schema({
 	protein: {
 		type: Number,
 		required: true,
-		default: 25
+		default: 150
 	},
 	fat: {
 		type: Number,
 		required: true,
-		default: 25
+		default: 55.55555556
 	},
 	carbs: {
 		type: Number,
 		required: true,
-		default: 50
+		default: 225
 	},
 
 	// Fitness and nutrition profile
@@ -46,7 +46,10 @@ var User = new mongoose.Schema({
 	gender: {type: String},
 	activityLevel: {type: Number}, // 0 none, 1 some, 2 active, 3 very active
 	rateOfChange: {type: Number}, // weekly rate of change (in pounds) ex. 1.2
-	calories: {type: Number}, // Total calories based on calculations
+	calories: {
+	    type: Number,
+	    default: 2000
+    }, // Total calories based on calculations
 	proPct: {type: Number},
 	fatPct: {type: Number},
 	carbPct: {type: Number},

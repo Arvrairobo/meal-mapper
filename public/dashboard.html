@@ -41,16 +41,17 @@
         <div class="col s12 l4">
             <div class="card small">
                 <div class="card-content">
-                    <div class="row">
+                    <div class="row title">
                         <span class="col s10 card-title">My Nutrition Profile</span>
                         <a href="#nutrition-modal" class="waves-effect waves-light btn blue lighten-1 col s2">edit</a>
                     </div>
-                    <div id="card-body-nutrient">
-                        <p>Dietary Restriction: <span id="dietPref"></span></p>
-                        <p>Daily Total Calories: <span id="totalCalories"></span></p>
-                        <p>Daily Protein: <span id="protein"></span></p>
-                        <p>Daily Fat: <span id="fat"></span></p>
-                        <p>Daily Carbs: <span id="carbs"></span></p>
+                    <div class="divider"></div>
+                    <div class="card-body" id="card-body-nutrient">
+                        <p class="larger"><span class="tag">Dietary Restriction: </span><span id="dietPref"></span></p>
+                        <p class="larger"><span class="tag">Daily Total Calories: </span><span id="totalCalories"></span></p>
+                        <p class="nutrition"><span class="tag">Daily Protein: </span><span id="protein"></span></p>
+                        <p class="nutrition"><span class="tag">Daily Fat: </span><span id="fat"></span></p>
+                        <p class="nutrition"><span class="tag">Daily Carbs: </span><span id="carbs"></span></p>
                     </div>
                 </div>
             </div>
@@ -58,10 +59,13 @@
         <div class="col s12 l4">
             <div class="card small">
                 <div class="card-content">
-                    <span class="card-title"> Progress Tracker</span>
-                    <div id="card-body-progress">
+                    <div class="row title">
+                        <span class="card-title"> Progress Tracker</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="card-body" id="card-body-progress">
                         <div class="row" id="current-weight-label">
-                            <p> Current Weight: <span class="currentWeight"></span></p>
+                            <p> <span class="tag">Current Weight: </span><span class="currentWeight"></span></p>
                         </div>
                         <div class="meter fill nostripes">
                             <span id="progress-bar"></span>
@@ -71,8 +75,8 @@
                             <p class="col s6 goal-weight"><span id="targetWeight"></span></p>
                         </div>
                         <div class="row">
-                            <p class="col s6 start-weight">Start Weight</p>
-                            <p class="col s6 goal-weight">Target Weight</p>
+                            <p class="col s6 start-weight tag">Start Weight</p>
+                            <p class="col s6 goal-weight tag">Target Weight</p>
                         </div>
                     </div>
                 </div>
@@ -81,8 +85,11 @@
         <div class="col s12 l4">
             <div class="card small">
                 <div class="card-content">
-                    <span class="card-title">Shopping List</span>
-                    <div id="card-body-shopping">
+                    <div class="row title">
+                        <span class="card-title">Shopping List</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="card-body" id="card-body-shopping">
                         <a href="#shopping-modal" class="waves-effect waves-light blue lighten-1 btn-large" id="shopping-list">Shopping List</a>
                     </div>
                 </div>
@@ -93,35 +100,46 @@
         <div class="col s12 l4">
             <div class="card small">
                 <div class="card-content">
-                    <span class="card-title">Macronutrient Breakdown (per day)</span>
-                    <div id="piechart_3d"></div>
+                    <div class="row title">
+                        <span class="card-title">Daily Macronutrient Breakdown</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="card-body">
+                        <p class="comment">broken down by calories per macronutrient</p>
+                        <div id="piechart_3d"></div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col s12 l4">
             <div class="card small">
                 <div class="card-content">
-                    <div class="row">
+                    <div class="row title">
                         <span class="col s10 card-title"> My Fitness Profile </span>
                         <a href="#fitness-profile-modal" class="waves-effect waves-light btn blue lighten-1 col s2">edit</a>
                     </div>
-                    <p>Gender: <span class="fitness-info" id="gender"></span></p>
-                    <p>Age: <span class="fitness-info" id="age"></span></p>
-                    <p>Activity Level: <span class="fitness-info" id="activity"></span></p>
-                    <p>Height: <span class="fitness-info" id="height"></span></p>
-                    <p>Current Weight: <span class="fitness-info currentWeight"></span></p>
-                    <p>Desired Rate of Weight Change: <span class="fitness-info" id="rateOfChange"></span></p>
+                    <div class="divider"></div>
+                    <div class="card-body" id="card-body-fitness">
+                        <p><span class="tag">Gender: </span><span class="fitness-info" id="gender"></span></p>
+                        <p><span class="tag">Age: </span><span class="fitness-info" id="age"></span></p>
+                        <p><span class="tag">Activity Level: </span><span class="fitness-info" id="activity"></span></p>
+                        <p><span class="tag">Height: </span><span class="fitness-info" id="height"></span></p>
+                        <p><span class="tag">Current Weight: </span><span class="fitness-info currentWeight"></span></p>
+                        <p><span class="tag">Desired Rate of Weight Change: </span><span class="fitness-info" id="rateOfChange"></span></p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col s12 l4">
             <div class="card small">
                 <div class="card-content">
-                    <span class="card-title">My Account</span>
-                    <div id="card-body-account">
-                        <p>Name: <span id="name"></span></p>
-                        <p>Email: <span id="email"></span></p>
-                        <!--TODO figure out how to update user password using nodemailer and passport etc-->
+                    <div class="row title">
+                        <span class="card-title">My Account</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="card-body" id="card-body-account">
+                        <p><span class="tag">Name: </span><span id="name"></span></p>
+                        <p><span class="tag">Email: </span><span id="email"></span></p>
                     </div>
                 </div>
             </div>
@@ -225,7 +243,7 @@
                             </div>
 
                             <!-- Macros sliders -->
-                            <h5>Macros Adjustments</h5>
+                            <h5>Macronutrient Adjustments</h5>
                             <div id="macropicker">
                                 <label>Protein</label>
                                 <div class="sliders" id="rangeSlider1"></div>
@@ -241,6 +259,7 @@
 
                         </form>
                     </div>
+                    <p class="comment">Total Percentage: <span id="total-percent"></span>%</p>
                 </div>
                 <div class="modal-footer">
                     <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
