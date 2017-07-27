@@ -59,9 +59,11 @@ $(document).ready(function() {
     });
 
     function setPct(){
-     proPct = rangeSlider1.noUiSlider.get()
-     fatPct = rangeSlider2.noUiSlider.get()
-     carbPct = rangeSlider3.noUiSlider.get()
+        proPct = rangeSlider1.noUiSlider.get()
+        fatPct = rangeSlider2.noUiSlider.get()
+        carbPct = rangeSlider3.noUiSlider.get()
+         var totalPct = parseInt(proPct) + parseInt(fatPct) + parseInt(carbPct)
+        $("#total-percent").text(totalPct)
     };
 
     setPct();
@@ -69,8 +71,6 @@ $(document).ready(function() {
     rangeSlider1.noUiSlider.on('change', setPct);
     rangeSlider2.noUiSlider.on('change', setPct);
     rangeSlider3.noUiSlider.on('change', setPct);
-
-
 
 
     saveButton.on("click", function(event) {
