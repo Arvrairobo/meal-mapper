@@ -38,9 +38,9 @@ var Planner = React.createClass({
 								<div className='center-align'>
 									{/*<a className="waves-effect waves-light btn blue lighten-1">Previous Plans</a>*/}
 									<a className="waves-effect waves-light btn blue lighten-1" onClick={this.props.clearPlan}>Clear</a>
-									<a className="waves-effect waves-light btn blue lighten-1" onClick={this.props.savePlan}>Save Plan</a>
+									<a className={"waves-effect waves-light btn lighten-1 " + this.props.saveColor} onClick={this.props.savePlan}>Save Plan</a>
 									{/*<a className="waves-effect waves-light btn blue lighten-1">Feed Me</a>*/}
-									<a className="waves-effect waves-light btn blue lighten-1">Shopping List</a>
+									{/*<a <a className="waves-effect waves-light btn blue lighten-1">Shopping List</a>*/}
 								</div>
 							</div>
 						</div>
@@ -51,19 +51,19 @@ var Planner = React.createClass({
 								<div id='calendar'>
 
 									<Day day='Sunday' dayNum={0} meals={this.props.mealPlan.meals[0]} clickDay={this.clickDay}
-										removeRecipe={this.removeRecipe}/>
+										removeRecipe={this.removeRecipe} userMacros={this.props.userMacros}/>
 									<Day day='Monday' dayNum={1} meals={this.props.mealPlan.meals[1]} clickDay={this.clickDay}
-										removeRecipe={this.removeRecipe} />
+										removeRecipe={this.removeRecipe} userMacros={this.props.userMacros} />
 									<Day day='Tuesday' dayNum={2} meals={this.props.mealPlan.meals[2]} clickDay={this.clickDay}
-										removeRecipe={this.removeRecipe} />
+										removeRecipe={this.removeRecipe} userMacros={this.props.userMacros} />
 									<Day day='Wednesday' dayNum={3} meals={this.props.mealPlan.meals[3]} clickDay={this.clickDay}
-										removeRecipe={this.removeRecipe} />
+										removeRecipe={this.removeRecipe} userMacros={this.props.userMacros} />
 									<Day day='Thursday' dayNum={4} meals={this.props.mealPlan.meals[4]} clickDay={this.clickDay}
-										removeRecipe={this.removeRecipe} />
+										removeRecipe={this.removeRecipe} userMacros={this.props.userMacros} />
 									<Day day='Friday' dayNum={5} meals={this.props.mealPlan.meals[5]} clickDay={this.clickDay}
-										removeRecipe={this.removeRecipe} />
+										removeRecipe={this.removeRecipe} userMacros={this.props.userMacros} />
 									<Day day='Saturday' dayNum={6} meals={this.props.mealPlan.meals[6]} clickDay={this.clickDay}
-										removeRecipe={this.removeRecipe} />
+										removeRecipe={this.removeRecipe} userMacros={this.props.userMacros} />
 
 								</div>
 							</div>
