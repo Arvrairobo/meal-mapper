@@ -1,6 +1,6 @@
 // Slide search bar in and out when icon is clicked
 (function(){
-	var showSearch = true;
+	var showSearch = false;
 	$('#pull-search').on('click', function(){
 		showSearch = !showSearch;
 		toggleBar();
