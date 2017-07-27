@@ -93,7 +93,7 @@ var Day = React.createClass({
 				options: {
 					pieceLabel: {
 						mode: 'percent',
-						precision: 1,
+						precision: 1
 					}
 				},
 			}],
