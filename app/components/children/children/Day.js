@@ -2,6 +2,7 @@ var React = require('react');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 import {Pie} from 'react-chartjs-2';
+var pieceLabel = require('chart.piecelabel.js');
 
 // Each of these is a column to be used in the calendar view
 var Day = React.createClass({

@@ -63,6 +63,7 @@ var Search = React.createClass({
 						<input value={this.state.searchTerm} onChange={this.changeSearch} className='center-align'
 							id='search-term' placeholder={this.state.searchDefault}/>
 						<a className="waves-effect waves-light btn blue lighten-1" onClick={this.sendSearch}>Search</a>
+						<a className="waves-effect waves-light btn blue lighten-1">Add</a>
 
 						<form>
 							<p>

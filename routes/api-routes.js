@@ -239,8 +239,6 @@ module.exports = function(server){
 		var data = request.body;
 		var planId = request.params.id;
 
-		console.log(data);
-
 		for(var i = 0; i < 7; i ++){
 			key = i.toString();
 			if(key in data){

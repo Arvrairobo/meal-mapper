@@ -1,10 +1,10 @@
 (function(){
 	var h = $(window).height();
-	$('.recipe-area').css('max-height', h - 320);
+	$('.recipe-area').css('max-height', h - 415);
 	$('.search-results').css('max-height', h - 300);
 	$(window).resize(function(){
 		var h = $(window).height();
-		$('.recipe-area').css('max-height', h - 320);
+		$('.recipe-area').css('max-height', h - 415);
 		$('.search-results').css('max-height', h - 300);
 	});
 })();
