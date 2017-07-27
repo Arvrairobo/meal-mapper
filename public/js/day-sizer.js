@@ -1,11 +1,11 @@
 (function(){
 	var h = $(window).height();
-	$('.recipe-area').css('max-height', h - 320);
-	$('.search-results').css('max-height', h - 200);
+	$('.recipe-area').css('max-height', h - 415);
+	$('.search-results').css('max-height', h - 300);
 	$(window).resize(function(){
 		var h = $(window).height();
-		$('.recipe-area').css('max-height', h - 320);
-		$('.search-results').css('max-height', h - 200);
+		$('.recipe-area').css('max-height', h - 415);
+		$('.search-results').css('max-height', h - 300);
 	});
 })();
 // with graphs, 445
