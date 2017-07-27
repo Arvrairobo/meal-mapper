@@ -214,7 +214,11 @@ module.exports = function(server){
 					}
 				}
 
-				response.json(finalList);
+				if(finalList.length > 0){
+					response.json(finalList);
+				} else {
+					response.json([]);
+				}
 			});
 		});
 	});
