@@ -303,7 +303,7 @@ module.exports = function(server){
 
 						var itemTemp = resultsItems[i];
 						resultsItems[i] = resultsItems[j]
-						resultsItems[j] = rankItems;
+						resultsItems[j] = itemTemp;
 					}
 				}
 			}
