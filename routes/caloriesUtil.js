@@ -40,21 +40,68 @@ module.exports = {
         } else if (ROC == 2) {
             userCalories = DCN + 250;
         } else if (ROC == 3) {
-            userCalories = DCN -250;
+            userCalories = DCN - 250;
         } else if (ROC == 4) {
-            userCalories = DCN -500;
+            userCalories = DCN - 500;
         }
-        userFFF.push(Math.round(userCalories))
+        userFFF.push(userCalories);
 
-        proteinGram = 0.3 * userCalories / 4;
-        userFFF.push(Math.round(proteinGram));
+        if (user.proPct == null || user.fatPct == null || user.carbPct == null) {
+            proteinGram = 0.3 * userCalories / 4;
+            userFFF.push(proteinGram);
 
-        carbGram = 0.45 * userCalories / 4;
-        userFFF.push(Math.round(carbGram));
+            fatGram = 0.25 * userCalories / 9;
+            userFFF.push(fatGram);
 
-        fatGram = 0.25 * userCalories / 9;
-        userFFF.push(Math.round(fatGram));
+            carbGram = 0.45 * userCalories / 4;
+            userFFF.push(carbGram);
 
+        } else {
+            var proPct = parseInt(user.proPct)/100;
+            var fatPct = parseInt(user.fatPct)/100;
+            var carbPct = parseInt(user.carbPct)/100;
+
+            proteinGram = proPct * userCalories / 4;
+            userFFF.push(proteinGram);
+
+            fatGram = fatPct * userCalories / 9;
+            userFFF.push(fatGram);
+
+            carbGram = carbPct * userCalories / 4;
+            userFFF.push(carbGram);
+
+        }
         return userFFF;
+    },
+
+    calculatePFC: function(user) {
+        var userCalories = user.calories;
+        var userMacro = [];
+
+        if (user.proPct == null || user.fatPct == null || user.carbPct == null) {
+            proteinGram = 0.3 * userCalories / 4;
+            userMacro.push(proteinGram);
+
+            fatGram = 0.25 * userCalories / 9;
+            userMacro.push(fatGram);
+
+            carbGram = 0.45 * userCalories / 4;
+            userMacro.push(carbGram);
+
+        } else {
+            var proPct = parseInt(user.proPct)/100;
+            var fatPct = parseInt(user.fatPct)/100;
+            var carbPct = parseInt(user.carbPct)/100;
+
+            proteinGram = proPct * userCalories / 4;
+            userMacro.push(proteinGram);
+
+            fatGram = fatPct * userCalories / 9;
+            userMacro.push(fatGram);
+
+            carbGram = carbPct * userCalories / 4;
+            userMacro.push(carbGram);
+        }
+        return userMacro;
     }
 };

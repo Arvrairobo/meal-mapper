@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 var caloriesUtil = require('./caloriesUtil');
 var calculateFFF = caloriesUtil.calculateFFF;
+var calculatePFC = caloriesUtil.calculatePFC;
 
 mongoose.Promise = Promise;
  mongoose.connect('mongodb://localhost/mealplanner', {
@@ -49,7 +50,6 @@ module.exports = function(server){
 		{
 				successRedirect: '/dashboard',
 				failureRedirect: '/',
-//				failureFlash : true
 		})
 	);
 
@@ -57,7 +57,6 @@ module.exports = function(server){
     server.post('/signup', passport.authenticate('signup', {
         successRedirect: '/dashboard',
         failureRedirect: '/signup',
-//        failureFlash : true
     }));
 
     // Route for getting some data about our user to be used client side
@@ -75,21 +74,22 @@ module.exports = function(server){
 
     // Route to update user's fitness profile
     server.post("/api/user_data", function(req, res) {
-        calculateFFF(req.body)
+        var newUser = Object.assign({}, req.user.toJSON(), req.body);
+        var cals = calculateFFF(newUser);
         User.findOneAndUpdate({"_id": req.user.id},
             {
-            height: req.body.height,
-            startWeight: req.body.startWeight,
-            targetWeight: req.body.targetWeight,
-            currentWeight: req.body.currentWeight,
-            age: req.body.age,
-            gender: req.body.gender,
-            activityLevel: req.body.activityLevel,
-            rateOfChange: req.body.rateOfChange,
-            calories: calculateFFF(req.body)[0],
-            protein: calculateFFF(req.body)[1],
-            fat: calculateFFF(req.body)[3],
-            carbs: calculateFFF(req.body)[2]
+            height: newUser.height,
+            startWeight: newUser.startWeight,
+            targetWeight: newUser.targetWeight,
+            currentWeight: newUser.currentWeight,
+            age: newUser.age,
+            gender: newUser.gender,
+            activityLevel: newUser.activityLevel,
+            rateOfChange: newUser.rateOfChange,
+            calories: cals[0],
+            protein: cals[1],
+            fat: cals[2],
+            carbs: cals[3]
             }
         ).exec(function(err, doc) {
              // Log any errors
@@ -104,8 +104,19 @@ module.exports = function(server){
     });
 
     // Route to update user's nutrition info
-    server.post("/api/user_data/diet", function(req, res) {
-        User.findOneAndUpdate({"_id": req.user.id}, {diet: req.body.diet}
+    server.post("/api/user_data/nutrition", function(req, res) {
+        var newUser = Object.assign({}, req.user.toJSON(), req.body);
+        var cals = calculatePFC(newUser);
+        User.findOneAndUpdate({"_id": req.user.id},
+            {
+            diet: req.body.diet,
+            proPct: req.body.proPct,
+            fatPct: req.body.fatPct,
+            carbPct: req.body.carbPct,
+            protein: cals[0],
+            fat: cals[1],
+            carbs: cals[2]
+            }
             ).exec(function(err, doc) {
              // Log any errors
                  if (err) {

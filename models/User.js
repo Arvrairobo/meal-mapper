@@ -36,7 +36,7 @@ var User = new mongoose.Schema({
 		default: 0
 	},
 
-	// Fitness profile
+	// Fitness and nutrition profile
 	diet: {type: String},
 	height: {type: Number}, // In inches - convert to ft. in. on client side
 	startWeight: {type: Number}, // In pounds
@@ -44,10 +44,12 @@ var User = new mongoose.Schema({
 	currentWeight: {type: Number}, // In pounds
 	age: {type: Number},
 	gender: {type: String},
-	bodyFat: {type: Number},
 	activityLevel: {type: Number}, // 0 none, 1 some, 2 active, 3 very active
 	rateOfChange: {type: Number}, // weekly rate of change (in pounds) ex. 1.2
 	calories: {type: Number}, // Total calories based on calculations
+	proPct: {type: Number},
+	fatPct: {type: Number},
+	carbPct: {type: Number},
 
 	// Array of each meal plan
 	mealplans: [{

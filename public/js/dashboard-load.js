@@ -57,15 +57,20 @@ function renderRateOfChange(rateOfChange) {
     };
 };
 
-function drawChart(protein, carbs, fat) {
+function drawChart(protein, fat, carbs) {
+    var proCal = protein * 4
+    var fatCal = fat * 9
+    var carbCal = carbs * 4
+
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(function () {
 
         var data = google.visualization.arrayToDataTable([
-         ['Macronutrient', 'Grams'],
-         ['Protein', protein],
-         ['Carbohydrates', carbs],
-         ['Fat',  fat]
+         ['Macronutrient', 'Percentage'],
+         ['Protein', proCal],
+         ['Carbohydrates', carbCal],
+         ['Fat',  fatCal],
+
         ]);
 
         var options = {
@@ -78,6 +83,12 @@ function drawChart(protein, carbs, fat) {
     });
 };
 
+function renderSliders(proPct, fatPct, carbPct) {
+rangeSlider1.noUiSlider.set(proPct)
+rangeSlider2.noUiSlider.set(fatPct)
+rangeSlider3.noUiSlider.set(carbPct)
+}
+
 $(document).ready(function() {
     $.get("/api/user_data").then(function(user) {
     // Populate user info in fitness profile section
@@ -85,7 +96,6 @@ $(document).ready(function() {
         $("#email").text(user.email);
         $("#gender").text(user.gender);
         $("#age").text(user.age);
-        $("#totalCalories").text(user.calories);
         $("#height").text(user.height ? user.height + " inches" : '');
         $(".currentWeight").text(user.currentWeight ? user.currentWeight + " lbs." : '');
         $("#startWeight").text(user.startWeight ? user.startWeight + " lbs." : '');
@@ -95,9 +105,10 @@ $(document).ready(function() {
 
         //Populate user info in nutrition profile
         $("#dietPref").text(user.diet);
-        $("#protein").text(user.protein + "g");
-        $("#fat").text(user.fat + "g");
-        $("#carbs").text(user.carbs + "g");
+        $("#totalCalories").text(Math.round(user.calories));
+        $("#protein").text(Math.round(user.protein) + "g");
+        $("#fat").text(Math.round(user.fat) + "g");
+        $("#carbs").text(Math.round(user.carbs) + "g");
 
         //Populate user info in fitness modal
         $("#gender-input option[value='" + user.gender + "']").attr("selected", "selected");
@@ -111,11 +122,11 @@ $(document).ready(function() {
 
         //Populate user info in nutrition modal
         $("#diet-input option[value='" + user.diet + "']").attr("selected", "selected");
+        renderSliders(user.proPct, user.fatPct, user.carbPct);
 
         renderProgress(user.startWeight, user.currentWeight, user.targetWeight);
 
-        drawChart(user.protein, user.carbs, user.fat);
-
+        drawChart(user.protein, user.fat, user.carbs);
         Materialize.updateTextFields();
 
         localStorage.setItem('id', user._id);
