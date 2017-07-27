@@ -412,3 +412,12 @@ form label {
 .add-day .material-icons {
 	font-size: 14px;
 }
+
+nav ul a{
+    font-size: 1.2rem;
+    color: #FFF;
+    letter-spacing: 2px;
+    display: block;
+    font-weight: 300;
+    padding: 0px 15px;
+}
