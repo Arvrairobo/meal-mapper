@@ -19,22 +19,48 @@ var Search = React.createClass({
 				lunch: true,
 				dinner: true,
 				snack: true
-			}
+			},
+			filterResults: [],
+			updateFilter: false
 		}
 	},
 
+	componentWillReceiveProps: function(){
+		this.setState({updateFilter: true});
+	},
+
 	componentDidUpdate: function(){
-		
+		if(this.state.updateFilter){
+
+			// Convert filter to array
+			var allowed = [];
+			var f = this.state.filter;
+			if(f.breakfast) allowed.push('breakfast');
+			if(f.lunch) allowed.push('lunch');
+			if(f.dinner) allowed.push('dinner');
+			if(f.snack) allowed.push('snack');
+
+			var filterResults = [];
+
+			if(this.props.searchResults.length !== 0){
+				for(var i = 0; i < this.props.searchResults.length; i++){
+					// If item meal is in allowed, add to filtered results;
+					if(allowed.indexOf(this.props.searchResults[i].meal) !== -1){
+						filterResults.push(this.props.searchResults[i]);
+					}
+				}
+			}
+
+			this.setState({
+				updateFilter: false,
+				filterResults: filterResults
+			});
+		}
 	},
 
 	// As user types in search box this will update
 	changeSearch: function(event){
 		this.setState({ searchTerm: event.target.value });
-	},
-
-	changeFilter: function(event){
-		console.log('change filter');
-		this.setState({ filter: event.target.value });
 	},
 
 	// When search button is pressed, send to parent component
@@ -45,6 +71,17 @@ var Search = React.createClass({
 	// When click button to add recipe, add to parent component
 	addRecipe: function(day, recipeNum){
 		this.props.addToMealPlan(day, this.props.searchResults[recipeNum]);
+	},
+
+	toggleCheckbox: function(meal){
+
+		var updateObj = this.state.filter;
+		updateObj[meal] = !updateObj[meal];
+
+		this.setState({
+			filter: updateObj,
+			updateFilter: true
+		});
 	},
 
 	render: function(){
@@ -67,16 +104,20 @@ var Search = React.createClass({
 
 						<form>
 							<p>
-							<input className='checkbox-blue' type="checkbox" id="breakfast" />
+							<input className='checkbox-blue' type="checkbox" id="breakfast"
+								onChange={this.toggleCheckbox.bind(null, 'breakfast')} checked={this.state.filter.breakfast}/>
 							<label htmlFor="breakfast">Breakfast</label>
 							<br/>
-							<input className='checkbox-blue' type="checkbox" id="lunch" />
+							<input className='checkbox-blue' type="checkbox" id="lunch"
+								onChange={this.toggleCheckbox.bind(null, 'lunch')} checked={this.state.filter.lunch}/>
 							<label htmlFor="lunch">Lunch</label>
 							<br/>
-							<input className='checkbox-blue' type="checkbox" id="dinner" />
+							<input className='checkbox-blue' type="checkbox" id="dinner"
+								onChange={this.toggleCheckbox.bind(null, 'dinner')} checked={this.state.filter.dinner}/>
 							<label htmlFor="dinner">Dinner</label>
 							<br/>
-							<input className='checkbox-blue' type="checkbox" id="snack" />
+							<input className='checkbox-blue' type="checkbox" id="snack"
+								onChange={this.toggleCheckbox.bind(null, 'snack')} checked={this.state.filter.snack}/>
 							<label htmlFor="snack">Snack</label>
 							</p>
 						</form>
@@ -92,7 +133,7 @@ var Search = React.createClass({
 							transitionEnterTimeout={250}
 							transitionLeaveTimeout={250}>
 							
-							{this.props.searchResults.map((recipe, i) => {
+							{this.state.filterResults.map((recipe, i) => {
 								return (
 									<div key={i} className='search-result'>
 										<div className='search-recipe-name'>

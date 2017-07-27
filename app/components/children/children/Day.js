@@ -75,9 +75,6 @@ var Day = React.createClass({
 			borderColor[1] = 'rgba(244, 229, 66, .8';
 		}
 
-		if(this.props.day === 'Sunday'){
-			console.log(fatDiff);
-		}
 		if(fatDiff >= 20){
 			borderColor[2] = 'rgba(209, 29, 29, .8';
 		} else if(fatDiff >= 10){
