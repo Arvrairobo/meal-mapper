@@ -13,24 +13,24 @@
 		showSearch = !showSearch;
 		if(showSearch){
 			targX = 0;
-			moveX = 3;
+			moveX = 4;
 		} else {
 			targX = -280;
-			moveX = -3;
+			moveX = -4;
 		}
 		xIntr = setInterval(resize, 20);
 	});
 
 	function resize(){
 		if(currX < targX){
-			moveX < 12 ? moveX += .5 : null;
+			moveX < 15 ? moveX += .7 : null;
 			currX += moveX;
 			if(currX + moveX > targX){
 				currX = targX;
 				clearInterval(xIntr);
 			}
 		} else {
-			moveX > -12 ? moveX -= .5 : null;
+			moveX > -15 ? moveX -= .7 : null;
 			currX += moveX;
 			if(currX + moveX < targX){
 				currX = targX;
