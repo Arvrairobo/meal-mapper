@@ -41,7 +41,7 @@ var Day = React.createClass({
 
 		// Determine differences for border
 
-		var maxCalories = userMacros.calories;
+		var maxCalories = Math.floor(userMacros.calories);
 		var caloriePercent = ((calories/maxCalories)*100).toFixed(1);
 
 		// Determine differences for border shading
