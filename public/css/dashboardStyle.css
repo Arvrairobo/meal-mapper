@@ -135,6 +135,10 @@ h4 {
     height: 400px;
 }
 
+.action {
+    color: #fff;
+}
+
 .meter {
     height: 20px;  /* Can be anything */
     position: relative;
