@@ -16,7 +16,8 @@ Finally, the user is able to make adjustments to their activity levels, macronut
 ## ScreenShots
 ![Home Page](https://github.com/mattsells/MealPlanner/blob/master/public/img/homelogin.png)
 ![MealGrid](https://github.com/mattsells/MealPlanner/blob/master/public/img/mealgrid.png)
-
+![Shopping List](https://github.com/mattsells/MealPlanner/blob/master/public/img/shoplist.png)
+![Dashboard](https://github.com/mattsells/MealPlanner/blob/master/public/img/dashboard.png)
 
 ## Technologies Used
 - JavaScript
